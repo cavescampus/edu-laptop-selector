@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>教育價筆電挑選器</title>
+    <style>
+      :root {
+        --bg: #f6f3ec;
+        --ink: #1b1e23;
+        --muted: #68655f;
+        --paper: #fffdfa;
+        --line: #ded8cc;
+        --accent: #0d6b5f;
+        --accent-dark: #084e48;
+        --danger: #b73434;
+        --warm: #b45c2b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Arial, "Microsoft JhengHei", sans-serif;
+        margin: 0;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      .wrap {
+        margin: 0 auto;
+        max-width: 1240px;
+        padding: 24px;
+      }
+
+      .hero {
+        align-items: stretch;
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 470px);
+        padding: 22px 0 18px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        line-height: 1.12;
+        margin: 8px 0 14px;
+      }
+
+      .eyebrow {
+        color: var(--accent-dark);
+        font-size: 12px;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .lead {
+        color: #313842;
+        font-size: 18px;
+        line-height: 1.75;
+        margin: 0;
+        max-width: 680px;
+      }
+
+      .metrics,
+      .tabs,
+      .toggles,
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .metrics {
+        margin-top: 18px;
+      }
+
+      .metrics span,
+      .chips span,
+      .score,
+      .badge {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--accent-dark);
+        display: inline-flex;
+        font-size: 12px;
+        font-weight: 900;
+        min-height: 28px;
+        padding: 5px 10px;
+      }
+
+      .hero-card,
+      .panel,
+      .card,
+      .empty {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .hero-card {
+        display: grid;
+        overflow: hidden;
+      }
+
+      .hero-image,
+      .card-image {
+        align-items: center;
+        background: #efede7;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero-image {
+        min-height: 250px;
+      }
+
+      .hero-image img,
+      .card-image img {
+        height: 100%;
+        object-fit: contain;
+        padding: 18px;
+        width: 100%;
+      }
+
+      .hero-info {
+        border-top: 1px solid var(--line);
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+      }
+
+      .hero-info h2,
+      .card h3 {
+        margin: 0;
+      }
+
+      .hero-info p,
+      .title {
+        color: var(--muted);
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      .controls {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1.5fr 1fr 0.8fr 0.8fr;
+      }
+
+      .panel {
+        margin: 10px 0 24px;
+        padding: 16px;
+      }
+
+      label {
+        color: var(--muted);
+        display: grid;
+        font-size: 12px;
+        font-weight: 900;
+        gap: 6px;
+      }
+
+      input,
+      select {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--ink);
+        min-height: 44px;
+        padding: 0 12px;
+      }
+
+      input[type="range"] {
+        accent-color: var(--accent);
+        padding: 0;
+      }
+
+      .tabs,
+      .toggles {
+        margin-top: 12px;
+      }
+
+      .tab {
+        background: transparent;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: #313842;
+        cursor: pointer;
+        font-weight: 900;
+        min-height: 36px;
+        padding: 7px 12px;
+      }
+
+      .tab.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .check {
+        align-items: center;
+        display: inline-flex;
+        gap: 7px;
+      }
+
+      .check input {
+        min-height: auto;
+      }
+
+      .summary {
+        display: grid;
+        gap: 1px;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 24px;
+      }
+
+      .summary div {
+        background: #fff;
+        border: 1px solid var(--line);
+        display: grid;
+        gap: 5px;
+        min-height: 76px;
+        padding: 14px;
+      }
+
+      .summary span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .summary strong {
+        color: var(--accent-dark);
+        font-size: 24px;
+      }
+
+      .section-title {
+        margin: 26px 0 12px;
+      }
+
+      .section-title h2 {
+        font-size: 28px;
+        margin: 4px 0 0;
+      }
+
+      .grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .picks {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1fr);
+        overflow: hidden;
+      }
+
+      .picks .card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image {
+        aspect-ratio: 1 / 1;
+      }
+
+      .picks .card-image {
+        aspect-ratio: 16 / 10;
+      }
+
+      .badge {
+        background: rgba(255, 255, 255, 0.92);
+        left: 10px;
+        position: absolute;
+        top: 10px;
+      }
+
+      .body {
+        display: grid;
+        gap: 11px;
+        min-width: 0;
+        padding: 15px;
+      }
+
+      .head {
+        align-items: start;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+      }
+
+      .family {
+        color: var(--accent-dark);
+        font-size: 12px;
+        font-weight: 900;
+        margin: 0 0 4px;
+      }
+
+      .score {
+        background: #f8efe6;
+        border-color: #e6c6ad;
+        color: var(--warm);
+        flex: 0 0 auto;
+      }
+
+      .price {
+        border-top: 1px solid var(--line);
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr auto;
+        padding-top: 10px;
+      }
+
+      .price span {
+        color: var(--muted);
+        display: block;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .price strong {
+        color: var(--danger);
+        display: block;
+        font-size: 24px;
+      }
+
+      del {
+        color: var(--muted);
+      }
+
+      .saving {
+        background: #fff5ef;
+        border: 1px solid #edcfbd;
+        border-radius: 6px;
+        color: var(--danger);
+        font-size: 13px;
+        font-weight: 900;
+        padding: 8px 10px;
+      }
+
+      .chips span {
+        background: #eef6f1;
+        min-height: 26px;
+        padding: 4px 8px;
+      }
+
+      .specs {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .specs div {
+        border-top: 1px solid var(--line);
+        min-width: 0;
+        padding-top: 8px;
+      }
+
+      .specs dt {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+
+      .specs dd {
+        font-size: 12px;
+        line-height: 1.45;
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+
+      details {
+        border-top: 1px solid var(--line);
+        color: #313842;
+        font-size: 12px;
+        line-height: 1.55;
+        padding-top: 8px;
+      }
+
+      summary {
+        color: var(--accent-dark);
+        cursor: pointer;
+        font-weight: 900;
+      }
+
+      .empty {
+        color: var(--muted);
+        padding: 28px;
+        text-align: center;
+      }
+
+      .error {
+        background: #fff5ef;
+        border: 1px solid #edcfbd;
+        border-radius: 8px;
+        color: var(--danger);
+        font-weight: 900;
+        padding: 16px;
+      }
+
+      @media (max-width: 1000px) {
+        .hero,
+        .controls,
+        .grid,
+        .picks {
+          grid-template-columns: 1fr;
+        }
+
+        .picks .card {
+          grid-template-columns: 190px minmax(0, 1fr);
+        }
+
+        .picks .card-image {
+          aspect-ratio: 1 / 1;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .wrap {
+          padding: 14px;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .summary,
+        .card,
+        .picks .card,
+        .specs,
+        .price {
+          grid-template-columns: 1fr;
+        }
+
+        .card-image,
+        .picks .card-image {
+          aspect-ratio: 16 / 10;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Excel 限定機型</p>
+          <h1>教育價筆電挑選器</h1>
+          <p class="lead">
+            這是可直接開啟的靜態版，不需要 localhost。資料仍取自 Excel 轉出的
+            88 筆限定機型，價格以教育價 / 專案價為主，並保留市價比較。
+          </p>
+          <div class="metrics" id="metrics"></div>
+        </div>
+        <article class="hero-card" id="featured"></article>
+      </section>
+
+      <section class="panel" aria-label="篩選條件">
+        <div class="controls">
+          <label>
+            關鍵字
+            <input id="query" placeholder="型號、CPU、RTX、OLED、螢幕尺寸" />
+          </label>
+          <label>
+            預算上限 <span id="budgetText"></span>
+            <input id="budget" type="range" step="1000" />
+          </label>
+          <label>
+            系列
+            <select id="family"></select>
+          </label>
+          <label>
+            排序
+            <select id="sort">
+              <option value="match">推薦排序</option>
+              <option value="price">價格低優先</option>
+              <option value="saving">折扣高優先</option>
+              <option value="performance">效能高優先</option>
+            </select>
+          </label>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <div class="toggles">
+          <label class="check"><input id="rtx" type="checkbox" /> RTX 獨顯</label>
+          <label class="check"><input id="ai" type="checkbox" /> AI 平台</label>
+          <label class="check"><input id="oled" type="checkbox" /> OLED</label>
+          <label class="check"><input id="tb" type="checkbox" /> 1TB SSD</label>
+        </div>
+      </section>
+
+      <section class="summary" id="summary"></section>
+
+      <section>
+        <div class="section-title">
+          <p class="eyebrow">Best matches</p>
+          <h2>目前最合適的 3 款</h2>
+        </div>
+        <div class="grid picks" id="picks"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <p class="eyebrow">Catalog</p>
+          <h2>限定機型清單</h2>
+        </div>
+        <div class="grid" id="catalog"></div>
+      </section>
+    </main>
+
+    <script>
+      const state = {
+        query: "",
+        budget: 0,
+        intent: "all",
+        family: "all",
+        sort: "match",
+        rtx: false,
+        ai: false,
+        oled: false,
+        tb: false,
+      };
+
+      const intentOptions = [
+        ["all", "全部"],
+        ["study", "上課文書"],
+        ["portable", "輕薄通勤"],
+        ["gaming", "電競遊戲"],
+        ["creator", "AI / 創作"],
+        ["large", "大螢幕"],
+      ];
+
+      const currency = new Intl.NumberFormat("zh-TW", {
+        style: "currency",
+        currency: "TWD",
+        maximumFractionDigits: 0,
+      });
+
+      function money(value) {
+        return currency.format(value || 0);
+      }
+
+      function list(value) {
+        return Array.isArray(value) ? value : value ? [value] : [];
+      }
+
+      function normalizeImage(path) {
+        if (!path) return "";
+        return path.replace(/^\/laptop-images\//, "public/laptop-images/");
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function scoreLaptop(laptop) {
+        let score = (laptop.valueScore || 0) + (laptop.discountRate || 0) * 1.6;
+        if (state.intent === "gaming") score += laptop.performance * 1.5 + (laptop.rtx ? 45 : 0);
+        if (state.intent === "creator") {
+          score += laptop.performance * 1.1 + (laptop.ai ? 24 : 0);
+          score += laptop.ramGB >= 32 ? 14 : 0;
+          score += laptop.oled ? 10 : 0;
+        }
+        if (state.intent === "portable") {
+          score += laptop.weightKg ? Math.max(0, 2 - laptop.weightKg) * 42 : 0;
+          score += laptop.screenSize <= 14.5 ? 12 : 0;
+        }
+        if (state.intent === "large") score += laptop.screenSize ? laptop.screenSize * 4 : 0;
+        if (state.intent === "study") {
+          score += laptop.eduPrice <= 35000 ? 35 : 0;
+          score += laptop.weightKg <= 1.7 ? 12 : 0;
+        }
+        return score;
+      }
+
+      function scoreLabel(score) {
+        return `${Math.min(99, Math.max(72, Math.round(score / 2.4)))}%`;
+      }
+
+      function parseData(text) {
+        const marker = "export const laptops: Laptop[] = ";
+        const start = text.indexOf(marker);
+        if (start < 0) throw new Error("找不到機型資料。");
+        let json = text.slice(start + marker.length).trim();
+        if (json.endsWith(";")) json = json.slice(0, -1);
+        return JSON.parse(json);
+      }
+
+      async function loadData() {
+        try {
+          const response = await fetch("app/laptop-data.ts");
+          if (!response.ok) throw new Error("fetch failed");
+          return parseData(await response.text());
+        } catch {
+          return new Promise((resolve, reject) => {
+            const iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = "app/laptop-data.ts";
+            iframe.onload = () => {
+              try {
+                const doc = iframe.contentDocument || iframe.contentWindow.document;
+                const text = doc.body.innerText || doc.documentElement.textContent;
+                iframe.remove();
+                resolve(parseData(text));
+              } catch (error) {
+                reject(error);
+              }
+            };
+            iframe.onerror = () => reject(new Error("無法讀取 app/laptop-data.ts"));
+            document.body.appendChild(iframe);
+          });
+        }
+      }
+
+      function setupControls(laptops) {
+        const prices = laptops.map((item) => item.eduPrice);
+        const min = Math.floor(Math.min(...prices) / 1000) * 1000;
+        const max = Math.ceil(Math.max(...prices) / 1000) * 1000;
+        const families = [...new Set(laptops.map((item) => item.family))].sort((a, b) =>
+          a.localeCompare(b, "zh-Hant"),
+        );
+
+        state.budget = max;
+        budget.min = min;
+        budget.max = max;
+        budget.value = max;
+
+        family.innerHTML =
+          '<option value="all">全部系列</option>' +
+          families.map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join("");
+
+        tabs.innerHTML = intentOptions
+          .map(([id, label]) => `<button class="tab ${id === "all" ? "active" : ""}" data-intent="${id}">${label}</button>`)
+          .join("");
+
+        metrics.innerHTML = [
+          `${laptops.length} 款`,
+          `${families.length} 系列`,
+          `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
+        ]
+          .map((item) => `<span>${item}</span>`)
+          .join("");
+
+        query.addEventListener("input", () => {
+          state.query = query.value;
+          render(laptops);
+        });
+        budget.addEventListener("input", () => {
+          state.budget = Number(budget.value);
+          render(laptops);
+        });
+        family.addEventListener("change", () => {
+          state.family = family.value;
+          render(laptops);
+        });
+        sort.addEventListener("change", () => {
+          state.sort = sort.value;
+          render(laptops);
+        });
+        rtx.addEventListener("change", () => {
+          state.rtx = rtx.checked;
+          render(laptops);
+        });
+        ai.addEventListener("change", () => {
+          state.ai = ai.checked;
+          render(laptops);
+        });
+        oled.addEventListener("change", () => {
+          state.oled = oled.checked;
+          render(laptops);
+        });
+        tb.addEventListener("change", () => {
+          state.tb = tb.checked;
+          render(laptops);
+        });
+        tabs.addEventListener("click", (event) => {
+          const button = event.target.closest("button[data-intent]");
+          if (!button) return;
+          state.intent = button.dataset.intent;
+          document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+          render(laptops);
+        });
+      }
+
+      function getResults(laptops) {
+        const terms = state.query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+        return laptops
+          .filter((laptop) => laptop.eduPrice <= state.budget)
+          .filter((laptop) => state.family === "all" || laptop.family === state.family)
+          .filter((laptop) => state.intent === "all" || list(laptop.purposes).includes(state.intent))
+          .filter((laptop) => !state.rtx || laptop.rtx)
+          .filter((laptop) => !state.ai || laptop.ai)
+          .filter((laptop) => !state.oled || laptop.oled)
+          .filter((laptop) => !state.tb || (laptop.storageGB || 0) >= 1000)
+          .filter((laptop) => terms.every((term) => laptop.searchText.includes(term)))
+          .map((laptop) => ({ laptop, score: scoreLaptop(laptop) }))
+          .sort((a, b) => {
+            if (state.sort === "price") return a.laptop.eduPrice - b.laptop.eduPrice;
+            if (state.sort === "saving") return b.laptop.discount - a.laptop.discount;
+            if (state.sort === "performance") return b.laptop.performance - a.laptop.performance;
+            return b.score - a.score;
+          });
+      }
+
+      function card(item, rank = "") {
+        const laptop = item.laptop;
+        const tags = list(laptop.tags).slice(0, 5);
+        const highlights = list(laptop.highlights).slice(0, 4);
+        return `
+          <article class="card">
+            <div class="card-image">
+              ${rank ? `<span class="badge">#${rank}</span>` : ""}
+              ${laptop.image ? `<img src="${normalizeImage(laptop.image)}" alt="${escapeHtml(laptop.title)}">` : "ASUS"}
+            </div>
+            <div class="body">
+              <div class="head">
+                <div>
+                  <p class="family">${escapeHtml(laptop.family)}</p>
+                  <h3>${escapeHtml(laptop.model)}</h3>
+                </div>
+                <span class="score">${scoreLabel(item.score)}</span>
+              </div>
+              <p class="title">${escapeHtml(laptop.title)}</p>
+              <div class="price">
+                <div><span>教育價 / 專案價</span><strong>${money(laptop.eduPrice)}</strong></div>
+                <div><span>市價</span><del>${money(laptop.marketPrice)}</del></div>
+              </div>
+              <div class="saving">現省 ${money(laptop.discount)}${laptop.discountRate ? `，約 ${laptop.discountRate}%` : ""}</div>
+              <div class="chips">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
+              <dl class="specs">
+                <div><dt>CPU</dt><dd>${escapeHtml(laptop.cpu)}</dd></div>
+                <div><dt>顯示卡</dt><dd>${escapeHtml(laptop.gpu)}</dd></div>
+                <div><dt>記憶體</dt><dd>${escapeHtml(laptop.memory)}</dd></div>
+                <div><dt>硬碟</dt><dd>${escapeHtml(laptop.storage)}</dd></div>
+                <div><dt>螢幕</dt><dd>${escapeHtml(laptop.display)}</dd></div>
+                <div><dt>重量</dt><dd>${escapeHtml(laptop.weight)}</dd></div>
+              </dl>
+              <details>
+                <summary>完整資訊</summary>
+                <p>保固：${escapeHtml(laptop.warranty || "依原廠公告")}</p>
+                <p>標配：${escapeHtml(laptop.bundle || "依 Excel 規格")}</p>
+                <p>條碼：${escapeHtml(laptop.barcode)}</p>
+                ${highlights.length ? `<ul>${highlights.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
+              </details>
+            </div>
+          </article>
+        `;
+      }
+
+      function render(laptops) {
+        const results = getResults(laptops);
+        const bestSaving = laptops.reduce((best, item) => (item.discount > best.discount ? item : best), laptops[0]);
+        const top = results[0]?.laptop || laptops[0];
+        budgetText.textContent = money(state.budget);
+
+        featured.innerHTML = `
+          <div class="hero-image">${top.image ? `<img src="${normalizeImage(top.image)}" alt="${escapeHtml(top.title)}">` : "ASUS"}</div>
+          <div class="hero-info">
+            <p class="eyebrow">目前首選</p>
+            <h2>${escapeHtml(top.model)}</h2>
+            <p>${escapeHtml(top.title)}</p>
+            <div class="price">
+              <div><span>教育價 / 專案價</span><strong>${money(top.eduPrice)}</strong></div>
+              <div><span>市價</span><del>${money(top.marketPrice)}</del></div>
+            </div>
+          </div>
+        `;
+
+        summary.innerHTML = `
+          <div><span>符合條件</span><strong>${results.length}</strong></div>
+          <div><span>預算內</span><strong>${laptops.filter((item) => item.eduPrice <= state.budget).length}</strong></div>
+          <div><span>目前最高折扣</span><strong>${money(bestSaving.discount)}</strong></div>
+        `;
+
+        picks.innerHTML = results.slice(0, 3).map((item, index) => card(item, index + 1)).join("");
+        catalog.innerHTML = results.length
+          ? results.map((item) => card(item)).join("")
+          : '<div class="empty">沒有符合條件的機型，請放寬預算或取消部分規格條件。</div>';
+      }
+
+      loadData()
+        .then((laptops) => {
+          setupControls(laptops);
+          render(laptops);
+        })
+        .catch((error) => {
+          document.querySelector(".wrap").insertAdjacentHTML(
+            "afterbegin",
+            `<div class="error">無法載入機型資料：${escapeHtml(error.message)}<br>請確認 index.html、app/laptop-data.ts、public/laptop-images 都在同一個資料夾結構中。</div>`,
+          );
+        });
+    </script>
+  </body>
+</html>
