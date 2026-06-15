@@ -628,10 +628,12 @@
         <div>
           <p class="eyebrow">Excel 限定機型</p>
           <h1>教育價筆電挑選器</h1>
-          <p class="lead">此網頁操作方式</p>
+          <p class="lead">本網頁的操作方式說明</p>
           <div class="how">
-            <strong>先選 CPU、RAM、SSD、LCD、顯示卡，再用預算與用途縮小範圍。</strong>
-            <p>想比較規格時，勾選每台機型下方的「加入比較」，下方會即時產生多台比對表。</p>
+            <strong>依需求逐步篩選，再把候選機型加入比較。</strong>
+            <p>先用 CPU、RAM、SSD、LCD、顯示卡下拉選單鎖定規格，再搭配預算、系列、用途與關鍵字縮小範圍。</p>
+            <p>看到合適的機型時，勾選卡片下方的「加入比較」，即可一次比對多台的價格、CPU、RAM、SSD、LCD、顯示卡與重量。</p>
+            <p>每台機型照片可用左右按鈕輪播查看，價格以教育價 / 專案價為主，旁邊保留市價方便比較優惠幅度。</p>
           </div>
           <div class="metrics" id="metrics"></div>
         </div>
@@ -791,15 +793,38 @@
         return String(path || "").split("/").pop();
       }
 
+      function fallbackImageFile(laptop) {
+        const model = laptop.model || "";
+        if (/FA401EA/.test(model)) return "fa401ea.jpg";
+        if (/FA401GM/.test(model)) return "fa401gm.jpg";
+        if (/FA506|FX506/.test(model)) return "fa506.jpg";
+        if (/FA607|FX607/.test(model)) return "fa607.jpg";
+        if (/FA608|FX608|FA808/.test(model)) return "fa608.jpg";
+        if (/FA617/.test(model)) return "fa617.jpg";
+        if (/S3407/.test(model)) return "s3407qa.jpg";
+        if (/S3607CA/.test(model)) return "s3607ca.jpg";
+        if (/S3607NA/.test(model)) return "s3607na.jpg";
+        if (/S3607|X1607|M1807|V3607/.test(model)) return "s3607qa.jpg";
+        if (/X1404/.test(model)) return "x1404-blue.jpg";
+        if (/X1407/.test(model)) return "x1407.jpg";
+        if (/X1502/.test(model)) return "x1502va.jpg";
+        if (/X1504/.test(model)) return "x1504.jpg";
+        if (/X1704/.test(model)) return "x1704.jpg";
+        if (/UX|UM|TP3407|H7606|HN7306/.test(model)) return "ux3407.jpg";
+        if (laptop.family === "TUF Gaming" || laptop.family === "ROG") return "fa608.jpg";
+        if (laptop.family === "Zenbook" || laptop.family === "ProArt") return "ux3407.jpg";
+        return "s3607qa.jpg";
+      }
+
       function normalizeImage(path) {
         if (!path) return "";
         return path.replace(/^\/laptop-images\//, "public/laptop-images/");
       }
 
       function galleryFor(laptop) {
-        const file = imageFile(laptop.image);
+        const file = imageFile(laptop.image) || fallbackImageFile(laptop);
         const gallery = (galleryMap[file] || []).map((item) => `public/laptop-images/gallery/${item}`);
-        return gallery.length ? gallery : [normalizeImage(laptop.image)];
+        return gallery.length ? gallery : [`public/laptop-images/${file}`];
       }
 
       function currentImage(laptop) {
@@ -944,7 +969,7 @@
           .map(([id, label]) => `<button class="tab ${id === "all" ? "active" : ""}" data-intent="${id}">${label}</button>`)
           .join("");
 
-        const budgetHero = laptops.filter((item) => item.eduPrice >= 17500 && item.eduPrice <= 30000);
+        const budgetHero = laptops.filter((item) => item.eduPrice >= 25000 && item.eduPrice <= 30000);
         heroItems = (budgetHero.length ? budgetHero : laptops)
           .map((laptop) => ({ laptop, score: scoreLaptop(laptop) }))
           .sort((a, b) => b.score - a.score)
@@ -952,7 +977,7 @@
 
         metrics.innerHTML = [
           `${laptops.length} 款`,
-          `推薦輪播 17,500-30,000`,
+          `推薦輪播 25,000-30,000`,
           `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
         ]
           .map((item) => `<span>${item}</span>`)
@@ -1150,7 +1175,7 @@
             ${currentImage(top) ? `<img src="${currentImage(top)}" alt="${escapeHtml(top.title)}">` : "ASUS"}
           </div>
           <div class="hero-info">
-            <p class="eyebrow">17,500-30,000 推薦輪播</p>
+            <p class="eyebrow">25,000-30,000 推薦輪播</p>
             <h2>${escapeHtml(top.model)}</h2>
             <p>${escapeHtml(top.title)}</p>
             <div class="price">
