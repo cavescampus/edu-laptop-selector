@@ -1183,7 +1183,7 @@
             : heroMode === "single"
               ? `手機顯示最低教育價`
               : `推薦輪播 25,000-30,000`,
-          state.hidePrice ? `優惠請洽服務人員` : `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
+          `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
         ]
           .map((item) => `<span>${item}</span>`)
           .join("");
@@ -1547,7 +1547,7 @@
         summary.innerHTML = `
           <div><span>符合條件</span><strong>${results.length}</strong></div>
           <div><span>預算內</span><strong>${laptops.filter((item) => item.eduPrice <= state.budget).length}</strong></div>
-          <div><span>目前最高折扣</span><strong>${state.hidePrice ? "請洽詢" : money(bestSaving.discount)}</strong></div>
+          <div><span>目前最高折扣</span><strong>${money(bestSaving.discount)}</strong></div>
         `;
 
         picks.innerHTML = results.slice(0, 3).map((item, index) => card(item, index + 1)).join("");
