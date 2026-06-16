@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>教育價筆電挑選器</title>
+    <style>
+      :root {
+        --bg: #f7f4ee;
+        --ink: #1b1e23;
+        --muted: #69655f;
+        --paper: #fffdfa;
+        --line: #ddd5c9;
+        --accent: #0d6b5f;
+        --accent-dark: #084f48;
+        --danger: #b73535;
+        --warm: #b45c2b;
+        --soft: #eef6f1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Arial, "Microsoft JhengHei", sans-serif;
+        margin: 0;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .wrap {
+        margin: 0 auto;
+        max-width: 1280px;
+        padding: 24px;
+      }
+
+      .hero {
+        align-items: stretch;
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 0.95fr) minmax(560px, 1.05fr);
+        padding: 18px 0 18px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        line-height: 1.12;
+        margin: 8px 0 14px;
+      }
+
+      .eyebrow {
+        color: var(--accent-dark);
+        font-size: 12px;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .price-toggle {
+        align-items: center;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        display: inline-flex;
+        gap: 8px;
+        min-height: 30px;
+        padding: 5px 10px;
+      }
+
+      .price-toggle span {
+        background: var(--soft);
+        border-radius: 999px;
+        color: var(--accent-dark);
+        padding: 2px 8px;
+      }
+
+      .lead {
+        color: #313842;
+        font-size: 18px;
+        line-height: 1.75;
+        margin: 0;
+        max-width: 700px;
+      }
+
+      .how {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: grid;
+        gap: 8px;
+        margin-top: 18px;
+        max-width: 760px;
+        min-width: 0;
+        padding: 14px;
+      }
+
+      .how strong {
+        color: var(--accent-dark);
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+      }
+
+      .how p {
+        color: var(--muted);
+        line-height: 1.65;
+        margin: 0;
+      }
+
+      .metrics,
+      .tabs,
+      .toggles,
+      .chips,
+      .hero-dots {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .metrics {
+        margin-top: 18px;
+      }
+
+      .metrics span,
+      .chips span,
+      .score,
+      .badge,
+      .hero-dots button {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--accent-dark);
+        display: inline-flex;
+        font-size: 12px;
+        font-weight: 900;
+        min-height: 28px;
+        padding: 5px 10px;
+      }
+
+      .hero-card,
+      .panel,
+      .card,
+      .empty,
+      .compare-panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .hero-card {
+        display: grid;
+        grid-template-columns: minmax(240px, 46%) minmax(0, 1fr);
+        height: 360px;
+        overflow: hidden;
+      }
+
+      .hero-image,
+      .card-image {
+        align-items: center;
+        background: #efede7;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero-image {
+        height: 100%;
+        min-height: 0;
+      }
+
+      .hero-image img,
+      .card-image img {
+        height: 100%;
+        object-fit: contain;
+        padding: 18px;
+        width: 100%;
+      }
+
+      .hero-info {
+        align-content: center;
+        border-left: 1px solid var(--line);
+        display: grid;
+        gap: 10px;
+        min-height: 0;
+        overflow: hidden;
+        padding: 16px;
+      }
+
+      .hero-info h2,
+      .card h3 {
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-info p,
+      .title {
+        color: var(--muted);
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      .hero-info .title {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
+
+      .hero-actions {
+        align-items: center;
+        display: flex;
+        gap: 8px;
+        justify-content: space-between;
+      }
+
+      .hero-actions button,
+      .gallery-btn,
+      .clear-btn {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--accent-dark);
+        font-weight: 900;
+        min-height: 34px;
+        padding: 6px 10px;
+      }
+
+      .hero-dots button {
+        background: #fff;
+        min-height: 10px;
+        min-width: 10px;
+        padding: 0;
+      }
+
+      .hero-dots button.active {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      .controls {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 1.2fr 0.9fr 0.8fr 0.8fr;
+      }
+
+      .spec-controls {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        margin-top: 12px;
+      }
+
+      .panel {
+        margin: 10px 0 22px;
+        padding: 16px;
+      }
+
+      label {
+        color: var(--muted);
+        display: grid;
+        font-size: 12px;
+        font-weight: 900;
+        gap: 6px;
+      }
+
+      input,
+      select {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--ink);
+        min-height: 44px;
+        min-width: 0;
+        padding: 0 12px;
+        width: 100%;
+      }
+
+      input[type="range"] {
+        accent-color: var(--accent);
+        padding: 0;
+      }
+
+      .tabs,
+      .toggles {
+        margin-top: 12px;
+      }
+
+      .tab {
+        background: transparent;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: #313842;
+        cursor: pointer;
+        font-weight: 900;
+        min-height: 36px;
+        padding: 7px 12px;
+      }
+
+      .tab.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .check,
+      .compare-check {
+        align-items: center;
+        display: inline-flex;
+        gap: 7px;
+      }
+
+      .check input,
+      .compare-check input {
+        min-height: auto;
+        width: auto;
+      }
+
+      .summary {
+        display: grid;
+        gap: 1px;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 22px;
+      }
+
+      .summary div {
+        background: #fff;
+        border: 1px solid var(--line);
+        display: grid;
+        gap: 5px;
+        min-height: 76px;
+        padding: 14px;
+      }
+
+      .summary span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .summary strong {
+        color: var(--accent-dark);
+        font-size: 24px;
+      }
+
+      .compare-panel {
+        display: none;
+        margin-bottom: 24px;
+        overflow: hidden;
+      }
+
+      .compare-panel.active {
+        display: block;
+      }
+
+      .compare-head {
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        padding: 14px;
+      }
+
+      .compare-head h2 {
+        font-size: 22px;
+        margin: 0;
+      }
+
+      .compare-scroll {
+        overflow-x: auto;
+      }
+
+      .compare-table {
+        border-collapse: collapse;
+        min-width: 860px;
+        width: 100%;
+      }
+
+      .compare-table.compare-vertical {
+        min-width: 760px;
+      }
+
+      .compare-table th,
+      .compare-table td {
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+        line-height: 1.5;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .compare-table th {
+        background: #f2eee6;
+        color: var(--accent-dark);
+        font-weight: 900;
+      }
+
+      .compare-table.compare-vertical thead th {
+        min-width: 220px;
+      }
+
+      .compare-table.compare-vertical thead th:first-child,
+      .compare-table.compare-vertical tbody th {
+        min-width: 110px;
+        width: 110px;
+      }
+
+      .compare-product {
+        display: grid;
+        gap: 8px;
+      }
+
+      .compare-product img {
+        aspect-ratio: 16 / 10;
+        background: #efede7;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        height: auto;
+        object-fit: contain;
+        padding: 8px;
+        width: 100%;
+      }
+
+      .compare-product strong {
+        color: var(--accent-dark);
+        display: block;
+        font-size: 16px;
+      }
+
+      .compare-price {
+        color: var(--danger);
+        display: block;
+        font-size: 16px;
+      }
+
+      .section-title {
+        margin: 26px 0 12px;
+      }
+
+      .section-title h2 {
+        font-size: 28px;
+        margin: 4px 0 0;
+      }
+
+      .grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .picks {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        display: grid;
+        grid-template-columns: 210px minmax(0, 1fr);
+        overflow: hidden;
+      }
+
+      .picks .card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image {
+        aspect-ratio: 1 / 1;
+      }
+
+      .picks .card-image {
+        aspect-ratio: 16 / 10;
+      }
+
+      .badge,
+      .image-count {
+        background: rgba(255, 255, 255, 0.92);
+        position: absolute;
+        top: 10px;
+      }
+
+      .badge {
+        left: 10px;
+      }
+
+      .image-count {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--accent-dark);
+        font-size: 12px;
+        font-weight: 900;
+        padding: 5px 9px;
+        right: 10px;
+      }
+
+      .gallery-controls {
+        bottom: 10px;
+        display: flex;
+        gap: 8px;
+        position: absolute;
+        right: 10px;
+      }
+
+      .gallery-btn {
+        background: rgba(255, 255, 255, 0.92);
+        min-height: 30px;
+        min-width: 34px;
+        padding: 4px 8px;
+      }
+
+      .body {
+        display: grid;
+        gap: 11px;
+        min-width: 0;
+        padding: 15px;
+      }
+
+      .head {
+        align-items: start;
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+      }
+
+      .family {
+        color: var(--accent-dark);
+        font-size: 12px;
+        font-weight: 900;
+        margin: 0 0 4px;
+      }
+
+      .score {
+        background: #f8efe6;
+        border-color: #e6c6ad;
+        color: var(--warm);
+        flex: 0 0 auto;
+      }
+
+      .price {
+        border-top: 1px solid var(--line);
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr auto;
+        padding-top: 10px;
+      }
+
+      .price span {
+        color: var(--muted);
+        display: block;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .price strong {
+        color: var(--danger);
+        display: block;
+        font-size: 24px;
+      }
+
+      .quote-price {
+        color: var(--danger);
+        display: block;
+        font-size: 19px;
+        font-weight: 900;
+        line-height: 1.35;
+      }
+
+      del {
+        color: var(--muted);
+      }
+
+      .saving {
+        background: #fff5ef;
+        border: 1px solid #edcfbd;
+        border-radius: 6px;
+        color: var(--danger);
+        font-size: 13px;
+        font-weight: 900;
+        padding: 8px 10px;
+      }
+
+      .chips span {
+        background: var(--soft);
+        min-height: 26px;
+        padding: 4px 8px;
+      }
+
+      .specs {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .specs div {
+        border-top: 1px solid var(--line);
+        min-width: 0;
+        padding-top: 8px;
+      }
+
+      .specs dt {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 900;
+        margin-bottom: 4px;
+      }
+
+      .specs dd {
+        font-size: 12px;
+        line-height: 1.45;
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .compare-check {
+        background: #f2eee6;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--accent-dark);
+        font-size: 13px;
+        font-weight: 900;
+        justify-content: center;
+        min-height: 38px;
+      }
+
+      details {
+        border-top: 1px solid var(--line);
+        color: #313842;
+        font-size: 12px;
+        line-height: 1.55;
+        padding-top: 8px;
+      }
+
+      summary {
+        color: var(--accent-dark);
+        cursor: pointer;
+        font-weight: 900;
+      }
+
+      .empty {
+        color: var(--muted);
+        padding: 28px;
+        text-align: center;
+      }
+
+      .error {
+        background: #fff5ef;
+        border: 1px solid #edcfbd;
+        border-radius: 8px;
+        color: var(--danger);
+        font-weight: 900;
+        padding: 16px;
+      }
+
+      @media (max-width: 1100px) {
+        .hero,
+        .controls,
+        .spec-controls,
+        .grid,
+        .picks {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-card {
+          grid-template-columns: minmax(260px, 42%) minmax(0, 1fr);
+        }
+
+        .picks .card {
+          grid-template-columns: 210px minmax(0, 1fr);
+        }
+
+        .picks .card-image {
+          aspect-ratio: 1 / 1;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .wrap {
+          padding: 14px;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .summary,
+        .card,
+        .picks .card,
+        .specs,
+        .price {
+          grid-template-columns: 1fr;
+        }
+
+        .card-image,
+        .picks .card-image {
+          aspect-ratio: 16 / 10;
+        }
+
+        .hero-card {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+
+        .hero-image {
+          aspect-ratio: 16 / 10;
+          height: auto;
+        }
+
+        .hero-info {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+
+        .hero-actions {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <section class="hero">
+        <div>
+          <button class="eyebrow price-toggle" id="priceToggle" type="button" aria-pressed="false">
+            EXCEL 限定機型 <span id="priceToggleText">顯示教育價</span>
+          </button>
+          <h1>教育價筆電挑選器</h1>
+          <p class="lead">網頁操作方式</p>
+          <div class="how">
+            <strong>可先用預算與用途挑選，或者用 CPU、RAM、SSD、LCD、顯示卡來挑選。</strong>
+          </div>
+          <div class="metrics" id="metrics"></div>
+        </div>
+        <article class="hero-card" id="featured"></article>
+      </section>
+
+      <section class="panel" aria-label="篩選條件">
+        <div class="controls">
+          <label>
+            關鍵字
+            <input id="query" placeholder="型號、CPU、RTX、OLED、螢幕尺寸" />
+          </label>
+          <label>
+            預算上限 <span id="budgetText"></span>
+            <input id="budget" type="range" step="1000" />
+          </label>
+          <label>
+            系列
+            <select id="family"></select>
+          </label>
+          <label>
+            排序
+            <select id="sort">
+              <option value="match">推薦排序</option>
+              <option value="price">價格低優先</option>
+              <option value="saving">折扣高優先</option>
+              <option value="performance">效能高優先</option>
+            </select>
+          </label>
+        </div>
+        <div class="spec-controls">
+          <label>
+            CPU
+            <select id="cpuFilter"></select>
+          </label>
+          <label>
+            RAM
+            <select id="ramFilter"></select>
+          </label>
+          <label>
+            SSD
+            <select id="ssdFilter"></select>
+          </label>
+          <label>
+            LCD
+            <select id="lcdFilter"></select>
+          </label>
+          <label>
+            顯示卡
+            <select id="gpuFilter"></select>
+          </label>
+        </div>
+        <div class="tabs" id="tabs"></div>
+        <div class="toggles">
+          <label class="check"><input id="rtx" type="checkbox" /> RTX 獨顯</label>
+          <label class="check"><input id="ai" type="checkbox" /> AI 平台</label>
+          <label class="check"><input id="oled" type="checkbox" /> OLED</label>
+          <label class="check"><input id="tb" type="checkbox" /> 1TB SSD</label>
+        </div>
+      </section>
+
+      <section class="summary" id="summary"></section>
+
+      <section class="compare-panel" id="comparePanel">
+        <div class="compare-head">
+          <h2>多機比較</h2>
+          <button class="clear-btn" id="clearCompare" type="button">清除比較</button>
+        </div>
+        <div class="compare-scroll" id="compareTable"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <p class="eyebrow">Best matches</p>
+          <h2>目前最合適的 3 款</h2>
+        </div>
+        <div class="grid picks" id="picks"></div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <p class="eyebrow">Catalog</p>
+          <h2>限定機型清單</h2>
+        </div>
+        <div class="grid" id="catalog"></div>
+      </section>
+    </main>
+
+    <script>
+      const state = {
+        query: "",
+        budget: 0,
+        intent: "all",
+        family: "all",
+        sort: "match",
+        rtx: false,
+        ai: false,
+        oled: false,
+        tb: false,
+        cpu: "all",
+        ram: "all",
+        ssd: "all",
+        lcd: "all",
+        gpu: "all",
+        hidePrice: false,
+      };
+
+      const selectedCompare = new Set();
+      const galleryIndex = {};
+      let heroIndex = 0;
+      let heroTimer = null;
+      let heroItems = [];
+      let heroMode = "carousel";
+      const heroMedia = window.matchMedia("(max-width: 700px)");
+
+      const intentOptions = [
+        ["all", "全部"],
+        ["study", "上課文書"],
+        ["portable", "輕薄通勤"],
+        ["gaming", "電競遊戲"],
+        ["creator", "AI / 創作"],
+        ["large", "大螢幕"],
+      ];
+
+      const galleryMap = {
+        "fa401ea.jpg": ["fa401ea-01.jpg", "fa401ea-02.jpg", "fa401ea-03.jpg", "fa401ea-04.jpg"],
+        "fa401gm.jpg": ["fa401gm-01.jpg", "fa401gm-02.jpg", "fa401gm-03.jpg", "fa401gm-04.jpg"],
+        "fa506.jpg": ["fa506-01.jpg", "fa506-02.jpg", "fa506-03.jpg", "fa506-04.jpg"],
+        "fa607.jpg": ["fa607-01.jpg", "fa607-02.jpg", "fa607-03.jpg", "fa607-04.jpg"],
+        "fa608.jpg": ["fa608-01.jpg", "fa608-02.jpg", "fa608-03.jpg", "fa608-04.jpg"],
+        "fa617.jpg": ["fa617-01.jpg", "fa617-02.jpg", "fa617-03.jpg", "fa617-04.jpg"],
+        "x1504.jpg": ["x1504-01.jpg", "x1504-02.jpg", "x1504-03.jpg", "x1504-04.jpg"],
+        "x1704.jpg": ["x1704-01.jpg", "x1704-02.jpg", "x1704-03.jpg", "x1704-04.jpg"],
+        "s3607ca.jpg": ["s3607ca-01.jpg", "s3607ca-02.jpg", "s3607ca-03.jpg", "s3607ca-04.jpg"],
+        "s3607na.jpg": ["s3607na-01.jpg", "s3607na-02.jpg", "s3607na-03.jpg", "s3607na-04.jpg"],
+        "s3407qa.jpg": ["s3407qa-01.jpg", "s3407qa-02.jpg", "s3407qa-03.jpg", "s3407qa-04.jpg"],
+        "s3607qa.jpg": ["s3607qa-01.jpg", "s3607qa-02.jpg", "s3607qa-03.jpg", "s3607qa-04.jpg"],
+        "x1404-silver.jpg": ["x1404-silver-01.jpg", "x1404-silver-02.jpg", "x1404-silver-03.jpg", "x1404-silver-04.jpg"],
+        "x1404-blue.jpg": ["x1404-blue-01.jpg", "x1404-blue-02.jpg", "x1404-blue-03.jpg", "x1404-blue-04.jpg"],
+        "x1407.jpg": ["x1407-01.jpg", "x1407-02.jpg", "x1407-03.jpg", "x1407-04.jpg"],
+        "x1502va.jpg": ["x1502va-01.jpg", "x1502va-02.jpg", "x1502va-03.jpg", "x1502va-04.jpg"],
+        "ux3407.jpg": ["ux3407-01.jpg", "ux3407-02.jpg"],
+      };
+
+      const currency = new Intl.NumberFormat("zh-TW", {
+        style: "currency",
+        currency: "TWD",
+        maximumFractionDigits: 0,
+      });
+
+      function money(value) {
+        return currency.format(value || 0);
+      }
+
+      function quoteText() {
+        return "報價請洽服務人員";
+      }
+
+      function eduPriceHtml(laptop, className = "") {
+        if (state.hidePrice) {
+          return `<span class="quote-price ${className}">${quoteText()}</span>`;
+        }
+        return `<strong class="${className}">${money(laptop.eduPrice)}</strong>`;
+      }
+
+      function savingHtml(laptop) {
+        if (state.hidePrice) return "專案優惠請洽服務人員";
+        return `現省 ${money(laptop.discount)}${laptop.discountRate ? `，約 ${laptop.discountRate}%` : ""}`;
+      }
+
+      function updatePriceToggle() {
+        priceToggle.setAttribute("aria-pressed", String(state.hidePrice));
+        priceToggleText.textContent = state.hidePrice ? "不顯示教育價" : "顯示教育價";
+      }
+
+      function list(value) {
+        return Array.isArray(value) ? value : value ? [value] : [];
+      }
+
+      function imageFile(path) {
+        return String(path || "").split("/").pop();
+      }
+
+      function fallbackImageFile(laptop) {
+        const model = laptop.model || "";
+        if (/FA401EA/.test(model)) return "fa401ea.jpg";
+        if (/FA401GM/.test(model)) return "fa401gm.jpg";
+        if (/FA506|FX506/.test(model)) return "fa506.jpg";
+        if (/FA607|FX607/.test(model)) return "fa607.jpg";
+        if (/FA608|FX608|FA808/.test(model)) return "fa608.jpg";
+        if (/FA617/.test(model)) return "fa617.jpg";
+        if (/S3407/.test(model)) return "s3407qa.jpg";
+        if (/S3607CA/.test(model)) return "s3607ca.jpg";
+        if (/S3607NA/.test(model)) return "s3607na.jpg";
+        if (/S3607|X1607|M1807|V3607/.test(model)) return "s3607qa.jpg";
+        if (/X1404/.test(model)) return "x1404-blue.jpg";
+        if (/X1407/.test(model)) return "x1407.jpg";
+        if (/X1502/.test(model)) return "x1502va.jpg";
+        if (/X1504/.test(model)) return "x1504.jpg";
+        if (/X1704/.test(model)) return "x1704.jpg";
+        if (/UX|UM|TP3407|H7606|HN7306/.test(model)) return "ux3407.jpg";
+        if (laptop.family === "TUF Gaming" || laptop.family === "ROG") return "fa608.jpg";
+        if (laptop.family === "Zenbook" || laptop.family === "ProArt") return "ux3407.jpg";
+        return "s3607qa.jpg";
+      }
+
+      function normalizeImage(path) {
+        if (!path) return "";
+        return path.replace(/^\/laptop-images\//, "public/laptop-images/");
+      }
+
+      function galleryFor(laptop) {
+        const file = imageFile(laptop.image) || fallbackImageFile(laptop);
+        const gallery = (galleryMap[file] || []).map((item) => `public/laptop-images/gallery/${item}`);
+        return gallery.length ? gallery : [`public/laptop-images/${file}`];
+      }
+
+      function currentImage(laptop) {
+        const gallery = galleryFor(laptop);
+        const index = galleryIndex[laptop.id] || 0;
+        return gallery[index % gallery.length];
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function cleanSpec(value) {
+        return String(value || "").replace(/\s+/g, " ").trim();
+      }
+
+      function cpuGroup(laptop) {
+        const text = cleanSpec(`${laptop.cpu} ${laptop.title}`);
+        if (/Core\s*(?:™\s*)?Ultra\s*9/i.test(text)) return "Intel Core Ultra 9";
+        if (/Core\s*(?:™\s*)?Ultra\s*7/i.test(text)) return "Intel Core Ultra 7";
+        if (/Core\s*(?:™\s*)?Ultra\s*5/i.test(text)) return "Intel Core Ultra 5";
+        if (/Core\s*(?:™\s*)?i9|i9-/i.test(text)) return "Intel Core i9";
+        if (/Core\s*(?:™\s*)?i7|i7-/i.test(text)) return "Intel Core i7";
+        if (/Core\s*(?:™\s*)?i5|i5-/i.test(text)) return "Intel Core i5";
+        if (/Intel.*Core\s*(?:™\s*)?9\s*Processor/i.test(text)) return "Intel Core 9";
+        if (/Intel.*Core\s*(?:™\s*)?7\s*Processor/i.test(text)) return "Intel Core 7";
+        if (/Intel.*Core\s*(?:™\s*)?5\s*Processor/i.test(text)) return "Intel Core 5";
+        if (/Intel.*Core\s*(?:™\s*)?3\s*Processor/i.test(text)) return "Intel Core 3";
+        if (/Ryzen.*AI.*MAX/i.test(text)) return "AMD Ryzen AI Max";
+        if (/Ryzen.*AI.*9/i.test(text)) return "AMD Ryzen AI 9";
+        if (/Ryzen.*AI.*7/i.test(text)) return "AMD Ryzen AI 7";
+        if (/Ryzen.*AI.*5/i.test(text)) return "AMD Ryzen AI 5";
+        if (/Ryzen\s*9/i.test(text)) return "AMD Ryzen 9";
+        if (/Ryzen\s*7/i.test(text)) return "AMD Ryzen 7";
+        if (/Ryzen\s*5/i.test(text)) return "AMD Ryzen 5";
+        if (/Snapdragon.*X2.*Elite.*Extreme/i.test(text)) return "Snapdragon X2 Elite Extreme";
+        if (/Snapdragon.*X2.*Elite/i.test(text)) return "Snapdragon X2 Elite";
+        if (/Snapdragon/i.test(text)) return "Snapdragon X";
+        return "處理器未標示";
+      }
+
+      function totalRamGB(laptop) {
+        const text = cleanSpec(laptop.memory || laptop.title);
+        const multiplied =
+          text.match(/(\d+)\s*(?:GB|G)\s*\*\s*(\d+)/i) ||
+          text.match(/(\d+)\s*(?:GB|G)\b[^,\n;]{0,48}\*\s*(\d+)/i);
+        if (multiplied) return Number(multiplied[1]) * Number(multiplied[2]);
+        const direct = text.match(/(\d+)\s*(?:GB|G)\b/i);
+        if (direct) return Number(direct[1]);
+        return Number(laptop.ramGB || 0) || null;
+      }
+
+      function ramGroup(laptop) {
+        const gb = totalRamGB(laptop);
+        return gb ? `${gb}GB` : "容量未標示";
+      }
+
+      function storageCapacityGB(laptop) {
+        const text = cleanSpec(laptop.storage || laptop.title);
+        const multiplied =
+          text.match(/(\d+(?:\.\d+)?)\s*TB\s*\*\s*(\d+)/i) ||
+          text.match(/(\d+(?:\.\d+)?)\s*TB\b[^,\n;]{0,48}\*\s*(\d+)/i);
+        if (multiplied) return Math.round(Number(multiplied[1]) * 1000 * Number(multiplied[2]));
+        const tb = text.match(/(\d+(?:\.\d+)?)\s*TB/i);
+        if (tb) return Math.round(Number(tb[1]) * 1000);
+        const gb = text.match(/(\d+(?:\.\d+)?)\s*(?:GB|G)\b/i);
+        if (gb) return Math.round(Number(gb[1]));
+        return Number(laptop.storageGB || 0) || null;
+      }
+
+      function capacityLabel(gb) {
+        if (!gb) return "容量未標示";
+        return gb >= 1000 ? `${gb / 1000}TB` : `${gb}GB`;
+      }
+
+      function ssdGroup(laptop) {
+        return capacityLabel(storageCapacityGB(laptop));
+      }
+
+      function lcdGroup(laptop) {
+        if (!laptop.screenSize) return "尺寸未標示";
+        const size = Number(laptop.screenSize);
+        if (size < 14) return "13 吋級";
+        if (size < 15) return "14 吋級";
+        if (size < 16) return "15 吋級";
+        if (size < 17) return "16 吋級";
+        if (size < 18) return "17 吋級";
+        return "18 吋級";
+      }
+
+      function gpuGroup(laptop) {
+        const text = laptop.gpu;
+        const rtx = text.match(/RTX[^0-9]*(50[0-9]0|40[0-9]0|30[0-9]0)/i);
+        if (rtx) return `RTX ${rtx[1]}`;
+        if (/GeForce|RTX/i.test(text)) return "NVIDIA 獨顯";
+        if (/Radeon|AMD/i.test(text)) return "AMD Radeon";
+        return "內建顯示";
+      }
+
+      function scoreLaptop(laptop) {
+        let score = (laptop.valueScore || 0) + (laptop.discountRate || 0) * 1.6;
+        if (state.intent === "gaming") score += laptop.performance * 1.5 + (laptop.rtx ? 45 : 0);
+        if (state.intent === "creator") {
+          score += laptop.performance * 1.1 + (laptop.ai ? 24 : 0);
+          score += laptop.ramGB >= 32 ? 14 : 0;
+          score += laptop.oled ? 10 : 0;
+        }
+        if (state.intent === "portable") {
+          score += laptop.weightKg ? Math.max(0, 2 - laptop.weightKg) * 42 : 0;
+          score += laptop.screenSize <= 14.5 ? 12 : 0;
+        }
+        if (state.intent === "large") score += laptop.screenSize ? laptop.screenSize * 4 : 0;
+        if (state.intent === "study") {
+          score += laptop.eduPrice <= 35000 ? 35 : 0;
+          score += laptop.weightKg <= 1.7 ? 12 : 0;
+        }
+        return score;
+      }
+
+      function scoreLabel(score) {
+        return `${Math.min(99, Math.max(72, Math.round(score / 2.4)))}%`;
+      }
+
+      function parseData(text) {
+        const marker = "export const laptops: Laptop[] = ";
+        const start = text.indexOf(marker);
+        if (start < 0) throw new Error("找不到機型資料。");
+        let json = text.slice(start + marker.length).trim();
+        if (json.endsWith(";")) json = json.slice(0, -1);
+        return JSON.parse(json);
+      }
+
+      async function loadData() {
+        try {
+          const response = await fetch("app/laptop-data.ts");
+          if (!response.ok) throw new Error("fetch failed");
+          return parseData(await response.text());
+        } catch {
+          return new Promise((resolve, reject) => {
+            const iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            iframe.src = "app/laptop-data.ts";
+            iframe.onload = () => {
+              try {
+                const doc = iframe.contentDocument || iframe.contentWindow.document;
+                const text = doc.body.innerText || doc.documentElement.textContent;
+                iframe.remove();
+                resolve(parseData(text));
+              } catch (error) {
+                reject(error);
+              }
+            };
+            iframe.onerror = () => reject(new Error("無法讀取 app/laptop-data.ts"));
+            document.body.appendChild(iframe);
+          });
+        }
+      }
+
+      function fillSelect(element, label, values) {
+        element.innerHTML =
+          `<option value="all">${label}</option>` +
+          values.map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join("");
+      }
+
+      function orderValues(values, order) {
+        return [...values].sort((a, b) => {
+          const indexA = order.indexOf(a);
+          const indexB = order.indexOf(b);
+          if (indexA !== -1 || indexB !== -1) {
+            return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+          }
+          return a.localeCompare(b, "zh-Hant");
+        });
+      }
+
+      function capacitySort(a, b) {
+        const value = (label) => {
+          const text = String(label);
+          const number = parseFloat(text);
+          if (!Number.isFinite(number)) return 999999;
+          return /TB/i.test(text) ? number * 1000 : number;
+        };
+        return value(a) - value(b);
+      }
+
+      function buildHeroItems(laptops) {
+        const cheapest = [...laptops].sort((a, b) => a.eduPrice - b.eduPrice)[0];
+        if (heroMedia.matches) {
+          heroMode = "single";
+          heroItems = cheapest ? [cheapest] : [];
+          heroIndex = 0;
+          return;
+        }
+
+        const budgetHero = laptops.filter((item) => item.eduPrice >= 25000 && item.eduPrice <= 30000);
+        heroMode = "carousel";
+        heroItems = (budgetHero.length ? budgetHero : laptops)
+          .map((laptop) => ({ laptop, score: scoreLaptop(laptop) }))
+          .sort((a, b) => b.score - a.score)
+          .map((item) => item.laptop)
+          .slice(0, 10);
+        heroIndex = Math.min(heroIndex, Math.max(0, heroItems.length - 1));
+      }
+
+      function startHeroTimer(laptops) {
+        if (heroTimer) clearInterval(heroTimer);
+        heroTimer = null;
+        if (heroMode === "carousel" && heroItems.length > 1) {
+          heroTimer = setInterval(() => moveHero(1, laptops), 4500);
+        }
+      }
+
+      function renderMetrics(laptops) {
+        metrics.innerHTML = [
+          `${laptops.length} 款`,
+          state.hidePrice
+            ? heroMode === "single"
+              ? `手機顯示推薦機型`
+              : `推薦機型輪播`
+            : heroMode === "single"
+              ? `手機顯示最低教育價`
+              : `推薦輪播 25,000-30,000`,
+          state.hidePrice ? `優惠請洽服務人員` : `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
+        ]
+          .map((item) => `<span>${item}</span>`)
+          .join("");
+      }
+
+      function setupControls(laptops) {
+        const prices = laptops.map((item) => item.eduPrice);
+        const min = Math.floor(Math.min(...prices) / 1000) * 1000;
+        const max = Math.ceil(Math.max(...prices) / 1000) * 1000;
+        const families = [...new Set(laptops.map((item) => item.family))].sort((a, b) =>
+          a.localeCompare(b, "zh-Hant"),
+        );
+        const cpuOrder = [
+          "Intel Core Ultra 9",
+          "Intel Core Ultra 7",
+          "Intel Core Ultra 5",
+          "Intel Core i9",
+          "Intel Core i7",
+          "Intel Core i5",
+          "Intel Core 9",
+          "Intel Core 7",
+          "Intel Core 5",
+          "Intel Core 3",
+          "AMD Ryzen AI Max",
+          "AMD Ryzen AI 9",
+          "AMD Ryzen AI 7",
+          "AMD Ryzen AI 5",
+          "AMD Ryzen 9",
+          "AMD Ryzen 7",
+          "AMD Ryzen 5",
+          "Snapdragon X2 Elite Extreme",
+          "Snapdragon X2 Elite",
+          "Snapdragon X",
+        ];
+        const lcdOrder = ["13 吋級", "14 吋級", "15 吋級", "16 吋級", "17 吋級", "18 吋級"];
+
+        state.budget = max;
+        budget.min = min;
+        budget.max = max;
+        budget.value = max;
+
+        fillSelect(family, "全部系列", families);
+        fillSelect(cpuFilter, "全部 CPU", orderValues(new Set(laptops.map(cpuGroup)), cpuOrder));
+        fillSelect(ramFilter, "全部 RAM", [...new Set(laptops.map(ramGroup))].sort((a, b) => parseInt(a) - parseInt(b)));
+        fillSelect(ssdFilter, "全部 SSD", [...new Set(laptops.map(ssdGroup))].sort(capacitySort));
+        fillSelect(lcdFilter, "全部 LCD", orderValues(new Set(laptops.map(lcdGroup)), lcdOrder));
+        fillSelect(gpuFilter, "全部顯示卡", [...new Set(laptops.map(gpuGroup))].sort());
+
+        tabs.innerHTML = intentOptions
+          .map(([id, label]) => `<button class="tab ${id === "all" ? "active" : ""}" data-intent="${id}">${label}</button>`)
+          .join("");
+
+        buildHeroItems(laptops);
+        updatePriceToggle();
+        renderMetrics(laptops);
+
+        const update = () => render(laptops);
+        query.addEventListener("input", () => {
+          state.query = query.value;
+          update();
+        });
+        budget.addEventListener("input", () => {
+          state.budget = Number(budget.value);
+          update();
+        });
+        family.addEventListener("change", () => {
+          state.family = family.value;
+          update();
+        });
+        sort.addEventListener("change", () => {
+          state.sort = sort.value;
+          update();
+        });
+        cpuFilter.addEventListener("change", () => {
+          state.cpu = cpuFilter.value;
+          update();
+        });
+        ramFilter.addEventListener("change", () => {
+          state.ram = ramFilter.value;
+          update();
+        });
+        ssdFilter.addEventListener("change", () => {
+          state.ssd = ssdFilter.value;
+          update();
+        });
+        lcdFilter.addEventListener("change", () => {
+          state.lcd = lcdFilter.value;
+          update();
+        });
+        gpuFilter.addEventListener("change", () => {
+          state.gpu = gpuFilter.value;
+          update();
+        });
+        rtx.addEventListener("change", () => {
+          state.rtx = rtx.checked;
+          update();
+        });
+        ai.addEventListener("change", () => {
+          state.ai = ai.checked;
+          update();
+        });
+        oled.addEventListener("change", () => {
+          state.oled = oled.checked;
+          update();
+        });
+        tb.addEventListener("change", () => {
+          state.tb = tb.checked;
+          update();
+        });
+        tabs.addEventListener("click", (event) => {
+          const button = event.target.closest("button[data-intent]");
+          if (!button) return;
+          state.intent = button.dataset.intent;
+          document.querySelectorAll(".tab").forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+          update();
+        });
+
+        document.addEventListener("click", (event) => {
+          const heroButton = event.target.closest("[data-hero]");
+          if (heroButton) {
+            moveHero(heroButton.dataset.hero === "next" ? 1 : -1, laptops);
+          }
+
+          const galleryButton = event.target.closest("[data-gallery-id]");
+          if (galleryButton) {
+            const id = galleryButton.dataset.galleryId;
+            const laptop = laptops.find((item) => item.id === id);
+            if (!laptop) return;
+            const gallery = galleryFor(laptop);
+            const delta = galleryButton.dataset.galleryDir === "next" ? 1 : -1;
+            galleryIndex[id] = ((galleryIndex[id] || 0) + delta + gallery.length) % gallery.length;
+            update();
+          }
+        });
+
+        document.addEventListener("change", (event) => {
+          const checkbox = event.target.closest("[data-compare-id]");
+          if (!checkbox) return;
+          if (checkbox.checked) selectedCompare.add(checkbox.dataset.compareId);
+          else selectedCompare.delete(checkbox.dataset.compareId);
+          renderCompare(laptops);
+        });
+
+        clearCompare.addEventListener("click", () => {
+          selectedCompare.clear();
+          update();
+        });
+
+        priceToggle.addEventListener("click", () => {
+          state.hidePrice = !state.hidePrice;
+          updatePriceToggle();
+          update();
+        });
+
+        const refreshHero = () => {
+          buildHeroItems(laptops);
+          renderMetrics(laptops);
+          startHeroTimer(laptops);
+          render(laptops);
+        };
+        if (heroMedia.addEventListener) heroMedia.addEventListener("change", refreshHero);
+        else heroMedia.addListener(refreshHero);
+        startHeroTimer(laptops);
+      }
+
+      function moveHero(delta, laptops) {
+        if (heroMode !== "carousel" || !heroItems.length) return;
+        heroIndex = (heroIndex + delta + heroItems.length) % heroItems.length;
+        renderHero(laptops);
+      }
+
+      function getResults(laptops) {
+        const terms = state.query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+        return laptops
+          .filter((laptop) => laptop.eduPrice <= state.budget)
+          .filter((laptop) => state.family === "all" || laptop.family === state.family)
+          .filter((laptop) => state.intent === "all" || list(laptop.purposes).includes(state.intent))
+          .filter((laptop) => state.cpu === "all" || cpuGroup(laptop) === state.cpu)
+          .filter((laptop) => state.ram === "all" || ramGroup(laptop) === state.ram)
+          .filter((laptop) => state.ssd === "all" || ssdGroup(laptop) === state.ssd)
+          .filter((laptop) => state.lcd === "all" || lcdGroup(laptop) === state.lcd)
+          .filter((laptop) => state.gpu === "all" || gpuGroup(laptop) === state.gpu)
+          .filter((laptop) => !state.rtx || laptop.rtx)
+          .filter((laptop) => !state.ai || laptop.ai)
+          .filter((laptop) => !state.oled || laptop.oled)
+          .filter((laptop) => !state.tb || (laptop.storageGB || 0) >= 1000)
+          .filter((laptop) => terms.every((term) => laptop.searchText.includes(term)))
+          .map((laptop) => ({ laptop, score: scoreLaptop(laptop) }))
+          .sort((a, b) => {
+            if (state.sort === "price") return a.laptop.eduPrice - b.laptop.eduPrice;
+            if (state.sort === "saving") return b.laptop.discount - a.laptop.discount;
+            if (state.sort === "performance") return b.laptop.performance - a.laptop.performance;
+            return b.score - a.score;
+          });
+      }
+
+      function card(item, rank = "") {
+        const laptop = item.laptop;
+        const tags = list(laptop.tags).slice(0, 5);
+        const highlights = list(laptop.highlights).slice(0, 4);
+        const gallery = galleryFor(laptop);
+        const checked = selectedCompare.has(laptop.id) ? "checked" : "";
+        return `
+          <article class="card">
+            <div class="card-image">
+              ${rank ? `<span class="badge">#${rank}</span>` : ""}
+              <span class="image-count">${(galleryIndex[laptop.id] || 0) + 1}/${gallery.length}</span>
+              ${currentImage(laptop) ? `<img src="${currentImage(laptop)}" alt="${escapeHtml(laptop.title)}">` : "ASUS"}
+              <div class="gallery-controls">
+                <button class="gallery-btn" type="button" data-gallery-id="${laptop.id}" data-gallery-dir="prev">‹</button>
+                <button class="gallery-btn" type="button" data-gallery-id="${laptop.id}" data-gallery-dir="next">›</button>
+              </div>
+            </div>
+            <div class="body">
+              <div class="head">
+                <div>
+                  <p class="family">${escapeHtml(laptop.family)}</p>
+                  <h3>${escapeHtml(laptop.model)}</h3>
+                </div>
+                <span class="score">${scoreLabel(item.score)}</span>
+              </div>
+              <p class="title">${escapeHtml(laptop.title)}</p>
+              <div class="price">
+                <div><span>教育價 / 專案價</span>${eduPriceHtml(laptop)}</div>
+                <div><span>市價</span><del>${money(laptop.marketPrice)}</del></div>
+              </div>
+              <div class="saving">${savingHtml(laptop)}</div>
+              <div class="chips">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
+              <dl class="specs">
+                <div><dt>CPU</dt><dd>${escapeHtml(laptop.cpu)}</dd></div>
+                <div><dt>顯示卡</dt><dd>${escapeHtml(laptop.gpu)}</dd></div>
+                <div><dt>RAM</dt><dd>${escapeHtml(laptop.memory)}</dd></div>
+                <div><dt>SSD</dt><dd>${escapeHtml(laptop.storage)}</dd></div>
+                <div><dt>LCD</dt><dd>${escapeHtml(laptop.display)}</dd></div>
+                <div><dt>重量</dt><dd>${escapeHtml(laptop.weight)}</dd></div>
+              </dl>
+              <label class="compare-check">
+                <input type="checkbox" data-compare-id="${laptop.id}" ${checked}>
+                加入比較
+              </label>
+              <details>
+                <summary>完整資訊</summary>
+                <p>保固：${escapeHtml(laptop.warranty || "依原廠公告")}</p>
+                <p>標配：${escapeHtml(laptop.bundle || "依 Excel 規格")}</p>
+                <p>條碼：${escapeHtml(laptop.barcode)}</p>
+                ${highlights.length ? `<ul>${highlights.map((point) => `<li>${escapeHtml(point)}</li>`).join("")}</ul>` : ""}
+              </details>
+            </div>
+          </article>
+        `;
+      }
+
+      function renderHero(laptops) {
+        const top = heroItems[heroIndex] || laptops[0];
+        if (!top) return;
+        const heroLabel = state.hidePrice
+          ? heroMode === "single"
+            ? "推薦機型"
+            : "推薦機型輪播"
+          : heroMode === "single"
+            ? "最低教育價推薦"
+            : "25,000-30,000 推薦輪播";
+        const heroActions =
+          heroMode === "carousel" && heroItems.length > 1
+            ? `
+              <div class="hero-actions">
+                <button type="button" data-hero="prev">上一台</button>
+                <div class="hero-dots">
+                  ${heroItems.map((_, index) => `<button type="button" class="${index === heroIndex ? "active" : ""}" data-hero-dot="${index}" aria-label="推薦 ${index + 1}"></button>`).join("")}
+                </div>
+                <button type="button" data-hero="next">下一台</button>
+              </div>
+            `
+            : "";
+        featured.innerHTML = `
+          <div class="hero-image">
+            ${currentImage(top) ? `<img src="${currentImage(top)}" alt="${escapeHtml(top.title)}">` : "ASUS"}
+          </div>
+          <div class="hero-info">
+            <p class="eyebrow">${heroLabel}</p>
+            <h2>${escapeHtml(top.model)}</h2>
+            <p class="title">${escapeHtml(top.title)}</p>
+            <div class="price">
+              <div><span>教育價 / 專案價</span>${eduPriceHtml(top)}</div>
+              <div><span>市價</span><del>${money(top.marketPrice)}</del></div>
+            </div>
+            ${heroActions}
+          </div>
+        `;
+        featured.querySelectorAll("[data-hero-dot]").forEach((button) => {
+          button.addEventListener("click", () => {
+            heroIndex = Number(button.dataset.heroDot);
+            renderHero(laptops);
+          });
+        });
+      }
+
+      function renderCompare(laptops) {
+        const selected = laptops.filter((item) => selectedCompare.has(item.id));
+        comparePanel.classList.toggle("active", selected.length > 0);
+        if (!selected.length) {
+          compareTable.innerHTML = "";
+          return;
+        }
+        const rows = [
+          ["系列", (laptop) => escapeHtml(laptop.family)],
+          ["教育價", (laptop) =>
+            state.hidePrice
+              ? `<span class="quote-price compare-price">${quoteText()}</span><span>市價 <del>${money(laptop.marketPrice)}</del></span>`
+              : `<strong class="compare-price">${money(laptop.eduPrice)}</strong><span>市價 <del>${money(laptop.marketPrice)}</del></span>`],
+          ["CPU", (laptop) => escapeHtml(laptop.cpu)],
+          ["RAM", (laptop) => escapeHtml(laptop.memory)],
+          ["SSD", (laptop) => escapeHtml(laptop.storage)],
+          ["LCD", (laptop) => escapeHtml(laptop.display)],
+          ["顯示卡", (laptop) => escapeHtml(laptop.gpu)],
+          ["重量", (laptop) => escapeHtml(laptop.weight)],
+        ];
+        compareTable.innerHTML = `
+          <table class="compare-table compare-vertical">
+            <thead>
+              <tr>
+                <th>比較項目</th>
+                ${selected
+                  .map(
+                    (laptop) => `
+                      <th>
+                        <div class="compare-product">
+                          <img src="${currentImage(laptop)}" alt="${escapeHtml(laptop.title)}">
+                          <strong>${escapeHtml(laptop.model)}</strong>
+                        </div>
+                      </th>
+                    `,
+                  )
+                  .join("")}
+              </tr>
+            </thead>
+            <tbody>
+              ${rows
+                .map(
+                  ([label, value]) => `
+                    <tr>
+                      <th scope="row">${label}</th>
+                      ${selected.map((laptop) => `<td>${value(laptop)}</td>`).join("")}
+                    </tr>
+                  `,
+                )
+                .join("")}
+            </tbody>
+          </table>
+        `;
+      }
+
+      function render(laptops) {
+        const results = getResults(laptops);
+        const bestSaving = laptops.reduce((best, item) => (item.discount > best.discount ? item : best), laptops[0]);
+        budgetText.textContent = money(state.budget);
+        renderMetrics(laptops);
+        renderHero(laptops);
+
+        summary.innerHTML = `
+          <div><span>符合條件</span><strong>${results.length}</strong></div>
+          <div><span>預算內</span><strong>${laptops.filter((item) => item.eduPrice <= state.budget).length}</strong></div>
+          <div><span>目前最高折扣</span><strong>${state.hidePrice ? "請洽詢" : money(bestSaving.discount)}</strong></div>
+        `;
+
+        picks.innerHTML = results.slice(0, 3).map((item, index) => card(item, index + 1)).join("");
+        catalog.innerHTML = results.length
+          ? results.map((item) => card(item)).join("")
+          : '<div class="empty">沒有符合條件的機型，請放寬預算或取消部分規格條件。</div>';
+        renderCompare(laptops);
+      }
+
+      loadData()
+        .then((laptops) => {
+          setupControls(laptops);
+          render(laptops);
+        })
+        .catch((error) => {
+          document.querySelector(".wrap").insertAdjacentHTML(
+            "afterbegin",
+            `<div class="error">無法載入機型資料：${escapeHtml(error.message)}<br>請確認 index.html、app/laptop-data.ts、public/laptop-images 都在同一個資料夾結構中。</div>`,
+          );
+        });
+    </script>
+  </body>
+</html>
