@@ -54,7 +54,7 @@
         align-items: stretch;
         display: grid;
         gap: 24px;
-        grid-template-columns: minmax(0, 1fr) minmax(330px, 500px);
+        grid-template-columns: minmax(0, 0.95fr) minmax(560px, 1.05fr);
         padding: 18px 0 18px;
       }
 
@@ -88,11 +88,14 @@
         gap: 8px;
         margin-top: 18px;
         max-width: 760px;
+        min-width: 0;
         padding: 14px;
       }
 
       .how strong {
         color: var(--accent-dark);
+        line-height: 1.6;
+        overflow-wrap: anywhere;
       }
 
       .how p {
@@ -142,6 +145,8 @@
 
       .hero-card {
         display: grid;
+        grid-template-columns: minmax(240px, 46%) minmax(0, 1fr);
+        height: 360px;
         overflow: hidden;
       }
 
@@ -156,7 +161,8 @@
       }
 
       .hero-image {
-        min-height: 260px;
+        height: 100%;
+        min-height: 0;
       }
 
       .hero-image img,
@@ -168,15 +174,19 @@
       }
 
       .hero-info {
-        border-top: 1px solid var(--line);
+        align-content: center;
+        border-left: 1px solid var(--line);
         display: grid;
         gap: 10px;
+        min-height: 0;
+        overflow: hidden;
         padding: 16px;
       }
 
       .hero-info h2,
       .card h3 {
         margin: 0;
+        overflow-wrap: anywhere;
       }
 
       .hero-info p,
@@ -184,6 +194,13 @@
         color: var(--muted);
         line-height: 1.55;
         margin: 0;
+      }
+
+      .hero-info .title {
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
       }
 
       .hero-actions {
@@ -356,6 +373,10 @@
         width: 100%;
       }
 
+      .compare-table.compare-vertical {
+        min-width: 760px;
+      }
+
       .compare-table th,
       .compare-table td {
         border-bottom: 1px solid var(--line);
@@ -370,6 +391,44 @@
         background: #f2eee6;
         color: var(--accent-dark);
         font-weight: 900;
+      }
+
+      .compare-table.compare-vertical thead th {
+        min-width: 220px;
+      }
+
+      .compare-table.compare-vertical thead th:first-child,
+      .compare-table.compare-vertical tbody th {
+        min-width: 110px;
+        width: 110px;
+      }
+
+      .compare-product {
+        display: grid;
+        gap: 8px;
+      }
+
+      .compare-product img {
+        aspect-ratio: 16 / 10;
+        background: #efede7;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        height: auto;
+        object-fit: contain;
+        padding: 8px;
+        width: 100%;
+      }
+
+      .compare-product strong {
+        color: var(--accent-dark);
+        display: block;
+        font-size: 16px;
+      }
+
+      .compare-price {
+        color: var(--danger);
+        display: block;
+        font-size: 16px;
       }
 
       .section-title {
@@ -589,6 +648,10 @@
           grid-template-columns: 1fr;
         }
 
+        .hero-card {
+          grid-template-columns: minmax(260px, 42%) minmax(0, 1fr);
+        }
+
         .picks .card {
           grid-template-columns: 210px minmax(0, 1fr);
         }
@@ -619,6 +682,25 @@
         .picks .card-image {
           aspect-ratio: 16 / 10;
         }
+
+        .hero-card {
+          grid-template-columns: 1fr;
+          height: auto;
+        }
+
+        .hero-image {
+          aspect-ratio: 16 / 10;
+          height: auto;
+        }
+
+        .hero-info {
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+
+        .hero-actions {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -628,12 +710,9 @@
         <div>
           <p class="eyebrow">Excel 限定機型</p>
           <h1>教育價筆電挑選器</h1>
-          <p class="lead">本網頁的操作方式說明</p>
+          <p class="lead">網頁操作方式</p>
           <div class="how">
-            <strong>依需求逐步篩選，再把候選機型加入比較。</strong>
-            <p>先用 CPU、RAM、SSD、LCD、顯示卡下拉選單鎖定規格，再搭配預算、系列、用途與關鍵字縮小範圍。</p>
-            <p>看到合適的機型時，勾選卡片下方的「加入比較」，即可一次比對多台的價格、CPU、RAM、SSD、LCD、顯示卡與重量。</p>
-            <p>每台機型照片可用左右按鈕輪播查看，價格以教育價 / 專案價為主，旁邊保留市價方便比較優惠幅度。</p>
+            <strong>可先用預算與用途挑選，或者用 CPU、RAM、SSD、LCD、顯示卡來挑選。</strong>
           </div>
           <div class="metrics" id="metrics"></div>
         </div>
@@ -745,6 +824,8 @@
       let heroIndex = 0;
       let heroTimer = null;
       let heroItems = [];
+      let heroMode = "carousel";
+      const heroMedia = window.matchMedia("(max-width: 700px)");
 
       const intentOptions = [
         ["all", "全部"],
@@ -842,33 +923,82 @@
           .replaceAll("'", "&#039;");
       }
 
+      function cleanSpec(value) {
+        return String(value || "").replace(/\s+/g, " ").trim();
+      }
+
       function cpuGroup(laptop) {
-        const text = laptop.cpu;
-        if (/Ryzen/i.test(text)) return "AMD Ryzen";
-        if (/Core\s*Ultra/i.test(text)) return "Intel Core Ultra";
-        if (/Core\s*i9|i9-/i.test(text)) return "Intel Core i9";
-        if (/Core\s*i7|i7-/i.test(text)) return "Intel Core i7";
-        if (/Core\s*i5|i5-/i.test(text)) return "Intel Core i5";
-        if (/Snapdragon/i.test(text)) return "Snapdragon";
-        return "其他 CPU";
+        const text = cleanSpec(`${laptop.cpu} ${laptop.title}`);
+        if (/Core\s*(?:™\s*)?Ultra\s*9/i.test(text)) return "Intel Core Ultra 9";
+        if (/Core\s*(?:™\s*)?Ultra\s*7/i.test(text)) return "Intel Core Ultra 7";
+        if (/Core\s*(?:™\s*)?Ultra\s*5/i.test(text)) return "Intel Core Ultra 5";
+        if (/Core\s*(?:™\s*)?i9|i9-/i.test(text)) return "Intel Core i9";
+        if (/Core\s*(?:™\s*)?i7|i7-/i.test(text)) return "Intel Core i7";
+        if (/Core\s*(?:™\s*)?i5|i5-/i.test(text)) return "Intel Core i5";
+        if (/Intel.*Core\s*(?:™\s*)?9\s*Processor/i.test(text)) return "Intel Core 9";
+        if (/Intel.*Core\s*(?:™\s*)?7\s*Processor/i.test(text)) return "Intel Core 7";
+        if (/Intel.*Core\s*(?:™\s*)?5\s*Processor/i.test(text)) return "Intel Core 5";
+        if (/Intel.*Core\s*(?:™\s*)?3\s*Processor/i.test(text)) return "Intel Core 3";
+        if (/Ryzen.*AI.*MAX/i.test(text)) return "AMD Ryzen AI Max";
+        if (/Ryzen.*AI.*9/i.test(text)) return "AMD Ryzen AI 9";
+        if (/Ryzen.*AI.*7/i.test(text)) return "AMD Ryzen AI 7";
+        if (/Ryzen.*AI.*5/i.test(text)) return "AMD Ryzen AI 5";
+        if (/Ryzen\s*9/i.test(text)) return "AMD Ryzen 9";
+        if (/Ryzen\s*7/i.test(text)) return "AMD Ryzen 7";
+        if (/Ryzen\s*5/i.test(text)) return "AMD Ryzen 5";
+        if (/Snapdragon.*X2.*Elite.*Extreme/i.test(text)) return "Snapdragon X2 Elite Extreme";
+        if (/Snapdragon.*X2.*Elite/i.test(text)) return "Snapdragon X2 Elite";
+        if (/Snapdragon/i.test(text)) return "Snapdragon X";
+        return "處理器未標示";
+      }
+
+      function totalRamGB(laptop) {
+        const text = cleanSpec(laptop.memory || laptop.title);
+        const multiplied =
+          text.match(/(\d+)\s*(?:GB|G)\s*\*\s*(\d+)/i) ||
+          text.match(/(\d+)\s*(?:GB|G)\b[^,\n;]{0,48}\*\s*(\d+)/i);
+        if (multiplied) return Number(multiplied[1]) * Number(multiplied[2]);
+        const direct = text.match(/(\d+)\s*(?:GB|G)\b/i);
+        if (direct) return Number(direct[1]);
+        return Number(laptop.ramGB || 0) || null;
       }
 
       function ramGroup(laptop) {
-        return laptop.ramGB ? `${laptop.ramGB}GB` : "其他 RAM";
+        const gb = totalRamGB(laptop);
+        return gb ? `${gb}GB` : "容量未標示";
+      }
+
+      function storageCapacityGB(laptop) {
+        const text = cleanSpec(laptop.storage || laptop.title);
+        const multiplied =
+          text.match(/(\d+(?:\.\d+)?)\s*TB\s*\*\s*(\d+)/i) ||
+          text.match(/(\d+(?:\.\d+)?)\s*TB\b[^,\n;]{0,48}\*\s*(\d+)/i);
+        if (multiplied) return Math.round(Number(multiplied[1]) * 1000 * Number(multiplied[2]));
+        const tb = text.match(/(\d+(?:\.\d+)?)\s*TB/i);
+        if (tb) return Math.round(Number(tb[1]) * 1000);
+        const gb = text.match(/(\d+(?:\.\d+)?)\s*(?:GB|G)\b/i);
+        if (gb) return Math.round(Number(gb[1]));
+        return Number(laptop.storageGB || 0) || null;
+      }
+
+      function capacityLabel(gb) {
+        if (!gb) return "容量未標示";
+        return gb >= 1000 ? `${gb / 1000}TB` : `${gb}GB`;
       }
 
       function ssdGroup(laptop) {
-        if (!laptop.storageGB) return "其他 SSD";
-        return laptop.storageGB >= 1000 ? `${laptop.storageGB / 1000}TB` : `${laptop.storageGB}GB`;
+        return capacityLabel(storageCapacityGB(laptop));
       }
 
       function lcdGroup(laptop) {
-        if (!laptop.screenSize) return "其他 LCD";
+        if (!laptop.screenSize) return "尺寸未標示";
         const size = Number(laptop.screenSize);
+        if (size < 14) return "13 吋級";
         if (size < 15) return "14 吋級";
         if (size < 16) return "15 吋級";
         if (size < 17) return "16 吋級";
-        return "17 吋以上";
+        if (size < 18) return "17 吋級";
+        return "18 吋級";
       }
 
       function gpuGroup(laptop) {
@@ -945,6 +1075,54 @@
           values.map((item) => `<option value="${escapeHtml(item)}">${escapeHtml(item)}</option>`).join("");
       }
 
+      function orderValues(values, order) {
+        return [...values].sort((a, b) => {
+          const indexA = order.indexOf(a);
+          const indexB = order.indexOf(b);
+          if (indexA !== -1 || indexB !== -1) {
+            return (indexA === -1 ? 999 : indexA) - (indexB === -1 ? 999 : indexB);
+          }
+          return a.localeCompare(b, "zh-Hant");
+        });
+      }
+
+      function capacitySort(a, b) {
+        const value = (label) => {
+          const text = String(label);
+          const number = parseFloat(text);
+          if (!Number.isFinite(number)) return 999999;
+          return /TB/i.test(text) ? number * 1000 : number;
+        };
+        return value(a) - value(b);
+      }
+
+      function buildHeroItems(laptops) {
+        const cheapest = [...laptops].sort((a, b) => a.eduPrice - b.eduPrice)[0];
+        if (heroMedia.matches) {
+          heroMode = "single";
+          heroItems = cheapest ? [cheapest] : [];
+          heroIndex = 0;
+          return;
+        }
+
+        const budgetHero = laptops.filter((item) => item.eduPrice >= 25000 && item.eduPrice <= 30000);
+        heroMode = "carousel";
+        heroItems = (budgetHero.length ? budgetHero : laptops)
+          .map((laptop) => ({ laptop, score: scoreLaptop(laptop) }))
+          .sort((a, b) => b.score - a.score)
+          .map((item) => item.laptop)
+          .slice(0, 10);
+        heroIndex = Math.min(heroIndex, Math.max(0, heroItems.length - 1));
+      }
+
+      function startHeroTimer(laptops) {
+        if (heroTimer) clearInterval(heroTimer);
+        heroTimer = null;
+        if (heroMode === "carousel" && heroItems.length > 1) {
+          heroTimer = setInterval(() => moveHero(1, laptops), 4500);
+        }
+      }
+
       function setupControls(laptops) {
         const prices = laptops.map((item) => item.eduPrice);
         const min = Math.floor(Math.min(...prices) / 1000) * 1000;
@@ -952,6 +1130,29 @@
         const families = [...new Set(laptops.map((item) => item.family))].sort((a, b) =>
           a.localeCompare(b, "zh-Hant"),
         );
+        const cpuOrder = [
+          "Intel Core Ultra 9",
+          "Intel Core Ultra 7",
+          "Intel Core Ultra 5",
+          "Intel Core i9",
+          "Intel Core i7",
+          "Intel Core i5",
+          "Intel Core 9",
+          "Intel Core 7",
+          "Intel Core 5",
+          "Intel Core 3",
+          "AMD Ryzen AI Max",
+          "AMD Ryzen AI 9",
+          "AMD Ryzen AI 7",
+          "AMD Ryzen AI 5",
+          "AMD Ryzen 9",
+          "AMD Ryzen 7",
+          "AMD Ryzen 5",
+          "Snapdragon X2 Elite Extreme",
+          "Snapdragon X2 Elite",
+          "Snapdragon X",
+        ];
+        const lcdOrder = ["13 吋級", "14 吋級", "15 吋級", "16 吋級", "17 吋級", "18 吋級"];
 
         state.budget = max;
         budget.min = min;
@@ -959,25 +1160,21 @@
         budget.value = max;
 
         fillSelect(family, "全部系列", families);
-        fillSelect(cpuFilter, "全部 CPU", [...new Set(laptops.map(cpuGroup))].sort());
+        fillSelect(cpuFilter, "全部 CPU", orderValues(new Set(laptops.map(cpuGroup)), cpuOrder));
         fillSelect(ramFilter, "全部 RAM", [...new Set(laptops.map(ramGroup))].sort((a, b) => parseInt(a) - parseInt(b)));
-        fillSelect(ssdFilter, "全部 SSD", [...new Set(laptops.map(ssdGroup))].sort());
-        fillSelect(lcdFilter, "全部 LCD", [...new Set(laptops.map(lcdGroup))].sort());
+        fillSelect(ssdFilter, "全部 SSD", [...new Set(laptops.map(ssdGroup))].sort(capacitySort));
+        fillSelect(lcdFilter, "全部 LCD", orderValues(new Set(laptops.map(lcdGroup)), lcdOrder));
         fillSelect(gpuFilter, "全部顯示卡", [...new Set(laptops.map(gpuGroup))].sort());
 
         tabs.innerHTML = intentOptions
           .map(([id, label]) => `<button class="tab ${id === "all" ? "active" : ""}" data-intent="${id}">${label}</button>`)
           .join("");
 
-        const budgetHero = laptops.filter((item) => item.eduPrice >= 25000 && item.eduPrice <= 30000);
-        heroItems = (budgetHero.length ? budgetHero : laptops)
-          .map((laptop) => ({ laptop, score: scoreLaptop(laptop) }))
-          .sort((a, b) => b.score - a.score)
-          .map((item) => item.laptop);
+        buildHeroItems(laptops);
 
         metrics.innerHTML = [
           `${laptops.length} 款`,
-          `推薦輪播 25,000-30,000`,
+          heroMode === "single" ? `手機顯示最低教育價` : `推薦輪播 25,000-30,000`,
           `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
         ]
           .map((item) => `<span>${item}</span>`)
@@ -1076,12 +1273,20 @@
           update();
         });
 
-        if (heroTimer) clearInterval(heroTimer);
-        heroTimer = setInterval(() => moveHero(1, laptops), 4500);
+        const refreshHero = () => {
+          buildHeroItems(laptops);
+          metrics.querySelectorAll("span")[1].textContent =
+            heroMode === "single" ? "手機顯示最低教育價" : "推薦輪播 25,000-30,000";
+          startHeroTimer(laptops);
+          render(laptops);
+        };
+        if (heroMedia.addEventListener) heroMedia.addEventListener("change", refreshHero);
+        else heroMedia.addListener(refreshHero);
+        startHeroTimer(laptops);
       }
 
       function moveHero(delta, laptops) {
-        if (!heroItems.length) return;
+        if (heroMode !== "carousel" || !heroItems.length) return;
         heroIndex = (heroIndex + delta + heroItems.length) % heroItems.length;
         renderHero(laptops);
       }
@@ -1169,26 +1374,33 @@
 
       function renderHero(laptops) {
         const top = heroItems[heroIndex] || laptops[0];
-        const gallery = galleryFor(top);
+        if (!top) return;
+        const heroLabel = heroMode === "single" ? "最低教育價推薦" : "25,000-30,000 推薦輪播";
+        const heroActions =
+          heroMode === "carousel" && heroItems.length > 1
+            ? `
+              <div class="hero-actions">
+                <button type="button" data-hero="prev">上一台</button>
+                <div class="hero-dots">
+                  ${heroItems.map((_, index) => `<button type="button" class="${index === heroIndex ? "active" : ""}" data-hero-dot="${index}" aria-label="推薦 ${index + 1}"></button>`).join("")}
+                </div>
+                <button type="button" data-hero="next">下一台</button>
+              </div>
+            `
+            : "";
         featured.innerHTML = `
           <div class="hero-image">
             ${currentImage(top) ? `<img src="${currentImage(top)}" alt="${escapeHtml(top.title)}">` : "ASUS"}
           </div>
           <div class="hero-info">
-            <p class="eyebrow">25,000-30,000 推薦輪播</p>
+            <p class="eyebrow">${heroLabel}</p>
             <h2>${escapeHtml(top.model)}</h2>
-            <p>${escapeHtml(top.title)}</p>
+            <p class="title">${escapeHtml(top.title)}</p>
             <div class="price">
               <div><span>教育價 / 專案價</span><strong>${money(top.eduPrice)}</strong></div>
               <div><span>市價</span><del>${money(top.marketPrice)}</del></div>
             </div>
-            <div class="hero-actions">
-              <button type="button" data-hero="prev">上一台</button>
-              <div class="hero-dots">
-                ${heroItems.slice(0, 8).map((_, index) => `<button type="button" class="${index === heroIndex ? "active" : ""}" data-hero-dot="${index}" aria-label="推薦 ${index + 1}"></button>`).join("")}
-              </div>
-              <button type="button" data-hero="next">下一台</button>
-            </div>
+            ${heroActions}
           </div>
         `;
         featured.querySelectorAll("[data-hero-dot]").forEach((button) => {
@@ -1206,33 +1418,42 @@
           compareTable.innerHTML = "";
           return;
         }
+        const rows = [
+          ["系列", (laptop) => escapeHtml(laptop.family)],
+          ["教育價", (laptop) => `<strong class="compare-price">${money(laptop.eduPrice)}</strong><span>市價 <del>${money(laptop.marketPrice)}</del></span>`],
+          ["CPU", (laptop) => escapeHtml(laptop.cpu)],
+          ["RAM", (laptop) => escapeHtml(laptop.memory)],
+          ["SSD", (laptop) => escapeHtml(laptop.storage)],
+          ["LCD", (laptop) => escapeHtml(laptop.display)],
+          ["顯示卡", (laptop) => escapeHtml(laptop.gpu)],
+          ["重量", (laptop) => escapeHtml(laptop.weight)],
+        ];
         compareTable.innerHTML = `
-          <table class="compare-table">
+          <table class="compare-table compare-vertical">
             <thead>
               <tr>
-                <th>機型</th>
-                <th>教育價</th>
-                <th>CPU</th>
-                <th>RAM</th>
-                <th>SSD</th>
-                <th>LCD</th>
-                <th>顯示卡</th>
-                <th>重量</th>
+                <th>比較項目</th>
+                ${selected
+                  .map(
+                    (laptop) => `
+                      <th>
+                        <div class="compare-product">
+                          <img src="${currentImage(laptop)}" alt="${escapeHtml(laptop.title)}">
+                          <strong>${escapeHtml(laptop.model)}</strong>
+                        </div>
+                      </th>
+                    `,
+                  )
+                  .join("")}
               </tr>
             </thead>
             <tbody>
-              ${selected
+              ${rows
                 .map(
-                  (laptop) => `
+                  ([label, value]) => `
                     <tr>
-                      <td><strong>${escapeHtml(laptop.model)}</strong><br>${escapeHtml(laptop.family)}</td>
-                      <td>${money(laptop.eduPrice)}<br><del>${money(laptop.marketPrice)}</del></td>
-                      <td>${escapeHtml(laptop.cpu)}</td>
-                      <td>${escapeHtml(laptop.memory)}</td>
-                      <td>${escapeHtml(laptop.storage)}</td>
-                      <td>${escapeHtml(laptop.display)}</td>
-                      <td>${escapeHtml(laptop.gpu)}</td>
-                      <td>${escapeHtml(laptop.weight)}</td>
+                      <th scope="row">${label}</th>
+                      ${selected.map((laptop) => `<td>${value(laptop)}</td>`).join("")}
                     </tr>
                   `,
                 )
