@@ -72,6 +72,18 @@
         text-transform: uppercase;
       }
 
+      .excel-toggle {
+        background: transparent;
+        border: 0;
+        color: var(--accent-dark);
+        font-size: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        margin: 0;
+        padding: 0;
+        text-transform: inherit;
+      }
+
       .lead {
         color: #313842;
         font-size: 18px;
@@ -553,6 +565,14 @@
         font-size: 24px;
       }
 
+      .quote-price {
+        color: var(--danger);
+        display: block;
+        font-size: 19px;
+        font-weight: 900;
+        line-height: 1.35;
+      }
+
       del {
         color: var(--muted);
       }
@@ -708,7 +728,7 @@
     <main class="wrap">
       <section class="hero">
         <div>
-          <p class="eyebrow">Excel 限定機型</p>
+          <p class="eyebrow"><button class="excel-toggle" id="priceToggle" type="button" aria-pressed="true" aria-label="切換價格資訊">EXCEL</button> 限定機型</p>
           <h1>教育價筆電挑選器</h1>
           <p class="lead">網頁操作方式</p>
           <div class="how">
@@ -817,6 +837,7 @@
         ssd: "all",
         lcd: "all",
         gpu: "all",
+        hidePrice: true,
       };
 
       const selectedCompare = new Set();
@@ -864,6 +885,26 @@
 
       function money(value) {
         return currency.format(value || 0);
+      }
+
+      function quoteText() {
+        return "報價請洽服務人員";
+      }
+
+      function eduPriceHtml(laptop, className = "") {
+        if (state.hidePrice) {
+          return `<span class="quote-price ${className}">${quoteText()}</span>`;
+        }
+        return `<strong class="${className}">${money(laptop.eduPrice)}</strong>`;
+      }
+
+      function savingHtml(laptop) {
+        if (state.hidePrice) return "專案優惠請洽服務人員";
+        return `現省 ${money(laptop.discount)}${laptop.discountRate ? `，約 ${laptop.discountRate}%` : ""}`;
+      }
+
+      function updatePriceToggle() {
+        priceToggle.setAttribute("aria-pressed", String(state.hidePrice));
       }
 
       function list(value) {
@@ -1123,6 +1164,22 @@
         }
       }
 
+      function renderMetrics(laptops) {
+        metrics.innerHTML = [
+          `${laptops.length} 款`,
+          state.hidePrice
+            ? heroMode === "single"
+              ? `手機推薦機型`
+              : `推薦機型輪播`
+            : heroMode === "single"
+              ? `手機最低價推薦`
+              : `推薦輪播 25,000-30,000`,
+          `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
+        ]
+          .map((item) => `<span>${item}</span>`)
+          .join("");
+      }
+
       function setupControls(laptops) {
         const prices = laptops.map((item) => item.eduPrice);
         const min = Math.floor(Math.min(...prices) / 1000) * 1000;
@@ -1171,14 +1228,8 @@
           .join("");
 
         buildHeroItems(laptops);
-
-        metrics.innerHTML = [
-          `${laptops.length} 款`,
-          heroMode === "single" ? `手機顯示最低教育價` : `推薦輪播 25,000-30,000`,
-          `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
-        ]
-          .map((item) => `<span>${item}</span>`)
-          .join("");
+        updatePriceToggle();
+        renderMetrics(laptops);
 
         const update = () => render(laptops);
         query.addEventListener("input", () => {
@@ -1273,10 +1324,15 @@
           update();
         });
 
+        priceToggle.addEventListener("click", () => {
+          state.hidePrice = !state.hidePrice;
+          updatePriceToggle();
+          update();
+        });
+
         const refreshHero = () => {
           buildHeroItems(laptops);
-          metrics.querySelectorAll("span")[1].textContent =
-            heroMode === "single" ? "手機顯示最低教育價" : "推薦輪播 25,000-30,000";
+          renderMetrics(laptops);
           startHeroTimer(laptops);
           render(laptops);
         };
@@ -1343,10 +1399,10 @@
               </div>
               <p class="title">${escapeHtml(laptop.title)}</p>
               <div class="price">
-                <div><span>教育價 / 專案價</span><strong>${money(laptop.eduPrice)}</strong></div>
+                <div><span>教育價 / 專案價</span>${eduPriceHtml(laptop)}</div>
                 <div><span>市價</span><del>${money(laptop.marketPrice)}</del></div>
               </div>
-              <div class="saving">現省 ${money(laptop.discount)}${laptop.discountRate ? `，約 ${laptop.discountRate}%` : ""}</div>
+              <div class="saving">${savingHtml(laptop)}</div>
               <div class="chips">${tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>
               <dl class="specs">
                 <div><dt>CPU</dt><dd>${escapeHtml(laptop.cpu)}</dd></div>
@@ -1375,7 +1431,13 @@
       function renderHero(laptops) {
         const top = heroItems[heroIndex] || laptops[0];
         if (!top) return;
-        const heroLabel = heroMode === "single" ? "最低教育價推薦" : "25,000-30,000 推薦輪播";
+        const heroLabel = state.hidePrice
+          ? heroMode === "single"
+            ? "推薦機型"
+            : "推薦機型輪播"
+          : heroMode === "single"
+            ? "最低教育價推薦"
+            : "25,000-30,000 推薦輪播";
         const heroActions =
           heroMode === "carousel" && heroItems.length > 1
             ? `
@@ -1397,7 +1459,7 @@
             <h2>${escapeHtml(top.model)}</h2>
             <p class="title">${escapeHtml(top.title)}</p>
             <div class="price">
-              <div><span>教育價 / 專案價</span><strong>${money(top.eduPrice)}</strong></div>
+              <div><span>教育價 / 專案價</span>${eduPriceHtml(top)}</div>
               <div><span>市價</span><del>${money(top.marketPrice)}</del></div>
             </div>
             ${heroActions}
@@ -1420,7 +1482,10 @@
         }
         const rows = [
           ["系列", (laptop) => escapeHtml(laptop.family)],
-          ["教育價", (laptop) => `<strong class="compare-price">${money(laptop.eduPrice)}</strong><span>市價 <del>${money(laptop.marketPrice)}</del></span>`],
+          ["教育價", (laptop) =>
+            state.hidePrice
+              ? `<span class="quote-price compare-price">${quoteText()}</span><span>市價 <del>${money(laptop.marketPrice)}</del></span>`
+              : `<strong class="compare-price">${money(laptop.eduPrice)}</strong><span>市價 <del>${money(laptop.marketPrice)}</del></span>`],
           ["CPU", (laptop) => escapeHtml(laptop.cpu)],
           ["RAM", (laptop) => escapeHtml(laptop.memory)],
           ["SSD", (laptop) => escapeHtml(laptop.storage)],
@@ -1467,6 +1532,7 @@
         const results = getResults(laptops);
         const bestSaving = laptops.reduce((best, item) => (item.discount > best.discount ? item : best), laptops[0]);
         budgetText.textContent = money(state.budget);
+        renderMetrics(laptops);
         renderHero(laptops);
 
         summary.innerHTML = `

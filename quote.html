@@ -72,22 +72,16 @@
         text-transform: uppercase;
       }
 
-      .price-toggle {
-        align-items: center;
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        display: inline-flex;
-        gap: 8px;
-        min-height: 30px;
-        padding: 5px 10px;
-      }
-
-      .price-toggle span {
-        background: var(--soft);
-        border-radius: 999px;
+      .excel-toggle {
+        background: transparent;
+        border: 0;
         color: var(--accent-dark);
-        padding: 2px 8px;
+        font-size: inherit;
+        font-weight: inherit;
+        letter-spacing: inherit;
+        margin: 0;
+        padding: 0;
+        text-transform: inherit;
       }
 
       .lead {
@@ -734,9 +728,7 @@
     <main class="wrap">
       <section class="hero">
         <div>
-          <button class="eyebrow price-toggle" id="priceToggle" type="button" aria-pressed="true">
-            EXCEL 限定機型 <span id="priceToggleText">不顯示教育價</span>
-          </button>
+          <p class="eyebrow"><button class="excel-toggle" id="priceToggle" type="button" aria-pressed="true" aria-label="切換價格資訊">EXCEL</button> 限定機型</p>
           <h1>教育價筆電挑選器</h1>
           <p class="lead">網頁操作方式</p>
           <div class="how">
@@ -913,7 +905,6 @@
 
       function updatePriceToggle() {
         priceToggle.setAttribute("aria-pressed", String(state.hidePrice));
-        priceToggleText.textContent = state.hidePrice ? "不顯示教育價" : "顯示教育價";
       }
 
       function list(value) {
@@ -1178,10 +1169,10 @@
           `${laptops.length} 款`,
           state.hidePrice
             ? heroMode === "single"
-              ? `手機顯示推薦機型`
+              ? `手機推薦機型`
               : `推薦機型輪播`
             : heroMode === "single"
-              ? `手機顯示最低教育價`
+              ? `手機最低價推薦`
               : `推薦輪播 25,000-30,000`,
           `最高省 ${money(Math.max(...laptops.map((item) => item.discount)))}`,
         ]
