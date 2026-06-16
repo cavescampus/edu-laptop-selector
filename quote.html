@@ -734,8 +734,8 @@
     <main class="wrap">
       <section class="hero">
         <div>
-          <button class="eyebrow price-toggle" id="priceToggle" type="button" aria-pressed="false">
-            EXCEL 限定機型 <span id="priceToggleText">顯示教育價</span>
+          <button class="eyebrow price-toggle" id="priceToggle" type="button" aria-pressed="true">
+            EXCEL 限定機型 <span id="priceToggleText">不顯示教育價</span>
           </button>
           <h1>教育價筆電挑選器</h1>
           <p class="lead">網頁操作方式</p>
@@ -845,7 +845,7 @@
         ssd: "all",
         lcd: "all",
         gpu: "all",
-        hidePrice: false,
+        hidePrice: true,
       };
 
       const selectedCompare = new Set();
