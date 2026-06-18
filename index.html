@@ -821,6 +821,7 @@
       </section>
     </main>
 
+    <script src="app/model-gallery.js"></script>
     <script>
       const state = {
         query: "",
@@ -944,6 +945,8 @@
       }
 
       function galleryFor(laptop) {
+        const modelGallery = (window.modelGalleryMap || {})[laptop.model];
+        if (Array.isArray(modelGallery) && modelGallery.length) return modelGallery;
         const file = imageFile(laptop.image) || fallbackImageFile(laptop);
         const gallery = (galleryMap[file] || []).map((item) => `public/laptop-images/gallery/${item}`);
         return gallery.length ? gallery : [`public/laptop-images/${file}`];

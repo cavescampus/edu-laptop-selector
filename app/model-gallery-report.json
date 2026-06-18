@@ -1,0 +1,941 @@
+{
+  "generatedAt": "2026-06-18T02:05:22.744Z",
+  "totalModels": 88,
+  "matchedModels": 81,
+  "maxImages": 4,
+  "report": [
+    {
+      "model": "FA401EA-0041A392H",
+      "matched": 17,
+      "exported": 4,
+      "sources": [
+        "FA401EA-0041A392H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_01.jpg",
+        "FA401EA-0041A392H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_02.jpg",
+        "FA401EA-0041A392H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_03_L.jpg",
+        "FA401EA-0041A392H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_03.jpg"
+      ]
+    },
+    {
+      "model": "FA401GM-0021A465H",
+      "matched": 14,
+      "exported": 4,
+      "sources": [
+        "FA401GM-0021A465H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_01_L.jpg",
+        "FA401GM-0021A465H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_02_L.jpg",
+        "FA401GM-0021A465H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_03_L.jpg",
+        "FA401GM-0021A465H御鐵灰\\ASUS_TUF_-GAMING_A14_Jaeger-Grey_04_L.jpg"
+      ]
+    },
+    {
+      "model": "FA401GM-0031C465H",
+      "matched": 16,
+      "exported": 4,
+      "sources": [
+        "FA401GM-0031C465H月光銀\\ASUS_TUF_-GAMING_A14_Moonlight-White (9).jpg",
+        "FA401GM-0031C465H月光銀\\ASUS_TUF_-GAMING_A14_Moonlight-White (10).jpg",
+        "FA401GM-0031C465H月光銀\\ASUS_TUF_-GAMING_A14_Moonlight-White (11).jpg",
+        "FA401GM-0031C465H月光銀\\ASUS_TUF_-GAMING_A14_Moonlight-White (12).jpg"
+      ]
+    },
+    {
+      "model": "FA506NCQ-0032B170H",
+      "matched": 19,
+      "exported": 4,
+      "sources": [
+        "FA506NCQ-0032B170H石墨黑\\01-FX506_L_001.jpg",
+        "FA506NCQ-0032B170H石墨黑\\02-FX506_L_001.jpg",
+        "FA506NCQ-0032B170H石墨黑\\03-FX506_L_001.jpg",
+        "FA506NCQ-0032B170H石墨黑\\04-FX506_L_001.jpg"
+      ]
+    },
+    {
+      "model": "FA607NUQ-0093A170H",
+      "matched": 26,
+      "exported": 4,
+      "sources": [
+        "FA607NUQ-0093A170H灰\\01_FA607_001.jpg",
+        "FA607NUQ-0093A170H灰\\02_FA607_001.jpg",
+        "FA607NUQ-0093A170H灰\\03_FA607_001.jpg",
+        "FA607NUQ-0093A170H灰\\04_FA607_001.jpg"
+      ]
+    },
+    {
+      "model": "FA608PMR-0041A8940HX",
+      "matched": 35,
+      "exported": 4,
+      "sources": [
+        "FA608PMR-0041A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16 Jaeger-Grey_01_L_001.jpg",
+        "FA608PMR-0041A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16_Jaeger-Grey_01_001.jpg",
+        "FA608PMR-0041A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16_Jaeger-Grey_02_001.jpg",
+        "FA608PMR-0041A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16_Jaeger-Grey_02_L_001.jpg"
+      ]
+    },
+    {
+      "model": "FA608PP-0071A8940HX",
+      "matched": 35,
+      "exported": 4,
+      "sources": [
+        "FA608PP-0071A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16 Jaeger-Grey_01_L_001.jpg",
+        "FA608PP-0071A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16_Jaeger-Grey_01_001.jpg",
+        "FA608PP-0071A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16_Jaeger-Grey_02_001.jpg",
+        "FA608PP-0071A8940HX御鐵灰\\ASUS_TUF_-GAMING_A16_Jaeger-Grey_02_L_001.jpg"
+      ]
+    },
+    {
+      "model": "FA617NT-0022C7735HS",
+      "matched": 17,
+      "exported": 4,
+      "sources": [
+        "FA617NT-0022C7735HS暴風沙\\2023 TUF Gaming A16 Advantage Edition_FA617_Product Photos_Sandstorm_No lighting_01_001.jpg",
+        "FA617NT-0022C7735HS暴風沙\\2023 TUF Gaming A16 Advantage Edition_FA617_Product Photos_Sandstorm_No lighting_02_001.jpg",
+        "FA617NT-0022C7735HS暴風沙\\2023 TUF Gaming A16 Advantage Edition_FA617_Product Photos_Sandstorm_No lighting_03_001.jpg",
+        "FA617NT-0022C7735HS暴風沙\\2023 TUF Gaming A16 Advantage Edition_FA617_Product Photos_Sandstorm_No lighting_04_001.jpg"
+      ]
+    },
+    {
+      "model": "FA707NUG-0122A7445HS",
+      "matched": 27,
+      "exported": 4,
+      "sources": [
+        "FA707NUG-0122A7445HS機甲灰\\01_FA707_001.jpg",
+        "FA707NUG-0122A7445HS機甲灰\\02_FA707_001.jpg",
+        "FA707NUG-0122A7445HS機甲灰\\03_FA707_001.jpg",
+        "FA707NUG-0122A7445HS機甲灰\\04_FA707_001.jpg"
+      ]
+    },
+    {
+      "model": "FA808UH-0021A260H",
+      "matched": 22,
+      "exported": 4,
+      "sources": [
+        "FA808UH-0021A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_01_L.jpg",
+        "FA808UH-0021A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_02_L.jpg",
+        "FA808UH-0021A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_03_L.jpg",
+        "FA808UH-0021A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_04_L.jpg"
+      ]
+    },
+    {
+      "model": "FA808UM-0031A260H",
+      "matched": 22,
+      "exported": 4,
+      "sources": [
+        "FA808UM-0031A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_01_L.jpg",
+        "FA808UM-0031A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_02_L.jpg",
+        "FA808UM-0031A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_03_L.jpg",
+        "FA808UM-0031A260H御鐵灰\\ASUS_TUF_-GAMING_A18_Jaeger-Grey_04_L.jpg"
+      ]
+    },
+    {
+      "model": "FX607VJB-0053A210H",
+      "matched": 19,
+      "exported": 4,
+      "sources": [
+        "FX607VJB-0053A210H機甲灰\\01_FX607VB_L.jpg",
+        "FX607VJB-0053A210H機甲灰\\02_FX607VB.jpg",
+        "FX607VJB-0053A210H機甲灰\\03_FX607VB_L.jpg",
+        "FX607VJB-0053A210H機甲灰\\04_FX607VB_L.jpg"
+      ]
+    },
+    {
+      "model": "FX607VU-0103A210H",
+      "matched": 19,
+      "exported": 4,
+      "sources": [
+        "FX607VU-0103A210H灰\\01_FX607VB_L.jpg",
+        "FX607VU-0103A210H灰\\02_FX607VB.jpg",
+        "FX607VU-0103A210H灰\\03_FX607VB_L.jpg",
+        "FX607VU-0103A210H灰\\04_FX607VB_L.jpg"
+      ]
+    },
+    {
+      "model": "FX608JHR-0031A14450HX",
+      "matched": 18,
+      "exported": 4,
+      "sources": [
+        "FX608JHR-0031A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_18.jpg",
+        "FX608JHR-0031A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_20.jpg",
+        "FX608JHR-0031A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_22.jpg",
+        "FX608JHR-0031A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_24.jpg"
+      ]
+    },
+    {
+      "model": "FX608JMR-0041A14650HX",
+      "matched": 18,
+      "exported": 4,
+      "sources": [
+        "FX608JMR-0041A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_18.jpg",
+        "FX608JMR-0041A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_20.jpg",
+        "FX608JMR-0041A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_22.jpg",
+        "FX608JMR-0041A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_24.jpg"
+      ]
+    },
+    {
+      "model": "FX608JMR-0051A14450HX",
+      "matched": 18,
+      "exported": 4,
+      "sources": [
+        "FX608JMR-0051A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_18.jpg",
+        "FX608JMR-0051A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_20.jpg",
+        "FX608JMR-0051A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_22.jpg",
+        "FX608JMR-0051A14450HX御鐵灰\\ASUS_TUF_-GAMING_F16_24.jpg"
+      ]
+    },
+    {
+      "model": "FX608JPR-0091A14650HX",
+      "matched": 18,
+      "exported": 4,
+      "sources": [
+        "FX608JPR-0091A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_18.jpg",
+        "FX608JPR-0091A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_20.jpg",
+        "FX608JPR-0091A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_22.jpg",
+        "FX608JPR-0091A14650HX御鐵灰\\ASUS_TUF_-GAMING_F16_24.jpg"
+      ]
+    },
+    {
+      "model": "FX707VJB-0032A210H",
+      "matched": 22,
+      "exported": 4,
+      "sources": [
+        "FX707VJB-0032A210H\\01_FX707 [最大闊度 2400 最大高度 1800]_001.jpg",
+        "FX707VJB-0032A210H\\01_FX707 [最大闊度 2400 最大高度 1800].jpg",
+        "FX707VJB-0032A210H\\02_FX707 [最大闊度 2400 最大高度 1800]_001.jpg",
+        "FX707VJB-0032A210H\\02_FX707 [最大闊度 2400 最大高度 1800].jpg"
+      ]
+    },
+    {
+      "model": "G614PM-0024C8940HX-NBL",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "G614PM-0024C8940HX-NBL幻潮黑\\16_Green_4-Zone_04_L.jpg",
+        "G614PM-0024C8940HX-NBL幻潮黑\\16_Green_4-Zone_06_L.jpg",
+        "G614PM-0024C8940HX-NBL幻潮黑\\16_Green_4-Zone_07_L.jpg",
+        "G614PM-0024C8940HX-NBL幻潮黑\\16_Green_4-Zone_12_L.jpg"
+      ]
+    },
+    {
+      "model": "G614PR-0074C8940HX-NBL",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "G614PR-0074C8940HX-NBL\\16_Green_4-Zone_04_L.jpg",
+        "G614PR-0074C8940HX-NBL\\16_Green_4-Zone_06_L.jpg",
+        "G614PR-0074C8940HX-NBL\\16_Green_4-Zone_07_L.jpg",
+        "G614PR-0074C8940HX-NBL\\16_Green_4-Zone_12_L.jpg"
+      ]
+    },
+    {
+      "model": "G614PW-0034C8940HX-NBL",
+      "matched": 0,
+      "exported": 0,
+      "sources": []
+    },
+    {
+      "model": "G635LW-0021A275HX-NBLM",
+      "matched": 0,
+      "exported": 0,
+      "sources": []
+    },
+    {
+      "model": "G814PP-0034C8940HX-NBL",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "G814PP-0034C8940HX-NBL幻潮黑\\Strix G18 (G814)_01_Gray_4Zone_L.jpg",
+        "G814PP-0034C8940HX-NBL幻潮黑\\Strix G18 (G814)_02_Gray_4Zone_L.jpg",
+        "G814PP-0034C8940HX-NBL幻潮黑\\Strix G18 (G814)_03_Gray_4Zone_L.jpg",
+        "G814PP-0034C8940HX-NBL幻潮黑\\Strix G18 (G814)_03-2_Gray_4Zone_L.jpg"
+      ]
+    },
+    {
+      "model": "G815LW-0071G290HX-NBLM",
+      "matched": 14,
+      "exported": 4,
+      "sources": [
+        "G815LW-0071G290HX-NBLM 電光綠\\01_GR_New_18_L.jpg",
+        "G815LW-0071G290HX-NBLM 電光綠\\01_GR_New_18.jpg",
+        "G815LW-0071G290HX-NBLM 電光綠\\02_GR_New_18_L.jpg",
+        "G815LW-0071G290HX-NBLM 電光綠\\02_GR_New_18.jpg"
+      ]
+    },
+    {
+      "model": "G835LW-0021A275HX-NBLM",
+      "matched": 12,
+      "exported": 4,
+      "sources": [
+        "G835LW-0021A275HX-NBLM闇夜黑\\03_SCAR_New_18_2026_Web_L.jpg",
+        "G835LW-0021A275HX-NBLM闇夜黑\\03_SCAR_New_18_2026_Web.jpg",
+        "G835LW-0021A275HX-NBLM闇夜黑\\04_SCAR_New_18_2026_Web_L.jpg",
+        "G835LW-0021A275HX-NBLM闇夜黑\\04_SCAR_New_18_2026_Web.jpg"
+      ]
+    },
+    {
+      "model": "G835LX-0021A275HX-NBLM",
+      "matched": 12,
+      "exported": 4,
+      "sources": [
+        "G835LX-0021A275HX-NBLM闇夜黑\\03_SCAR_New_18_2026_Web_L.jpg",
+        "G835LX-0021A275HX-NBLM闇夜黑\\03_SCAR_New_18_2026_Web.jpg",
+        "G835LX-0021A275HX-NBLM闇夜黑\\04_SCAR_New_18_2026_Web_L.jpg",
+        "G835LX-0021A275HX-NBLM闇夜黑\\04_SCAR_New_18_2026_Web.jpg"
+      ]
+    },
+    {
+      "model": "GA403GM-0092H465H-NBLO",
+      "matched": 28,
+      "exported": 4,
+      "sources": [
+        "GA403GM-0092H465H-NBLO鉑月銀\\Zephyrus G14_BD2_white_06.jpg",
+        "GA403GM-0092H465H-NBLO鉑月銀\\Zephyrus G14_BD2_white_06.png",
+        "GA403GM-0092H465H-NBLO鉑月銀\\Zephyrus G14_BD2_white_07.jpg",
+        "GA403GM-0092H465H-NBLO鉑月銀\\Zephyrus G14_BD2_white_07.png"
+      ]
+    },
+    {
+      "model": "GA403WM-0022HHX370-NBLO",
+      "matched": 28,
+      "exported": 4,
+      "sources": [
+        "GA403WM-0022HHX370-NBLO 鉑月銀\\Zephyrus G14_BD2_white_06.jpg",
+        "GA403WM-0022HHX370-NBLO 鉑月銀\\Zephyrus G14_BD2_white_06.png",
+        "GA403WM-0022HHX370-NBLO 鉑月銀\\Zephyrus G14_BD2_white_07.jpg",
+        "GA403WM-0022HHX370-NBLO 鉑月銀\\Zephyrus G14_BD2_white_07.png"
+      ]
+    },
+    {
+      "model": "GA403WM-0032EHX370-NBLO",
+      "matched": 28,
+      "exported": 4,
+      "sources": [
+        "GA403WM-0032EHX370-NBLO日蝕灰\\Zephyrus G14_BD2_grey_06.jpg",
+        "GA403WM-0032EHX370-NBLO日蝕灰\\Zephyrus G14_BD2_grey_06.png",
+        "GA403WM-0032EHX370-NBLO日蝕灰\\Zephyrus G14_BD2_grey_07.jpg",
+        "GA403WM-0032EHX370-NBLO日蝕灰\\Zephyrus G14_BD2_grey_07.png"
+      ]
+    },
+    {
+      "model": "GA605KM-0022H350H-NBLO",
+      "matched": 18,
+      "exported": 4,
+      "sources": [
+        "GA605KM-0022H350H-NBLO鉑月銀\\Zephyrus G16_GA605_white_01_rgb.jpg",
+        "GA605KM-0022H350H-NBLO鉑月銀\\Zephyrus G16_GA605_white_01_rgb.png",
+        "GA605KM-0022H350H-NBLO鉑月銀\\Zephyrus G16_GA605_white_02_rgb.jpg",
+        "GA605KM-0022H350H-NBLO鉑月銀\\Zephyrus G16_GA605_white_02_rgb.png"
+      ]
+    },
+    {
+      "model": "GA605KM-0032E350H-NBLO",
+      "matched": 18,
+      "exported": 4,
+      "sources": [
+        "GA605KM-0032E350H-NBLO日蝕灰\\Zephyrus G16_GA605_grey_01_w.jpg",
+        "GA605KM-0032E350H-NBLO日蝕灰\\Zephyrus G16_GA605_grey_01_w.png",
+        "GA605KM-0032E350H-NBLO日蝕灰\\Zephyrus G16_GA605_grey_02_w.jpg",
+        "GA605KM-0032E350H-NBLO日蝕灰\\Zephyrus G16_GA605_grey_02_w.png"
+      ]
+    },
+    {
+      "model": "GU405AR-0028H386H-NBLO",
+      "matched": 30,
+      "exported": 4,
+      "sources": [
+        "GU405AR-0028H386H-NBLO鉑月銀\\Zephyrus G14_MB2_white_01.jpg",
+        "GU405AR-0028H386H-NBLO鉑月銀\\Zephyrus G14_MB2_white_01.png",
+        "GU405AR-0028H386H-NBLO鉑月銀\\Zephyrus G14_MB2_white_02.jpg",
+        "GU405AR-0028H386H-NBLO鉑月銀\\Zephyrus G14_MB2_white_02.png"
+      ]
+    },
+    {
+      "model": "GU606AM-0022H386H-NBLO",
+      "matched": 0,
+      "exported": 0,
+      "sources": []
+    },
+    {
+      "model": "GU606AR-0058I386H-NBLO",
+      "matched": 0,
+      "exported": 0,
+      "sources": []
+    },
+    {
+      "model": "GU606AW-0048H386H-NBLO",
+      "matched": 0,
+      "exported": 0,
+      "sources": []
+    },
+    {
+      "model": "GU606AX-0048H386H-NBLO",
+      "matched": 0,
+      "exported": 0,
+      "sources": []
+    },
+    {
+      "model": "GX651AX-0022B386H-NBLO",
+      "matched": 19,
+      "exported": 4,
+      "sources": [
+        "GX651AX-0022B386H-NBLO)星曜灰\\2202-c01-.jpg",
+        "GX651AX-0022B386H-NBLO)星曜灰\\2202-c02-.jpg",
+        "GX651AX-0022B386H-NBLO)星曜灰\\2202-c03-.jpg",
+        "GX651AX-0022B386H-NBLO)星曜灰\\2202-c04-.jpg"
+      ]
+    },
+    {
+      "model": "GZ302EA-0101A395-NBL",
+      "matched": 26,
+      "exported": 4,
+      "sources": [
+        "GZ302EA-0101A395-NBL無盡黑\\ROG FLOW Z13_black_01.jpg",
+        "GZ302EA-0101A395-NBL無盡黑\\ROG FLOW Z13_black_02_hinge.jpg",
+        "GZ302EA-0101A395-NBL無盡黑\\ROG FLOW Z13_black_02.jpg",
+        "GZ302EA-0101A395-NBL無盡黑\\ROG FLOW Z13_black_03.jpg"
+      ]
+    },
+    {
+      "model": "H7606WP-0083KHX370",
+      "matched": 7,
+      "exported": 4,
+      "sources": [
+        "H7606WP-0083KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_01.jpg",
+        "H7606WP-0083KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_02.jpg",
+        "H7606WP-0083KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_08.jpg",
+        "H7606WP-0083KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_10.jpg"
+      ]
+    },
+    {
+      "model": "H7606WX-0053KHX370",
+      "matched": 7,
+      "exported": 4,
+      "sources": [
+        "H7606WX-0053KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_01.jpg",
+        "H7606WX-0053KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_02.jpg",
+        "H7606WX-0053KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_08.jpg",
+        "H7606WX-0053KHX370 星夜黑\\ProArt P16_H7606_Product photo_Nano Black_10.jpg"
+      ]
+    },
+    {
+      "model": "HN7306EA-0033K395",
+      "matched": 32,
+      "exported": 4,
+      "sources": [
+        "HN7306EA-0033K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_01_2400x2400_001.jpg",
+        "HN7306EA-0033K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_01_2400x2400.jpg",
+        "HN7306EA-0033K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_02_2400x2400_001.jpg",
+        "HN7306EA-0033K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_02_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "HN7306EAC-0028K395",
+      "matched": 32,
+      "exported": 4,
+      "sources": [
+        "HN7306EAC-0028K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_01_2400x2400_001.jpg",
+        "HN7306EAC-0028K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_01_2400x2400.jpg",
+        "HN7306EAC-0028K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_02_2400x2400_001.jpg",
+        "HN7306EAC-0028K395曜夜黑\\ASUS ProArt PX13 GoPro_Product photo_Black_02_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "M1807GA-0061B445H",
+      "matched": 12,
+      "exported": 4,
+      "sources": [
+        "M1807GA-0061B445H午夜藍\\ASUS Vivobook 16_M1807HA_Product photo_1B_Quiet Blue_01_Non-backlit.jpg",
+        "M1807GA-0061B445H午夜藍\\ASUS Vivobook 16_M1807HA_Product photo_1B_Quiet Blue_02_Non-backlit.jpg",
+        "M1807GA-0061B445H午夜藍\\ASUS Vivobook 16_M1807HA_Product photo_1B_Quiet Blue_03_Non-backlit.jpg",
+        "M1807GA-0061B445H午夜藍\\ASUS Vivobook 16_M1807HA_Product photo_1B_Quiet Blue_04_Non-backlit_Camera off.jpg"
+      ]
+    },
+    {
+      "model": "S3407QA-0042G26100",
+      "matched": 0,
+      "exported": 0,
+      "sources": []
+    },
+    {
+      "model": "S3607AA-0052G325",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "S3607AA-0052G325夜幕灰\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_01_001.jpg",
+        "S3607AA-0052G325夜幕灰\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_02_001.jpg",
+        "S3607AA-0052G325夜幕灰\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_03_001.jpg",
+        "S3607AA-0052G325夜幕灰\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_04_001.jpg"
+      ]
+    },
+    {
+      "model": "S3607AA-0062S325",
+      "matched": 16,
+      "exported": 4,
+      "sources": [
+        "S3607AA-0062S325 酷玩銀\\ASUS Vivobook S16_S3607QA_Product photo_2S_Cool Silver_01_001.jpg",
+        "S3607AA-0062S325 酷玩銀\\ASUS Vivobook S16_S3607QA_Product photo_2S_Cool Silver_02_001.jpg",
+        "S3607AA-0062S325 酷玩銀\\ASUS Vivobook S16_S3607QA_Product photo_2S_Cool Silver_03_001.jpg",
+        "S3607AA-0062S325 酷玩銀\\ASUS Vivobook S16_S3607QA_Product photo_2S_Cool Silver_04_001.jpg"
+      ]
+    },
+    {
+      "model": "S3607CA-0182G225H",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "S3607CA-0182G225H夜幕灰\\ASUS Vivobook S16_S3607CA_VA_Product photo_2G_Matte Gray_01_2400x2400_001.jpg",
+        "S3607CA-0182G225H夜幕灰\\ASUS Vivobook S16_S3607CA_VA_Product photo_2G_Matte Gray_02_2400x2400_001.jpg",
+        "S3607CA-0182G225H夜幕灰\\ASUS Vivobook S16_S3607CA_VA_Product photo_2G_Matte Gray_03_2400x2400_001.jpg",
+        "S3607CA-0182G225H夜幕灰\\ASUS Vivobook S16_S3607CA_VA_Product photo_2G_Matte Gray_04_2400x2400_001.jpg"
+      ]
+    },
+    {
+      "model": "S3607NA-0062B88100",
+      "matched": 11,
+      "exported": 4,
+      "sources": [
+        "S3607NA-0062B88100_迷霧藍\\ASUS Vivobook S16_S3607NA_Product photo_2B_Mist Blue_01_001.jpg",
+        "S3607NA-0062B88100_迷霧藍\\ASUS Vivobook S16_S3607NA_Product photo_2B_Mist Blue_02_001.jpg",
+        "S3607NA-0062B88100_迷霧藍\\ASUS Vivobook S16_S3607NA_Product photo_2B_Mist Blue_03_001.jpg",
+        "S3607NA-0062B88100_迷霧藍\\ASUS Vivobook S16_S3607NA_Product photo_2B_Mist Blue_04_Webcam_off_001.jpg"
+      ]
+    },
+    {
+      "model": "S3607QA-0042G26100",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "S3607QA-0042G26100_夜幕黑\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_01_001.jpg",
+        "S3607QA-0042G26100_夜幕黑\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_02_001.jpg",
+        "S3607QA-0042G26100_夜幕黑\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_03_001.jpg",
+        "S3607QA-0042G26100_夜幕黑\\ASUS Vivobook S16_S3607QA_Product photo_2G_Matte Gray_04_001.jpg"
+      ]
+    },
+    {
+      "model": "S5406MA-0038B125H",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "S5406MA-0038B125H迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_01_2400x2400.jpg",
+        "S5406MA-0038B125H迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_02_2400x2400.jpg",
+        "S5406MA-0038B125H迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_05_2400x2400.jpg",
+        "S5406MA-0038B125H迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_05_Camera Close_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "S5406MA-0078C125H",
+      "matched": 8,
+      "exported": 4,
+      "sources": [
+        "S5406MA-0078C125H玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_01.jpg",
+        "S5406MA-0078C125H玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_02.jpg",
+        "S5406MA-0078C125H玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_05_Camera Close.jpg",
+        "S5406MA-0078C125H玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_07.jpg"
+      ]
+    },
+    {
+      "model": "S5406SA-0068B226V",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "S5406SA-0068B226V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_01_2400x2400.jpg",
+        "S5406SA-0068B226V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_02_2400x2400.jpg",
+        "S5406SA-0068B226V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_05_2400x2400.jpg",
+        "S5406SA-0068B226V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_05_Camera Close_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "S5406SA-0078C226V",
+      "matched": 8,
+      "exported": 4,
+      "sources": [
+        "S5406SA-0078C226V玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_01.jpg",
+        "S5406SA-0078C226V玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_02.jpg",
+        "S5406SA-0078C226V玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_05_Camera Close.jpg",
+        "S5406SA-0078C226V玫瑰金\\ASUS Vivobook S 14 OLED_S5406M_Product photo_8C_Rose Gold_07.jpg"
+      ]
+    },
+    {
+      "model": "S5406SA-0108B256V",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "S5406SA-0108B256V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_01_2400x2400.jpg",
+        "S5406SA-0108B256V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_02_2400x2400.jpg",
+        "S5406SA-0108B256V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_05_2400x2400.jpg",
+        "S5406SA-0108B256V迷霧藍\\ASUS Vivobook S 14_S5406SA_Product photo_8B_Mist Blue_05_Camera Close_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "TP3407SA-0043G226V",
+      "matched": 22,
+      "exported": 4,
+      "sources": [
+        "TP3407SA-0043G226V夜幕灰\\ASUS Vivobook Flip_TP3407SA_Product photo_8S_Matte Gray_01_2400x2400.jpg",
+        "TP3407SA-0043G226V夜幕灰\\ASUS Vivobook Flip_TP3407SA_Product photo_8S_Matte Gray_02_2400x2400.jpg",
+        "TP3407SA-0043G226V夜幕灰\\ASUS Vivobook Flip_TP3407SA_Product photo_8S_Matte Gray_03_2400x2400.jpg",
+        "TP3407SA-0043G226V夜幕灰\\ASUS Vivobook Flip_TP3407SA_Product photo_8S_Matte Gray_03_camera close_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "UM3406GA-0042K430H",
+      "matched": 9,
+      "exported": 4,
+      "sources": [
+        "UM3406GA-0042K430H玉石黑\\Zenbook 14_UM3406KA_Product photo_Jade Black_2K_Product photo_02.jpg",
+        "UM3406GA-0042K430H玉石黑\\Zenbook 14_UM3406KA_Product photo_Jade Black_2K_Product photo_03_NumberPad.jpg",
+        "UM3406GA-0042K430H玉石黑\\Zenbook 14_UM3406KA_Product photo_Jade Black_2K_Product photo_04.jpg",
+        "UM3406GA-0042K430H玉石黑\\Zenbook 14_UM3406KA_Product photo_Jade Black_2K_Product photo_05.jpg"
+      ]
+    },
+    {
+      "model": "UX3405CA-0182S225H",
+      "matched": 10,
+      "exported": 4,
+      "sources": [
+        "UX3405CA-0182S225H白霧銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_01.jpg",
+        "UX3405CA-0182S225H白霧銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_02.jpg",
+        "UX3405CA-0182S225H白霧銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_03.jpg",
+        "UX3405CA-0182S225H白霧銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_04.jpg"
+      ]
+    },
+    {
+      "model": "UX3405CA-0192S255H",
+      "matched": 10,
+      "exported": 4,
+      "sources": [
+        "UX3405CA-0192S255H_銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_01.jpg",
+        "UX3405CA-0192S255H_銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_02.jpg",
+        "UX3405CA-0192S255H_銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_03.jpg",
+        "UX3405CA-0192S255H_銀\\Zenbook 14 OLED_UX3405MA_Product photo_3S_Foggy Silver_04.jpg"
+      ]
+    },
+    {
+      "model": "UX3405CA-0202B255H",
+      "matched": 10,
+      "exported": 4,
+      "sources": [
+        "UX3405CA-0202B255H_紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_01.jpg",
+        "UX3405CA-0202B255H_紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_02.jpg",
+        "UX3405CA-0202B255H_紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_03.jpg",
+        "UX3405CA-0202B255H_紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_04.jpg"
+      ]
+    },
+    {
+      "model": "UX3405MA-0122B125H",
+      "matched": 10,
+      "exported": 4,
+      "sources": [
+        "UX3405MA-0122B125H紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_01.jpg",
+        "UX3405MA-0122B125H紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_02.jpg",
+        "UX3405MA-0122B125H紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_03.jpg",
+        "UX3405MA-0122B125H紳士藍\\Zenbook 14 OLED_UX3405MA_Product photo_3B_Ponder Blue_04.jpg"
+      ]
+    },
+    {
+      "model": "UX3407NA-0112D88100",
+      "matched": 12,
+      "exported": 4,
+      "sources": [
+        "UX3407NA-0112D88100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_01_2400 X 2400.jpg",
+        "UX3407NA-0112D88100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_02_2400 X 2400.jpg",
+        "UX3407NA-0112D88100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_03_2400 X 2400.jpg",
+        "UX3407NA-0112D88100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_04_2400 X 2400.jpg"
+      ]
+    },
+    {
+      "model": "UX3407NA-0122G88100",
+      "matched": 24,
+      "exported": 4,
+      "sources": [
+        "UX3407NA-0122G88100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_01_001.jpg",
+        "UX3407NA-0122G88100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_01.jpg",
+        "UX3407NA-0122G88100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_02_001.jpg",
+        "UX3407NA-0122G88100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_02.jpg"
+      ]
+    },
+    {
+      "model": "UX3407QA-0102G26100",
+      "matched": 24,
+      "exported": 4,
+      "sources": [
+        "UX3407QA-0102G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_01_001.jpg",
+        "UX3407QA-0102G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_01.jpg",
+        "UX3407QA-0102G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_02_001.jpg",
+        "UX3407QA-0102G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_02.jpg"
+      ]
+    },
+    {
+      "model": "UX3407QA-0112G26100",
+      "matched": 24,
+      "exported": 4,
+      "sources": [
+        "UX3407QA-0112G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_01_001.jpg",
+        "UX3407QA-0112G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_01.jpg",
+        "UX3407QA-0112G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_02_001.jpg",
+        "UX3407QA-0112G26100_冰岩灰\\Zenbook_UX3407_Product photo_Grey_02.jpg"
+      ]
+    },
+    {
+      "model": "UX3407QA-0132D26100",
+      "matched": 12,
+      "exported": 4,
+      "sources": [
+        "UX3407QA-0132D26100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_01_2400 X 2400.jpg",
+        "UX3407QA-0132D26100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_02_2400 X 2400.jpg",
+        "UX3407QA-0132D26100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_03_2400 X 2400.jpg",
+        "UX3407QA-0132D26100_沙暮金\\Zenbook A14_UX3407_Product photo_Zabriskie Beige_04_2400 X 2400.jpg"
+      ]
+    },
+    {
+      "model": "UX3607OA-0022D94100",
+      "matched": 11,
+      "exported": 4,
+      "sources": [
+        "UX3607OA-0022D94100_沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_01.jpg",
+        "UX3607OA-0022D94100_沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_02.jpg",
+        "UX3607OA-0022D94100_沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_03.jpg",
+        "UX3607OA-0022D94100_沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_04.jpg"
+      ]
+    },
+    {
+      "model": "UX3607QA-0052D26100",
+      "matched": 11,
+      "exported": 4,
+      "sources": [
+        "UX3607QA-0052D26100沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_01.jpg",
+        "UX3607QA-0052D26100沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_02.jpg",
+        "UX3607QA-0052D26100沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_03.jpg",
+        "UX3607QA-0052D26100沙暮金\\Zenbook A16_UX3607_Product photo_2D_Zabriskie Beige_04.jpg"
+      ]
+    },
+    {
+      "model": "UX3607QA-0062G26100",
+      "matched": 11,
+      "exported": 4,
+      "sources": [
+        "UX3607QA-0062G26100冰岩灰\\Zenbook A16_UX3607QA_Product photo_2G_Iceland Gray_01.jpg",
+        "UX3607QA-0062G26100冰岩灰\\Zenbook A16_UX3607QA_Product photo_2G_Iceland Gray_02.jpg",
+        "UX3607QA-0062G26100冰岩灰\\Zenbook A16_UX3607QA_Product photo_2G_Iceland Gray_03.jpg",
+        "UX3607QA-0062G26100冰岩灰\\Zenbook A16_UX3607QA_Product photo_2G_Iceland Gray_04.jpg"
+      ]
+    },
+    {
+      "model": "UX5406AA-0042G386H",
+      "matched": 20,
+      "exported": 4,
+      "sources": [
+        "UX5406AA-0042G386H霧岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_01_2400x2400_001.jpg",
+        "UX5406AA-0042G386H霧岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_01_2400x2400.jpg",
+        "UX5406AA-0042G386H霧岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_02_2400x2400_001.jpg",
+        "UX5406AA-0042G386H霧岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_02_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "UX5406SA-0022W258V",
+      "matched": 20,
+      "exported": 4,
+      "sources": [
+        "UX5406SA-0022W258V暖煦白\\Zenbook S 14_UX5406SA_Product photo_3W_Scandinavian White _01_2400x2400_001.jpg",
+        "UX5406SA-0022W258V暖煦白\\Zenbook S 14_UX5406SA_Product photo_3W_Scandinavian White _01_2400x2400.jpg",
+        "UX5406SA-0022W258V暖煦白\\Zenbook S 14_UX5406SA_Product photo_3W_Scandinavian White _02_2400x2400_001.jpg",
+        "UX5406SA-0022W258V暖煦白\\Zenbook S 14_UX5406SA_Product photo_3W_Scandinavian White _02_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "UX5406SA-0032I258V",
+      "matched": 20,
+      "exported": 4,
+      "sources": [
+        "UX5406SA-0032I258V曜岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_01_2400x2400_001.jpg",
+        "UX5406SA-0032I258V曜岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_01_2400x2400.jpg",
+        "UX5406SA-0032I258V曜岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_02_2400x2400_001.jpg",
+        "UX5406SA-0032I258V曜岩灰\\Zenbook S 14_UX5406SA_Product photo_3I_Zumaia Gray_02_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "UX5606SA-0062W258V",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "UX5606SA-0062W258V暖煦白\\Zenbook S 16 _UX5606SA_Product photo_Scandinavian White__03.jpg",
+        "UX5606SA-0062W258V暖煦白\\Zenbook S 16 _UX5606SA_Product photo_Scandinavian White__05.jpg",
+        "UX5606SA-0062W258V暖煦白\\Zenbook S 16 _UX5606SA_Product photo_Scandinavian White__06.jpg",
+        "UX5606SA-0062W258V暖煦白\\Zenbook S 16 _UX5606SA_Product photo_Scandinavian White__07.jpg"
+      ]
+    },
+    {
+      "model": "UX5606SA-0072I258V",
+      "matched": 13,
+      "exported": 4,
+      "sources": [
+        "UX5606SA-0072I258V曜岩灰\\Zenbook S 16_UX5606SA_Product photo_Zumaia Gray_01.jpg",
+        "UX5606SA-0072I258V曜岩灰\\Zenbook S 16_UX5606SA_Product photo_Zumaia Gray_02.jpg",
+        "UX5606SA-0072I258V曜岩灰\\Zenbook S 16_UX5606SA_Product photo_Zumaia Gray_03.jpg",
+        "UX5606SA-0072I258V曜岩灰\\Zenbook S 16_UX5606SA_Product photo_Zumaia Gray_04.jpg"
+      ]
+    },
+    {
+      "model": "UX8406CA-0022I285H",
+      "matched": 9,
+      "exported": 4,
+      "sources": [
+        "UX8406CA-0022I285H墨灰色\\Zenbook DUO 2025_UX8406CA_Product photo_Inkwell Gray_02.jpg",
+        "UX8406CA-0022I285H墨灰色\\Zenbook DUO 2025_UX8406CA_Product photo_Inkwell Gray_03.jpg",
+        "UX8406CA-0022I285H墨灰色\\Zenbook DUO 2025_UX8406CA_Product photo_Inkwell Gray_05.jpg",
+        "UX8406CA-0022I285H墨灰色\\Zenbook DUO 2025_UX8406CA_Product photo_Inkwell Gray_07.jpg"
+      ]
+    },
+    {
+      "model": "V3607VJ-0031K210H",
+      "matched": 24,
+      "exported": 4,
+      "sources": [
+        "V3607VJ-0031K210H靜謐黑\\ASUS V3607_Product photo_1K_Matte Black_01_2400x2400.jpg",
+        "V3607VJ-0031K210H靜謐黑\\ASUS V3607_Product photo_1K_Matte Black_02_2400x2400.jpg",
+        "V3607VJ-0031K210H靜謐黑\\ASUS V3607_Product photo_1K_Matte Black_03_2400x2400.jpg",
+        "V3607VJ-0031K210H靜謐黑\\ASUS V3607_Product photo_1K_Matte Black_03_KB_Light-On_2400x2400.jpg"
+      ]
+    },
+    {
+      "model": "X1404VA-0111B120U",
+      "matched": 8,
+      "exported": 4,
+      "sources": [
+        "X1404VA-0111B120U午夜藍\\Vivobook_14_X1404MAF_Product photo_1B Quiet Blue_05_NumberPad.jpg",
+        "X1404VA-0111B120U午夜藍\\Vivobook_14_X1404MAF_Product photo_1B Quiet Blue_07_NumberPad.jpg",
+        "X1404VA-0111B120U午夜藍\\Vivobook_14_X1404MAF_Product photo_1B Quiet Blue_08_NumberPad.jpg",
+        "X1404VA-0111B120U午夜藍\\Vivobook_14_X1404MAF_Product photo_1B Quiet Blue_12_NumberPad_Backlit On.jpg"
+      ]
+    },
+    {
+      "model": "X1404VA-0181W120U",
+      "matched": 8,
+      "exported": 4,
+      "sources": [
+        "X1404VA-0181W120U幻彩白\\Vivobook_14_X1404MAF_Product photo_1W_White_05_NumberPad.jpg",
+        "X1404VA-0181W120U幻彩白\\Vivobook_14_X1404MAF_Product photo_1W_White_07_NumberPad.jpg",
+        "X1404VA-0181W120U幻彩白\\Vivobook_14_X1404MAF_Product photo_1W_White_08_NumberPad.jpg",
+        "X1404VA-0181W120U幻彩白\\Vivobook_14_X1404MAF_Product photo_1W_White_12_NumberPad_Backlit On.jpg"
+      ]
+    },
+    {
+      "model": "X1407AA-0041D325",
+      "matched": 6,
+      "exported": 4,
+      "sources": [
+        "X1407AA-0041D325鉑金色\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_2_Non-backlit.jpg",
+        "X1407AA-0041D325鉑金色\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_3_Non-backlit.jpg",
+        "X1407AA-0041D325鉑金色\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_5_Backlit.jpg",
+        "X1407AA-0041D325鉑金色\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_7_Non-backlit.jpg"
+      ]
+    },
+    {
+      "model": "X1407CA-0051D225H",
+      "matched": 6,
+      "exported": 4,
+      "sources": [
+        "X1407CA-0051D225H_鉑金\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_2_Non-backlit.jpg",
+        "X1407CA-0051D225H_鉑金\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_3_Non-backlit.jpg",
+        "X1407CA-0051D225H_鉑金\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_5_Backlit.jpg",
+        "X1407CA-0051D225H_鉑金\\ASUS Vivobook 14_X1407AA_Product photo_1D_Platinum Gold_7_Non-backlit.jpg"
+      ]
+    },
+    {
+      "model": "X1502VA-0181B13420H",
+      "matched": 14,
+      "exported": 4,
+      "sources": [
+        "X1502VA-0181B13420H午夜藍\\Vivobook 15_X1502V_M1502Y_Product Photo_1K_Quiet Blue_05_Fingerprint.jpg",
+        "X1502VA-0181B13420H午夜藍\\Vivobook 15_X1502V_M1502Y_Product Photo_1K_Quiet Blue_05.jpg",
+        "X1502VA-0181B13420H午夜藍\\Vivobook 15_X1502V_M1502Y_Product Photo_1K_Quiet Blue_07_Fingerprint.jpg",
+        "X1502VA-0181B13420H午夜藍\\Vivobook 15_X1502V_M1502Y_Product Photo_1K_Quiet Blue_07.jpg"
+      ]
+    },
+    {
+      "model": "X1502VA-0191C13420H",
+      "matched": 7,
+      "exported": 4,
+      "sources": [
+        "X1502VA-0191C13420H蜜誘金\\Vivobook 15_X1502V_M1502Y_Product Photo_1C_Terra Cotta_05.jpg",
+        "X1502VA-0191C13420H蜜誘金\\Vivobook 15_X1502V_M1502Y_Product Photo_1C_Terra Cotta_07_Fingerprint.jpg",
+        "X1502VA-0191C13420H蜜誘金\\Vivobook 15_X1502V_M1502Y_Product Photo_1C_Terra Cotta_08.jpg",
+        "X1502VA-0191C13420H蜜誘金\\Vivobook 15_X1502V_M1502Y_Product Photo_1C_Terra Cotta_12_Fingerprint_Backlit.jpg"
+      ]
+    },
+    {
+      "model": "X1504VA-0281B120U",
+      "matched": 26,
+      "exported": 4,
+      "sources": [
+        "X1504VA-0281B120U午夜藍\\Vivobook 15_X1504VAP_KV photo_1B Quite Blue_01_Fingerprint_Backlit.jpg",
+        "X1504VA-0281B120U午夜藍\\Vivobook 15_X1504VAP_KV photo_1B Quite Blue_01_Fingerprint_Backlit.png",
+        "X1504VA-0281B120U午夜藍\\Vivobook 15_X1504VAP_Product photo_1B Quite Blue_01.jpg",
+        "X1504VA-0281B120U午夜藍\\Vivobook 15_X1504VAP_Product photo_1B Quite Blue_01.png"
+      ]
+    },
+    {
+      "model": "X1504VA-0291C120U",
+      "matched": 24,
+      "exported": 4,
+      "sources": [
+        "X1504VA-0291C120U蜜誘金\\Vivobook 15_X1504VAP_Product photo_1C_Terra Cotta_01.jpg",
+        "X1504VA-0291C120U蜜誘金\\Vivobook 15_X1504VAP_Product photo_1C_Terra Cotta_01.png",
+        "X1504VA-0291C120U蜜誘金\\Vivobook 15_X1504VAP_Product photo_1C_Terra Cotta_02.jpg",
+        "X1504VA-0291C120U蜜誘金\\Vivobook 15_X1504VAP_Product photo_1C_Terra Cotta_02.png"
+      ]
+    },
+    {
+      "model": "X1504VA-0611B100U",
+      "matched": 26,
+      "exported": 4,
+      "sources": [
+        "X1504VA-0611B100U午夜藍\\Vivobook 15_X1504VAP_KV photo_1B Quite Blue_01_Fingerprint_Backlit.jpg",
+        "X1504VA-0611B100U午夜藍\\Vivobook 15_X1504VAP_KV photo_1B Quite Blue_01_Fingerprint_Backlit.png",
+        "X1504VA-0611B100U午夜藍\\Vivobook 15_X1504VAP_Product photo_1B Quite Blue_01.jpg",
+        "X1504VA-0611B100U午夜藍\\Vivobook 15_X1504VAP_Product photo_1B Quite Blue_01.png"
+      ]
+    },
+    {
+      "model": "X1607AA-0031B325",
+      "matched": 24,
+      "exported": 4,
+      "sources": [
+        "X1607AA-0031B325\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_01_Non-backlit.jpg",
+        "X1607AA-0031B325\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_02_Non-backlit.jpg",
+        "X1607AA-0031B325\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_03_Non-backlit.jpg",
+        "X1607AA-0031B325\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_04_Non-backlit_Camera off.jpg"
+      ]
+    },
+    {
+      "model": "X1607CA-0021B225H",
+      "matched": 24,
+      "exported": 4,
+      "sources": [
+        "X1607CA-0021B225H午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_01_Non-backlit.jpg",
+        "X1607CA-0021B225H午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_02_Non-backlit.jpg",
+        "X1607CA-0021B225H午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_03_Non-backlit.jpg",
+        "X1607CA-0021B225H午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_04_Non-backlit_Camera off.jpg"
+      ]
+    },
+    {
+      "model": "X1607CA-0071B225H",
+      "matched": 12,
+      "exported": 4,
+      "sources": [
+        "X1607CA-0071B225H_午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_01_Non-backlit.jpg",
+        "X1607CA-0071B225H_午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_02_Non-backlit.jpg",
+        "X1607CA-0071B225H_午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_03_Non-backlit.jpg",
+        "X1607CA-0071B225H_午夜藍\\ASUS Vivobook 16_X1607CA_Product photo_1B_Quiet Blue_04_Non-backlit_Camera off.jpg"
+      ]
+    },
+    {
+      "model": "X1704VA-0101B120U",
+      "matched": 15,
+      "exported": 4,
+      "sources": [
+        "X1704VA-0101B120U_藍\\Vivobook 14_X1404Z_X1404V_Product photo_1B Quite Blue_01_2400X2400_001.jpg",
+        "X1704VA-0101B120U_藍\\Vivobook 14_X1404Z_X1404V_Product photo_1B Quite Blue_02_2400X2400_001.jpg",
+        "X1704VA-0101B120U_藍\\Vivobook 14_X1404Z_X1404V_Product photo_1B Quite Blue_05_Numberpad_Non-backlit_2400X2400_001.jpg",
+        "X1704VA-0101B120U_藍\\Vivobook 14_X1404Z_X1404V_Product photo_1B Quite Blue_06_Webcam_Off_2400X2400_001.jpg"
+      ]
+    }
+  ]
+}
