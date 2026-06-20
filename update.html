@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>?湔銝銝剖?</title>
+    <title>更新管理</title>
     <style>
       :root {
         --bg: #f4efe6;
@@ -14,20 +14,9 @@
         --accent: #0d6b5f;
         --accent-dark: #084f48;
         --danger: #b73535;
-        --warm: #b45c2b;
-        --soft: #eff5ef;
       }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        min-height: 100%;
-      }
-
+      * { box-sizing: border-box; }
+      html, body { margin: 0; min-height: 100%; }
       body {
         background:
           radial-gradient(circle at top left, rgba(13, 107, 95, 0.11), transparent 30%),
@@ -36,1086 +25,301 @@
         color: var(--ink);
         font-family: Arial, "Microsoft JhengHei", sans-serif;
       }
-
-      a,
-      button,
-      input,
-      textarea {
-        font: inherit;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      button {
-        cursor: pointer;
-      }
-
-      .shell {
-        min-height: 100vh;
-        padding: 24px 16px 44px;
-      }
-
-      .wrap {
-        margin: 0 auto;
-        max-width: 1380px;
-      }
-
-      .hero,
-      .grid,
-      .stats,
-      .panel {
-        margin-bottom: 16px;
-      }
-
+      button, input, textarea { font: inherit; }
+      button { cursor: pointer; }
+      .shell { min-height: 100vh; padding: 24px 16px 44px; }
+      .wrap { margin: 0 auto; max-width: 1200px; }
+      .hero, .panel { margin-bottom: 16px; }
       .hero {
         display: grid;
         gap: 16px;
-        grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.9fr);
+        grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.85fr);
       }
-
-      .panel,
-      .hero-copy,
-      .hero-side {
-        background: rgba(255, 253, 249, 0.94);
+      .hero-copy, .hero-side, .panel {
+        background: rgba(255, 253, 249, 0.95);
         border: 1px solid var(--line);
         border-radius: 8px;
         box-shadow: 0 10px 30px rgba(23, 25, 28, 0.04);
-      }
-
-      .hero-copy,
-      .hero-side,
-      .panel {
         padding: 22px;
       }
-
-      .eyebrow {
-        color: var(--accent-dark);
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0;
-        margin: 0 0 8px;
-        text-transform: uppercase;
-      }
-
-      h1,
-      h2,
-      h3,
-      p {
-        margin: 0;
-      }
-
-      h1 {
-        font-size: 44px;
-        line-height: 1.08;
-        margin-bottom: 14px;
-      }
-
-      .lead {
-        color: #34404d;
-        font-size: 17px;
-        line-height: 1.75;
-        max-width: 760px;
-      }
-
-      .actions,
-      .panel-head,
-      .hero-pill-row,
-      .release-stack,
-      .file-summary,
-      .match-row,
-      .compact-row {
-        display: flex;
-        gap: 10px;
-      }
-
-      .actions,
-      .panel-head {
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .hero-pill-row {
-        flex-wrap: wrap;
-        margin-top: 16px;
-      }
-
-      .pill {
-        align-items: center;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        display: inline-flex;
-        font-size: 12px;
-        font-weight: 800;
-        min-height: 30px;
-        padding: 4px 10px;
-        white-space: nowrap;
-      }
-
-      .pill.good {
-        background: rgba(13, 107, 95, 0.08);
-        border-color: rgba(13, 107, 95, 0.18);
-        color: var(--accent-dark);
-      }
-
-      .pill.warn {
-        background: rgba(180, 92, 43, 0.08);
-        border-color: rgba(180, 92, 43, 0.18);
-        color: var(--warm);
-      }
-
-      .pill.muted {
-        background: #f7f3eb;
-        color: var(--muted);
-      }
-
-      .pill.danger {
-        background: rgba(183, 53, 53, 0.08);
-        border-color: rgba(183, 53, 53, 0.18);
-        color: var(--danger);
-      }
-
-      .button,
-      .link {
-        align-items: center;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        display: inline-flex;
-        font-size: 14px;
-        font-weight: 800;
-        justify-content: center;
-        min-height: 44px;
-        padding: 0 16px;
-      }
-
-      .button {
-        background: #f3efe7;
-        color: #333c46;
-      }
-
-      .button.primary {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: #fff;
-      }
-
-      .button.ghost,
-      .link {
-        background: #fff;
-        color: var(--ink);
-      }
-
-      .button:disabled {
-        cursor: not-allowed;
-        opacity: 0.6;
-      }
-
-      .hero-side {
-        display: grid;
-        gap: 14px;
-      }
-
-      .hero-stats {
-        display: grid;
-        gap: 10px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .hero-stats div,
-      .metric,
-      .file-summary > div,
-      .note-box,
-      .compact-row,
-      .match-row,
-      .upload-card,
-      .empty {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-      }
-
-      .hero-stats div,
-      .metric,
-      .file-summary > div,
-      .note-box {
-        display: grid;
-        gap: 6px;
-        padding: 14px;
-      }
-
-      .hero-stats dt,
-      .metric span,
-      .file-summary span,
-      .note-box span,
-      .match-row span,
-      .compact-row span {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .hero-stats dd,
-      .metric strong,
-      .file-summary strong,
-      .note-box strong {
-        margin: 0;
-        overflow-wrap: anywhere;
-      }
-
-      .hero-stats dd {
-        font-size: 18px;
-      }
-
-      .note-box {
-        align-items: end;
-        background: #f7f1e8;
-        border-color: #ead6c3;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .note-box strong {
-        color: var(--danger);
-        font-size: 24px;
-      }
-
-      .grid {
-        display: grid;
-        gap: 16px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .upload-grid {
-        display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .upload-card {
-        display: grid;
-        gap: 10px;
-        min-height: 182px;
-        padding: 16px;
-      }
-
-      .upload-card span,
-      .upload-card p {
-        color: var(--muted);
-      }
-
-      .upload-card strong {
-        font-size: 18px;
-      }
-
-      .upload-card input {
-        border: 1px dashed var(--line);
-        border-radius: 6px;
-        min-height: 92px;
-        padding: 14px;
-        width: 100%;
-      }
-
-      .file-summary {
-        flex-wrap: wrap;
-      }
-
-      .file-summary > div {
-        flex: 1 1 220px;
-      }
-
-      .textarea {
-        background: #fff;
-        border: 1px solid var(--line);
-        border-radius: 6px;
-        color: var(--ink);
-        font-family: Arial, "Microsoft JhengHei", sans-serif;
-        min-height: 300px;
-        outline: none;
-        padding: 14px;
-        resize: vertical;
-        width: 100%;
-      }
-
-      .textarea.small {
-        min-height: 150px;
-      }
-
-      .textarea:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(13, 107, 95, 0.14);
-      }
-
-      .stats {
-        display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(6, minmax(0, 1fr));
-      }
-
-      .metric {
-        min-height: 90px;
-      }
-
-      .metric strong {
-        font-size: 28px;
-      }
-
-      .diff-grid {
-        display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .diff-column {
-        display: grid;
-        gap: 12px;
-        min-height: 220px;
-        padding: 16px;
-      }
-
-      .diff-column.good {
-        border-color: rgba(13, 107, 95, 0.24);
-      }
-
-      .diff-column.warn {
-        border-color: rgba(180, 92, 43, 0.24);
-      }
-
-      .diff-column.danger {
-        border-color: rgba(183, 53, 53, 0.24);
-      }
-
-      .compact-list {
-        display: grid;
-        gap: 8px;
-      }
-
-      .match-list {
-        display: grid;
-        gap: 8px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .match-row,
-      .compact-row {
-        align-items: center;
-        justify-content: space-between;
-        min-height: 48px;
-        padding: 0 12px;
-      }
-
-      .match-row strong,
-      .compact-row strong {
-        overflow-wrap: anywhere;
-      }
-
-      .empty {
-        align-items: center;
-        color: var(--muted);
-        display: flex;
-        justify-content: center;
-        min-height: 140px;
-        padding: 18px;
-        text-align: center;
-      }
-
-      .empty.small {
-        min-height: 90px;
-      }
-
-      .subnote {
-        color: var(--muted);
-        font-size: 12px;
-        line-height: 1.6;
-      }
-
-      .subnote.warn {
-        color: var(--warm);
-      }
-
-      .release-stack {
-        flex-wrap: wrap;
-      }
-
-      .release-notes {
-        display: grid;
-        gap: 10px;
-      }
-
-      @media (max-width: 1100px) {
-        .hero,
-        .grid,
-        .stats,
-        .diff-grid,
-        .upload-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .hero-copy h1 {
-          font-size: 36px;
-        }
-
-        .match-list {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .shell {
-          padding-inline: 14px;
-        }
-
-        .hero-copy,
-        .hero-side,
-        .panel {
-          padding: 18px;
-        }
-
-        .actions,
-        .panel-head,
-        .hero-stats div,
-        .note-box {
-          align-items: start;
-          flex-direction: column;
-        }
-
-        .stats {
-          grid-template-columns: 1fr;
-        }
+      .eyebrow { color: var(--accent-dark); font-size: 12px; font-weight: 800; margin: 0 0 8px; text-transform: uppercase; }
+      h1, h2, p { margin: 0; }
+      h1 { font-size: 38px; line-height: 1.12; margin-bottom: 12px; }
+      h2 { font-size: 20px; line-height: 1.2; }
+      .lead { color: #34404d; font-size: 15px; line-height: 1.75; max-width: 760px; }
+      .panel-head, .toolbar, .pill-row { display: flex; gap: 10px; }
+      .panel-head { align-items: center; justify-content: space-between; margin-bottom: 14px; }
+      .toolbar { flex-wrap: wrap; }
+      .button { align-items: center; border: 1px solid var(--line); border-radius: 6px; display: inline-flex; font-size: 14px; font-weight: 800; justify-content: center; min-height: 44px; padding: 0 16px; background: #f3efe7; color: #333c46; }
+      .button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+      .button.ghost { background: #fff; color: var(--ink); }
+      .button:disabled { cursor: not-allowed; opacity: 0.6; }
+      .pill { align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 999px; display: inline-flex; font-size: 12px; font-weight: 800; min-height: 30px; padding: 4px 10px; white-space: nowrap; }
+      .pill.good { background: rgba(13, 107, 95, 0.08); color: var(--accent-dark); }
+      .pill.muted { background: #f7f3eb; color: var(--muted); }
+      .pill.warn { background: rgba(180, 92, 43, 0.08); color: #b45c2b; }
+      .pill.danger { background: rgba(183, 53, 53, 0.08); color: var(--danger); }
+      .summary-grid { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .metric, .row, .subnote, .field, .file-summary, .empty { background: #fff; border: 1px solid var(--line); border-radius: 6px; }
+      .metric { display: grid; gap: 6px; padding: 14px; }
+      .metric span, .field span, .subnote, .row small { color: var(--muted); font-size: 12px; font-weight: 800; }
+      .metric strong { font-size: 18px; }
+      .field { display: grid; gap: 6px; padding: 12px; }
+      .field input[type="file"], .textarea { background: #fff; border: 1px solid var(--line); border-radius: 6px; color: var(--ink); min-height: 44px; width: 100%; }
+      .textarea { min-height: 160px; padding: 12px; resize: vertical; }
+      .file-grid { display: grid; gap: 12px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .file-summary, .empty, .row { padding: 12px 14px; }
+      .result-list { display: grid; gap: 8px; }
+      .row { display: flex; gap: 10px; justify-content: space-between; align-items: center; }
+      .row strong { font-size: 14px; }
+      .auth-logout { position: fixed; right: 18px; top: 18px; z-index: 51; }
+      .mini-grid { display: grid; gap: 10px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .mini-grid .metric { min-height: 86px; }
+      @media (max-width: 960px) {
+        .hero { grid-template-columns: 1fr; }
+        .mini-grid, .summary-grid, .file-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
   <body>
+    <button class="button ghost auth-logout" id="auth-logout" type="button">登出</button>
     <main class="shell">
       <div class="wrap">
         <section class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">蝞∠???/ 銝?湔</p>
-            <h1>?湔銝銝剖?</h1>
-            <p class="lead">
-              銝 Excel ????嚗?瘥??啣????嗚撩??憭?嚗?瘙箏?閬摮?蝔踴??冽?唳??湔?澆???            </p>
-            <div class="actions">
-              <a class="link" href="./index.html">??</a>
-              <button class="button primary" id="download-summary" type="button">銝??湔??</button>
-            </div>
-            <div class="hero-pill-row">
-              <span class="pill good">?阮璅∪?</span>
-              <span class="pill warn">?臭???/span>
-              <span class="pill muted">靽??遢</span>
+            <p class="eyebrow">更新頁面</p>
+            <h1>Excel 更新上架</h1>
+            <p class="lead">請先登入公司帳號，再上傳 Excel 與圖片資料夾。系統會比對相同機型、規格差異與圖片是否對應，完成後可直接更新或一鍵發布。</p>
+            <div class="pill-row" style="margin-top: 14px; flex-wrap: wrap;">
+              <span class="pill" id="auth-pill">未登入</span>
+              <span class="pill muted" id="current-count">0 筆機型</span>
+              <span class="pill muted" id="image-count">0 張圖片</span>
             </div>
           </div>
-
-          <aside class="hero-side">
-            <div class="hero-stats">
-              <div>
-                <dt>?桀?銝</dt>
-                <dd id="current-count">-</dd>
-              </div>
-              <div>
-                <dt>??撌脤?撠?/dt>
-                <dd id="gallery-match-count">-</dd>
-              </div>
-              <div>
-                <dt>??敺?撠?/dt>
-                <dd id="gallery-missing-count">-</dd>
-              </div>
-              <div>
-                <dt>?祆活蝻箏?</dt>
-                <dd id="missing-image-count">-</dd>
-              </div>
+          <div class="hero-side">
+            <div class="mini-grid">
+              <div class="metric"><span>目前機型</span><strong id="current-machine-metric">0</strong></div>
+              <div class="metric"><span>規格異動</span><strong id="changed-metric">0</strong></div>
+              <div class="metric"><span>新增機型</span><strong id="new-metric">0</strong></div>
+              <div class="metric"><span>下架機型</span><strong id="removed-metric">0</strong></div>
             </div>
-
-            <div class="note-box">
-              <div>
-                <span>?桀??擃???/span>
-                <strong id="best-saving">-</strong>
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        <section class="grid">
-          <article class="panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">靘?瑼?</p>
-                <h2>Excel ??????/h2>
-              </div>
-              <span class="pill muted" id="excel-status">撠?豢? Excel</span>
-            </div>
-
-            <div class="upload-grid">
-              <label class="upload-card">
-                <span>Excel 瑼?</span>
-                <strong>銝??璈?鞈?</strong>
-                <input accept=".xlsx,.xls,.csv" id="excel-file" type="file" />
-                <p>?桀??＊蝷箸??????銋??舀?芸?閫????/p>
-              </label>
-
-              <label class="upload-card">
-                <span>??鞈?憭?/span>
-                <strong>?詨??????/strong>
-                <input accept="image/*" id="image-folder" multiple type="file" webkitdirectory />
-                <p>?舐?仿?游??冗嚗頂蝯望??冽???鞈?憭曉?撠?璈???/p>
-              </label>
-            </div>
-
-            <div class="file-summary">
-              <div>
-                <span>Excel</span>
-                <strong id="excel-name">?芯???/strong>
-              </div>
-              <div>
-                <span>??</span>
-                <strong id="image-name">?芷??/strong>
-              </div>
-              <div>
-                <span>?????/span>
-                <strong id="image-match-status">蝑???鞈?憭?/strong>
-              </div>
-            </div>
-          </article>
-
-          <article class="panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">瘥?頛詨</p>
-                <h2>?祆活 Excel 璈?皜</h2>
-              </div>
-              <button class="button ghost" id="load-current" type="button">頛?桀? 88 蝑?/button>
-            </div>
-
-            <textarea class="textarea" id="models-text" spellcheck="false"></textarea>
-
-            <div class="panel-head" style="margin-top: 14px">
-              <div>
-                <p class="eyebrow">銝皜</p>
-                <h3>閬撥?嗅?斤?????/h3>
-              </div>
-              <span class="pill muted" id="archive-count">?舐?蝛?/span>
-            </div>
-
-            <textarea
-              class="textarea small"
-              id="archive-text"
-              placeholder="瘥?銝????靘?嚗LD-MODEL-001"
-              spellcheck="false"
-            ></textarea>
-          </article>
-        </section>
-
-        <section class="stats" id="stats"></section>
-
-        <section class="panel">
-          <div class="panel-head">
-            <div>
-              <p class="eyebrow">撌桃?汗</p>
-              <h2>?祆活?湔???鈭?/h2>
-            </div>
-            <span class="pill warn">??撠??撣?/span>
           </div>
-          <div class="diff-grid" id="diff-grid"></div>
-        </section>
-
-        <section class="grid">
-          <article class="panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">????</p>
-                <h2>撌脰儘霅?璈???</h2>
-              </div>
-              <span class="pill muted" id="image-match-pill">撠?豢???</span>
-            </div>
-            <div class="match-list" id="image-match-list"></div>
-            <div class="subnote warn" id="extra-image-note" style="margin-top: 10px"></div>
-          </article>
-
-          <article class="panel">
-            <div class="panel-head">
-              <div>
-                <p class="eyebrow">?澆??批</p>
-                <h2>?湔????蝥?雿?/h2>
-              </div>
-              <span class="pill good">?臭?頛?/span>
-            </div>
-            
-                        <div class="release-stack">
-              <button class="button ghost" id="save-draft" type="button">?????仿?謢?</button>
-              <button class="button primary" id="apply-update" type="button">????皝?</button>
-              <button class="button primary" id="publish-update" type="button">銝?萇撣?/button>
-              <button class="button" type="button" disabled>?豯文?????/button>
-            </div>
-            <div class="subnote" id="api-status">?垮謓?賹??皝???/div>
-            <div class="compact-list" id="api-result"></div>
-            <div class="release-notes" style="margin-top: 12px">
-              <div class="metric">
-                <span>銝閬?</span>
-                <strong>Excel ?芸?曄?璈??◤?文??箔??嗚?/strong>
-              </div>
-              <div class="metric">
-                <span>??閬?</span>
-                <strong>?抒?靘???蝔梢?撠??芷?撠?靽?敺??/strong>
-              </div>
-              <div class="metric">
-                <span>?芷閬?</span>
-                <strong>?身????隞踝?蝣箄?敺??偶銋?扎?/strong>
-              </div>
-            </div>
-          </article>
         </section>
 
         <section class="panel">
           <div class="panel-head">
-            <div>
-              <p class="eyebrow">?桀?鞈?</p>
-              <h2>蝺?蝻箏?皜</h2>
-            </div>
-            <span class="pill muted" id="gallery-unmatched-pill">-</span>
+            <div><p class="eyebrow">檔案</p><h2>上傳 Excel 與照片</h2></div>
+            <span class="pill muted" id="file-status">尚未選擇</span>
           </div>
-          <div class="compact-list" id="gallery-missing"></div>
+          <div class="file-grid">
+            <label class="field"><span>Excel 檔</span><input id="excel-file" type="file" accept=".xlsx,.xls" /></label>
+            <label class="field"><span>圖片資料夾</span><input id="image-folder" type="file" webkitdirectory directory multiple /></label>
+          </div>
+          <div class="file-summary" id="file-summary" style="margin-top: 12px;">尚未選擇檔案。</div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">機型</p><h2>現有限定機型</h2></div>
+            <span class="pill muted" id="model-count">0 筆</span>
+          </div>
+          <textarea id="models-text" class="textarea" hidden></textarea>
+          <textarea id="archive-text" class="textarea" hidden></textarea>
+          <div class="result-list" id="model-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div><p class="eyebrow">操作</p><h2>更新與發布</h2></div>
+            <span class="pill good">需要登入</span>
+          </div>
+          <div class="toolbar">
+            <button class="button ghost" id="load-current" type="button">載入現有機型</button>
+            <button class="button ghost" id="save-draft" type="button">下載摘要</button>
+            <button class="button primary" id="apply-update" type="button">更新</button>
+            <button class="button primary" id="publish-update" type="button">一鍵發布</button>
+          </div>
+          <div class="subnote" id="api-status" style="margin-top: 12px;">尚未送出更新。</div>
+          <div class="result-list" id="api-result" style="margin-top: 12px;"></div>
         </section>
       </div>
     </main>
 
     <script src="update-auth.js"></script>
     <script type="module">
-      const money = new Intl.NumberFormat("zh-TW", {
-        style: "currency",
-        currency: "TWD",
-        maximumFractionDigits: 0,
-      });
-
-      const state = {
-        laptops: [],
-        report: null,
-        imageFiles: [],
-        excelFile: null,
-      };
-
+      const money = new Intl.NumberFormat("zh-TW", { style: "currency", currency: "TWD", maximumFractionDigits: 0 });
+      const state = { laptops: [], excelFile: null, imageFiles: [], lastResult: null };
       const els = {
+        authPill: document.getElementById("auth-pill"),
         currentCount: document.getElementById("current-count"),
-        galleryMatchCount: document.getElementById("gallery-match-count"),
-        galleryMissingCount: document.getElementById("gallery-missing-count"),
-        missingImageCount: document.getElementById("missing-image-count"),
-        bestSaving: document.getElementById("best-saving"),
+        imageCount: document.getElementById("image-count"),
+        currentMachineMetric: document.getElementById("current-machine-metric"),
+        changedMetric: document.getElementById("changed-metric"),
+        newMetric: document.getElementById("new-metric"),
+        removedMetric: document.getElementById("removed-metric"),
+        fileStatus: document.getElementById("file-status"),
+        fileSummary: document.getElementById("file-summary"),
         excelInput: document.getElementById("excel-file"),
         imageInput: document.getElementById("image-folder"),
-        excelStatus: document.getElementById("excel-status"),
-        excelName: document.getElementById("excel-name"),
-        imageName: document.getElementById("image-name"),
-        imageMatchStatus: document.getElementById("image-match-status"),
-        loadCurrent: document.getElementById("load-current"),
+        modelCount: document.getElementById("model-count"),
+        modelList: document.getElementById("model-list"),
         modelsText: document.getElementById("models-text"),
         archiveText: document.getElementById("archive-text"),
-        archiveCount: document.getElementById("archive-count"),
-        stats: document.getElementById("stats"),
-        diffGrid: document.getElementById("diff-grid"),
-        imageMatchPill: document.getElementById("image-match-pill"),
-        imageMatchList: document.getElementById("image-match-list"),
-        extraImageNote: document.getElementById("extra-image-note"),
-        apiStatus: document.getElementById("api-status"),
-        apiResult: document.getElementById("api-result"),
-        galleryMissingPill: document.getElementById("gallery-unmatched-pill"),
-        galleryMissing: document.getElementById("gallery-missing"),
+        loadCurrent: document.getElementById("load-current"),
         saveDraft: document.getElementById("save-draft"),
         applyUpdate: document.getElementById("apply-update"),
         publishUpdate: document.getElementById("publish-update"),
-        downloadSummary: document.getElementById("download-summary"),
+        apiStatus: document.getElementById("api-status"),
+        apiResult: document.getElementById("api-result"),
       };
 
       function escapeHtml(value) {
-        return String(value)
-          .replaceAll("&", "&amp;")
-          .replaceAll("<", "&lt;")
-          .replaceAll(">", "&gt;")
-          .replaceAll('"', "&quot;")
-          .replaceAll("'", "&#39;");
+        return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+      }
+      function formatMoney(value) { return money.format(Number(value || 0)); }
+      function normalize(value) { return String(value || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); }
+      function getAuthUser() { return window.updateAuth?.getCurrentUser?.() || null; }
+      function updateAuthPill() {
+        const user = getAuthUser();
+        if (user?.email) { els.authPill.textContent = `已登入：${user.email}`; els.authPill.className = "pill good"; return; }
+        els.authPill.textContent = "未登入"; els.authPill.className = "pill danger";
       }
 
-      function normalize(value) {
-        return String(value).toUpperCase().replace(/[^A-Z0-9]/g, "");
+      async function loadLaptopData() {
+        const response = await fetch("app/laptop-data.ts", { cache: "no-store" });
+        if (!response.ok) throw new Error(`無法讀取機型資料：${response.status}`);
+        const text = await response.text();
+        const marker = "export const laptops: Laptop[] = ";
+        const start = text.indexOf(marker);
+        if (start < 0) throw new Error("找不到 laptops 資料。");
+        const arrayStart = text.indexOf("[", start);
+        const arrayEnd = text.lastIndexOf("];\n");
+        const end = arrayEnd >= 0 ? arrayEnd + 1 : text.lastIndexOf("];") + 1;
+        return Function(`"use strict"; return ${text.slice(arrayStart, end)};`)();
       }
 
-      function parseModels(value) {
-        return Array.from(
-          new Set(
-            String(value)
-              .split(/[\n,嚗?嚗t]+/)
-              .map((item) => item.trim())
-              .filter(Boolean),
-          ),
-        );
+      function renderModels() {
+        els.modelCount.textContent = `${state.laptops.length} 筆`;
+        els.currentCount.textContent = `${state.laptops.length} 筆機型`;
+        els.currentMachineMetric.textContent = String(state.laptops.length);
+        els.modelsText.value = state.laptops.map((item) => item.model).join("\n");
+        els.modelList.innerHTML = state.laptops.slice(0, 8).map((item) => `
+          <div class="row">
+            <div><strong>${escapeHtml(item.model)}</strong><div><small>${escapeHtml(item.title || "")}</small></div></div>
+            <small>${formatMoney(item.eduPrice)}</small>
+          </div>
+        `).join("") || `<div class="empty">尚未載入機型。</div>`;
       }
 
-      function formatBytes(bytes) {
-        if (bytes < 1024) return `${bytes} B`;
-        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-        return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+      function renderFiles() {
+        els.fileStatus.textContent = state.excelFile ? state.excelFile.name : "尚未選擇";
+        els.fileSummary.textContent = [
+          state.excelFile ? `Excel：${state.excelFile.name}` : "Excel：尚未選擇",
+          `圖片數量：${state.imageFiles.length}`,
+          state.imageFiles.length ? `第一張：${state.imageFiles[0].name}` : "",
+        ].filter(Boolean).join(" ｜ ");
+        els.imageCount.textContent = `${state.imageFiles.length} 張圖片`;
       }
 
-      function renderPill(kind, text) {
-        return `<span class="pill ${kind}">${escapeHtml(text)}</span>`;
-      }
-
-      function renderItems(items, emptyText) {
-        if (!items.length) {
-          return `<div class="empty small">${escapeHtml(emptyText)}</div>`;
-        }
-
-        return items
-          .slice(0, 8)
-          .map(
-            (item) => `<div class="compact-row"><strong>${escapeHtml(item)}</strong></div>`,
-          )
-          .join("");
-      }
-
-      function getModelFromPath(path, modelRank) {
-        const normalized = normalize(path);
-        return modelRank.find((model) => normalized.includes(normalize(model))) ?? null;
-      }
-
-      function loadLaptopData() {
-        return fetch("app/laptop-data.ts", { cache: "no-store" })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`?⊥?頛鞈?嚗?{response.status}`);
-            }
-            return response.text();
-          })
-          .then((text) => {
-            const marker = "export const laptops: Laptop[] = ";
-            const start = text.indexOf(marker);
-            if (start < 0) throw new Error("?曆???laptops 鞈??憛?);
-            const arrayStart = text.indexOf("[", start);
-            const arrayEnd = text.indexOf("];", arrayStart);
-            if (arrayStart < 0 || arrayEnd < 0) {
-              throw new Error("?⊥?閫?? laptop-data.ts");
-            }
-            return Function(`"use strict"; return ${text.slice(arrayStart, arrayEnd + 1)};`)();
-          });
-      }
-
-      function loadReport() {
-        return fetch("app/model-gallery-report.json", { cache: "no-store" }).then((response) => {
-          if (!response.ok) {
-            throw new Error(`?⊥?頛???梯”嚗?{response.status}`);
-          }
-          return response.json();
-        });
-      }
-
-      function render() {
-        const currentModels = state.laptops.map((item) => item.model);
-        const currentModelSet = new Set(currentModels.map(normalize));
-        const modelRank = [...currentModels].sort((a, b) => b.length - a.length);
-        const stagedModels = parseModels(els.modelsText.value);
-        const archiveModels = parseModels(els.archiveText.value);
-        const stagedSet = new Set(stagedModels.map(normalize));
-        const archiveSet = new Set(archiveModels.map(normalize));
-
-        const imageMatches = new Map();
-        for (const file of state.imageFiles) {
-          const path = file.webkitRelativePath || file.name;
-          const matchedModel = getModelFromPath(path, modelRank);
-          if (!matchedModel) continue;
-          const list = imageMatches.get(matchedModel) ?? [];
-          list.push(file);
-          imageMatches.set(matchedModel, list);
-        }
-
-        const newModels = stagedModels.filter((model) => !currentModelSet.has(normalize(model)));
-        const retainedModels = stagedModels.filter((model) => currentModelSet.has(normalize(model)));
-        const removedModels = currentModels.filter(
-          (model) => !stagedSet.has(normalize(model)) || archiveSet.has(normalize(model)),
-        );
-        const missingImages = stagedModels.filter((model) => !imageMatches.has(model));
-        const extraImages = [...imageMatches.keys()].filter((model) => !stagedSet.has(normalize(model)));
-
-        const missingGalleryModels = (state.report?.report ?? [])
-          .filter((item) => item.matched === 0)
-          .map((item) => item.model);
-
-        const currentCount = currentModels.length;
-        const galleryMatched = state.report?.matchedModels ?? 0;
-        const galleryTotal = state.report?.totalModels ?? 0;
-        const galleryMissing = galleryTotal - galleryMatched;
-        const bestDiscount =
-          state.laptops.reduce((best, item) => (item.discount > best.discount ? item : best), state.laptops[0] ?? { discount: 0 })?.discount ?? 0;
-
-        els.currentCount.textContent = String(currentCount);
-        els.galleryMatchCount.textContent = String(galleryMatched);
-        els.galleryMissingCount.textContent = String(galleryMissing);
-        els.missingImageCount.textContent = String(missingImages.length);
-        els.bestSaving.textContent = money.format(bestDiscount);
-
-        els.excelStatus.textContent = state.excelFile ? state.excelFile.name : "撠?豢? Excel";
-        els.excelStatus.className = `pill ${state.excelFile ? "good" : "muted"}`;
-        els.excelName.textContent = state.excelFile
-          ? `${state.excelFile.name} 繚 ${formatBytes(state.excelFile.size)}`
-          : "?芯???;
-        els.imageName.textContent = state.imageFiles.length
-          ? `${state.imageFiles.length} 撘?繚 ${formatBytes(
-              state.imageFiles.reduce((sum, file) => sum + file.size, 0),
-            )}`
-          : "?芷??;
-        els.imageMatchStatus.textContent = imageMatches.size
-          ? `${imageMatches.size} ?啣歇颲刻?`
-          : "蝑???鞈?憭?;
-        els.imageMatchPill.textContent = state.imageFiles.length
-          ? `${imageMatches.size} ?躬
-          : "撠?豢???";
-        els.imageMatchPill.className = `pill ${state.imageFiles.length ? "good" : "muted"}`;
-        els.archiveCount.textContent = archiveModels.length ? `${archiveModels.length} 蝑 : "?舐?蝛?;
-        els.archiveCount.className = `pill ${archiveModels.length ? "danger" : "muted"}`;
-        els.galleryMissingPill.textContent = `${missingGalleryModels.length} ?躬;
-
-        const stagedMarketValue = stagedModels
-          .map((model) => state.laptops.find((item) => item.model === model)?.marketPrice ?? 0)
-          .reduce((sum, value) => sum + value, 0);
-        const stagedEduValue = stagedModels
-          .map((model) => state.laptops.find((item) => item.model === model)?.eduPrice ?? 0)
-          .reduce((sum, value) => sum + value, 0);
-
-        els.stats.innerHTML = [
-          ["?唳???, newModels.length],
-          ["靽?璈?", retainedModels.length],
-          ["銝璈?", removedModels.length],
-          ["蝻箏?璈?", missingImages.length],
-          ["撣蝮賢?", money.format(stagedMarketValue)],
-          ["??寧蜇??, money.format(stagedEduValue)],
-        ]
-          .map(
-            ([label, value]) => `
-              <div class="metric">
-                <span>${escapeHtml(label)}</span>
-                <strong>${escapeHtml(value)}</strong>
-              </div>
-            `,
-          )
-          .join("");
-
-        els.diffGrid.innerHTML = [
-          ["?啣?璈?", "good", newModels],
-          ["靽?璈?", "muted", retainedModels],
-          ["銝璈?", "danger", removedModels],
-          ["蝻箏?璈?", "warn", missingImages],
-        ]
-          .map(
-            ([title, tone, items]) => `
-              <article class="diff-column ${tone}">
-                <div class="panel-head">
-                  <h3>${escapeHtml(title)}</h3>
-                  <span class="pill ${tone}">${items.length}</span>
-                </div>
-                ${renderItems(items, "瘝????)}
-                ${
-                  items.length > 8
-                    ? `<div class="subnote">?? ${items.length - 8} 蝑憿舐內??/div>`
-                    : ""
-                }
-              </article>
-            `,
-          )
-          .join("");
-
-        els.imageMatchList.innerHTML = imageMatches.size
-          ? Array.from(imageMatches.entries())
-              .slice(0, 12)
-              .map(
-                ([model, files]) => `
-                  <div class="match-row">
-                    <strong>${escapeHtml(model)}</strong>
-                    <span>${files.length} 撘?/span>
-                  </div>
-                `,
-              )
-              .join("")
-          : `<div class="empty">?詨???鞈?憭曉?嚗ㄐ?＊蝷箸??唳????撟曉撐?抒???/div>`;
-
-        els.extraImageNote.textContent = extraImages.length
-          ? `??${extraImages.length} ?啣???銝? Excel 皜嚗??敺炎?乓
-          : "";
-
-        els.galleryMissing.innerHTML = missingGalleryModels.length
-          ? missingGalleryModels
-              .map(
-                (model) => `
-                  <div class="compact-row">
-                    <strong>${escapeHtml(model)}</strong>
-                    <span>撠???</span>
-                  </div>
-                `,
-              )
-              .join("")
-          : `<div class="empty">?桀?瘝?蝻箏?璈???/div>`;
-
-        els.downloadSummary.dataset.summary = JSON.stringify(
-          {
-            generatedAt: new Date().toISOString(),
-            sourceExcel: state.excelFile ? state.excelFile.name : null,
-            currentCount,
-            stagedCount: stagedModels.length,
-            retainedCount: retainedModels.length,
-            newCount: newModels.length,
-            removedCount: removedModels.length,
-            missingImageCount: missingImages.length,
-            extraImageCount: extraImages.length,
-            stagedModels,
-            newModels,
-            removedModels,
-            missingImages,
-            extraImages,
-            imageFiles: state.imageFiles.map((file) => ({
-              name: file.name,
-              path: file.webkitRelativePath || file.name,
-              size: file.size,
-            })),
-          },
-          null,
-          2,
-        );
-      }
-
-      function downloadSummary() {
-        const payload = els.downloadSummary.dataset.summary || "{}";
-        const blob = new Blob([payload], { type: "application/json;charset=utf-8" });
-        const url = URL.createObjectURL(blob);
-        const anchor = document.createElement("a");
-        anchor.href = url;
-        anchor.download = `laptop-update-summary-${new Date().toISOString().slice(0, 10)}.json`;
-        anchor.click();
-        URL.revokeObjectURL(url);
-      }
-
-      function readFileAsDataURL(file) {
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(String(reader.result || ""));
-          reader.onerror = () => reject(reader.error || new Error("?⊥?霈??Excel 瑼?"));
-          reader.readAsDataURL(file);
-        });
+      function renderSummaryFromResult(data) {
+        els.newMetric.textContent = String(data.newCount ?? 0);
+        els.changedMetric.textContent = String(data.changedCount ?? 0);
+        els.removedMetric.textContent = String(data.removedCount ?? 0);
       }
 
       function renderApiResult(data) {
         const rows = Array.isArray(data.rows) ? data.rows.slice(0, 8) : [];
         els.apiResult.innerHTML = rows.length
-          ? rows
-              .map(
-                (row) => `
-                  <div class="compact-row">
-                    <strong>${escapeHtml(row.model || row.title || "未命名")}</strong>
-                    <span>${escapeHtml(row.status || "unknown")} · 圖片 ${row.imageCount ?? 0}${row.changeSummary ? ` · ${escapeHtml(row.changeSummary)}` : ""}</span>
-                  </div>
-                `,
-              )
-              .join("")
-          : `<div class="empty small">API 尚未回傳結果。</div>`;
+          ? rows.map((row) => `
+              <div class="row">
+                <div><strong>${escapeHtml(row.model || row.title || "未命名")}</strong><div><small>${escapeHtml(row.status || "unknown")} ・ 圖片 ${row.imageCount ?? 0}${row.changeSummary ? ` ・ ${escapeHtml(row.changeSummary)}` : ""}</small></div></div>
+                <small>${row.savingDelta ? `差額 ${formatMoney(row.savingDelta.edu)}` : ""}</small>
+              </div>
+            `).join("")
+          : `<div class="empty">API 尚未回傳結果。</div>`;
+      }
+
+      function downloadSummary() {
+        const payload = els.saveDraft.dataset.summary || "{}";
+        const blob = new Blob([payload], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `laptop-update-summary-${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      async function readFileAsDataURL(file) {
+        return await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(String(reader.result || ""));
+          reader.onerror = () => reject(reader.error || new Error("無法讀取檔案"));
+          reader.readAsDataURL(file);
+        });
       }
 
       async function submitUpdate(mode) {
         try {
-          const isPublish = mode === "publish";
-          els.apiStatus.textContent = isPublish ? "正在送出發布..." : "正在送出更新資料...";
-          els.apiStatus.className = "subnote";
+          els.apiStatus.textContent = mode === "publish" ? "正在送出發布..." : "正在送出更新資料...";
           els.applyUpdate.disabled = true;
           els.publishUpdate.disabled = true;
 
-          const excel = state.excelFile;
-          const excelBase64 = excel ? String(await readFileAsDataURL(excel)).split(",")[1] || "" : "";
+          const headers = { "Content-Type": "application/json" };
+          if (window.updateAuth?.getAuthHeader) Object.assign(headers, await window.updateAuth.getAuthHeader());
+
           const payload = {
             mode,
-            excelName: excel?.name || "",
-            excelBase64,
+            excelName: state.excelFile?.name || "",
+            excelBase64: state.excelFile ? String(await readFileAsDataURL(state.excelFile)).split(",")[1] || "" : "",
             modelsText: els.modelsText.value,
             archiveModelsText: els.archiveText.value,
-            imageFiles: state.imageFiles.map((file) => ({
-              name: file.name,
-              path: (file.webkitRelativePath || file.name || "").replaceAll("\\", "/"),
-              size: file.size,
-            })),
+            imageFiles: state.imageFiles.map((file) => ({ name: file.name, path: (file.webkitRelativePath || file.name || "").replaceAll("\\", "/"), size: file.size })),
           };
 
-          const response = await fetch("/.netlify/functions/update", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-          });
-
+          const response = await fetch("/.netlify/functions/update", { method: "POST", headers, body: JSON.stringify(payload) });
           const data = await response.json();
-          if (!response.ok || !data.ok) {
-            throw new Error(data.error || `API 失敗：${response.status}`);
-          }
+          if (!response.ok || !data.ok) throw new Error(data.error || `API 失敗：${response.status}`);
 
-          els.apiStatus.textContent = isPublish
-            ? `發布完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，下架 ${data.removedCount} 台。`
-            : `更新完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，下架 ${data.removedCount} 台。`;
-          els.apiStatus.className = "subnote";
+          state.lastResult = data;
+          renderSummaryFromResult(data);
           renderApiResult(data);
-          els.downloadSummary.dataset.summary = JSON.stringify(data.summary || data, null, 2);
-
-          if (isPublish && data.publish?.triggered) {
-            const status = document.createElement("div");
-            status.className = "compact-row";
-            status.innerHTML = "<strong>發布排程已送出</strong><span>Netlify 會開始重新部署</span>";
-            els.apiResult.prepend(status);
+          els.saveDraft.dataset.summary = JSON.stringify(data.summary || data, null, 2);
+          els.apiStatus.textContent = mode === "publish"
+            ? `發布完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，規格異動 ${data.changedCount ?? 0} 台，下架 ${data.removedCount} 台。`
+            : `更新完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，規格異動 ${data.changedCount ?? 0} 台，下架 ${data.removedCount} 台。`;
+          if (mode === "publish" && data.publish?.triggered) {
+            els.apiResult.insertAdjacentHTML("afterbegin", `<div class="empty">發布排程已送出，Netlify 正在重新部署。</div>`);
           }
         } catch (error) {
           els.apiStatus.textContent = `送出失敗：${error.message}`;
-          els.apiStatus.className = "subnote warn";
         } finally {
           els.applyUpdate.disabled = false;
           els.publishUpdate.disabled = false;
         }
       }
 
-      async function applyUpdate() {
-        await submitUpdate("apply");
+      function bindEvents() {
+        els.excelInput.addEventListener("change", (event) => { state.excelFile = event.target.files?.[0] || null; renderFiles(); });
+        els.imageInput.addEventListener("change", (event) => { state.imageFiles = Array.from(event.target.files || []); renderFiles(); });
+        els.loadCurrent.addEventListener("click", () => { els.modelsText.value = state.laptops.map((item) => item.model).join("\n"); els.apiStatus.textContent = "已載入現有機型。"; });
+        els.saveDraft.addEventListener("click", downloadSummary);
+        els.applyUpdate.addEventListener("click", () => submitUpdate("apply"));
+        els.publishUpdate.addEventListener("click", () => submitUpdate("publish"));
+        window.addEventListener("update-auth-change", updateAuthPill);
       }
 
-      async function publishUpdate() {
-        await submitUpdate("publish");
-      }
-
-      els.excelInput.addEventListener("change", (event) => {
-        state.excelFile = event.target.files?.[0] ?? null;
-        render();
-      });
-
-      els.imageInput.addEventListener("change", (event) => {
-        state.imageFiles = Array.from(event.target.files ?? []);
-        render();
-      });
-
-      els.modelsText.addEventListener("input", render);
-      els.archiveText.addEventListener("input", render);
-      els.loadCurrent.addEventListener("click", () => {
-        els.modelsText.value = state.laptops.map((item) => item.model).join("\n");
-        render();
-      });
-      els.saveDraft.addEventListener("click", downloadSummary);
-      els.applyUpdate.addEventListener("click", applyUpdate);
-      els.publishUpdate.addEventListener("click", publishUpdate);
-      els.downloadSummary.addEventListener("click", downloadSummary);
-
-      Promise.all([loadLaptopData(), loadReport()])
-        .then(([laptops, report]) => {
+      Promise.all([loadLaptopData()])
+        .then(([laptops]) => {
           state.laptops = laptops;
-          state.report = report;
-          els.modelsText.value = laptops.map((item) => item.model).join("\n");
-          render();
+          renderModels();
+          renderFiles();
+          updateAuthPill();
         })
         .catch((error) => {
-          document.querySelector(".wrap").insertAdjacentHTML(
-            "afterbegin",
-            `<section class="panel" style="border-color: #b73535; color: #b73535; margin-bottom: 16px;">
-              ?⊥?頛?湔????${escapeHtml(error.message)}
-            </section>`,
-          );
+          document.querySelector(".wrap").insertAdjacentHTML("afterbegin", `<section class="panel" style="border-color: #b73535; color: #b73535; margin-bottom: 16px;">無法載入資料：${escapeHtml(error.message)}</section>`);
         });
+      bindEvents();
     </script>
   </body>
 </html>
