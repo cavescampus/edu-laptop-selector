@@ -1,0 +1,1022 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>更新上架中心</title>
+    <style>
+      :root {
+        --bg: #f4efe6;
+        --ink: #1b1e23;
+        --muted: #6a665f;
+        --paper: #fffdf9;
+        --line: #ddd6ca;
+        --accent: #0d6b5f;
+        --accent-dark: #084f48;
+        --danger: #b73535;
+        --warm: #b45c2b;
+        --soft: #eff5ef;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at top left, rgba(13, 107, 95, 0.11), transparent 30%),
+          radial-gradient(circle at top right, rgba(180, 92, 43, 0.1), transparent 24%),
+          var(--bg);
+        color: var(--ink);
+        font-family: Arial, "Microsoft JhengHei", sans-serif;
+      }
+
+      a,
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      .shell {
+        min-height: 100vh;
+        padding: 24px 16px 44px;
+      }
+
+      .wrap {
+        margin: 0 auto;
+        max-width: 1380px;
+      }
+
+      .hero,
+      .grid,
+      .stats,
+      .panel {
+        margin-bottom: 16px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.9fr);
+      }
+
+      .panel,
+      .hero-copy,
+      .hero-side {
+        background: rgba(255, 253, 249, 0.94);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(23, 25, 28, 0.04);
+      }
+
+      .hero-copy,
+      .hero-side,
+      .panel {
+        padding: 22px;
+      }
+
+      .eyebrow {
+        color: var(--accent-dark);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+        margin: 0 0 8px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 44px;
+        line-height: 1.08;
+        margin-bottom: 14px;
+      }
+
+      .lead {
+        color: #34404d;
+        font-size: 17px;
+        line-height: 1.75;
+        max-width: 760px;
+      }
+
+      .actions,
+      .panel-head,
+      .hero-pill-row,
+      .release-stack,
+      .file-summary,
+      .match-row,
+      .compact-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .actions,
+      .panel-head {
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .hero-pill-row {
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .pill {
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        display: inline-flex;
+        font-size: 12px;
+        font-weight: 800;
+        min-height: 30px;
+        padding: 4px 10px;
+        white-space: nowrap;
+      }
+
+      .pill.good {
+        background: rgba(13, 107, 95, 0.08);
+        border-color: rgba(13, 107, 95, 0.18);
+        color: var(--accent-dark);
+      }
+
+      .pill.warn {
+        background: rgba(180, 92, 43, 0.08);
+        border-color: rgba(180, 92, 43, 0.18);
+        color: var(--warm);
+      }
+
+      .pill.muted {
+        background: #f7f3eb;
+        color: var(--muted);
+      }
+
+      .pill.danger {
+        background: rgba(183, 53, 53, 0.08);
+        border-color: rgba(183, 53, 53, 0.18);
+        color: var(--danger);
+      }
+
+      .button,
+      .link {
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        display: inline-flex;
+        font-size: 14px;
+        font-weight: 800;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 16px;
+      }
+
+      .button {
+        background: #f3efe7;
+        color: #333c46;
+      }
+
+      .button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      .button.ghost,
+      .link {
+        background: #fff;
+        color: var(--ink);
+      }
+
+      .button:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      .hero-side {
+        display: grid;
+        gap: 14px;
+      }
+
+      .hero-stats {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-stats div,
+      .metric,
+      .file-summary > div,
+      .note-box,
+      .compact-row,
+      .match-row,
+      .upload-card,
+      .empty {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+
+      .hero-stats div,
+      .metric,
+      .file-summary > div,
+      .note-box {
+        display: grid;
+        gap: 6px;
+        padding: 14px;
+      }
+
+      .hero-stats dt,
+      .metric span,
+      .file-summary span,
+      .note-box span,
+      .match-row span,
+      .compact-row span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .hero-stats dd,
+      .metric strong,
+      .file-summary strong,
+      .note-box strong {
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-stats dd {
+        font-size: 18px;
+      }
+
+      .note-box {
+        align-items: end;
+        background: #f7f1e8;
+        border-color: #ead6c3;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .note-box strong {
+        color: var(--danger);
+        font-size: 24px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .upload-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .upload-card {
+        display: grid;
+        gap: 10px;
+        min-height: 182px;
+        padding: 16px;
+      }
+
+      .upload-card span,
+      .upload-card p {
+        color: var(--muted);
+      }
+
+      .upload-card strong {
+        font-size: 18px;
+      }
+
+      .upload-card input {
+        border: 1px dashed var(--line);
+        border-radius: 6px;
+        min-height: 92px;
+        padding: 14px;
+        width: 100%;
+      }
+
+      .file-summary {
+        flex-wrap: wrap;
+      }
+
+      .file-summary > div {
+        flex: 1 1 220px;
+      }
+
+      .textarea {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        color: var(--ink);
+        font-family: Arial, "Microsoft JhengHei", sans-serif;
+        min-height: 300px;
+        outline: none;
+        padding: 14px;
+        resize: vertical;
+        width: 100%;
+      }
+
+      .textarea.small {
+        min-height: 150px;
+      }
+
+      .textarea:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(13, 107, 95, 0.14);
+      }
+
+      .stats {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .metric {
+        min-height: 90px;
+      }
+
+      .metric strong {
+        font-size: 28px;
+      }
+
+      .diff-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .diff-column {
+        display: grid;
+        gap: 12px;
+        min-height: 220px;
+        padding: 16px;
+      }
+
+      .diff-column.good {
+        border-color: rgba(13, 107, 95, 0.24);
+      }
+
+      .diff-column.warn {
+        border-color: rgba(180, 92, 43, 0.24);
+      }
+
+      .diff-column.danger {
+        border-color: rgba(183, 53, 53, 0.24);
+      }
+
+      .compact-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .match-list {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .match-row,
+      .compact-row {
+        align-items: center;
+        justify-content: space-between;
+        min-height: 48px;
+        padding: 0 12px;
+      }
+
+      .match-row strong,
+      .compact-row strong {
+        overflow-wrap: anywhere;
+      }
+
+      .empty {
+        align-items: center;
+        color: var(--muted);
+        display: flex;
+        justify-content: center;
+        min-height: 140px;
+        padding: 18px;
+        text-align: center;
+      }
+
+      .empty.small {
+        min-height: 90px;
+      }
+
+      .subnote {
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .subnote.warn {
+        color: var(--warm);
+      }
+
+      .release-stack {
+        flex-wrap: wrap;
+      }
+
+      .release-notes {
+        display: grid;
+        gap: 10px;
+      }
+
+      @media (max-width: 1100px) {
+        .hero,
+        .grid,
+        .stats,
+        .diff-grid,
+        .upload-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-copy h1 {
+          font-size: 36px;
+        }
+
+        .match-list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .shell {
+          padding-inline: 14px;
+        }
+
+        .hero-copy,
+        .hero-side,
+        .panel {
+          padding: 18px;
+        }
+
+        .actions,
+        .panel-head,
+        .hero-stats div,
+        .note-box {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <div class="wrap">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">管理頁 / 上架更新</p>
+            <h1>更新上架中心</h1>
+            <p class="lead">
+              上傳 Excel 與圖片後，先比對新增、下架、缺圖與多圖，再決定要儲存草稿、套用更新或直接發布。
+            </p>
+            <div class="actions">
+              <a class="link" href="./index.html">回到前台</a>
+              <button class="button primary" id="download-summary" type="button">下載更新摘要</button>
+            </div>
+            <div class="hero-pill-row">
+              <span class="pill good">草稿模式</span>
+              <span class="pill warn">可下架</span>
+              <span class="pill muted">保留備份</span>
+            </div>
+          </div>
+
+          <aside class="hero-side">
+            <div class="hero-stats">
+              <div>
+                <dt>目前上架</dt>
+                <dd id="current-count">-</dd>
+              </div>
+              <div>
+                <dt>圖片已配對</dt>
+                <dd id="gallery-match-count">-</dd>
+              </div>
+              <div>
+                <dt>圖片待配對</dt>
+                <dd id="gallery-missing-count">-</dd>
+              </div>
+              <div>
+                <dt>本次缺圖</dt>
+                <dd id="missing-image-count">-</dd>
+              </div>
+            </div>
+
+            <div class="note-box">
+              <div>
+                <span>目前最高折扣</span>
+                <strong id="best-saving">-</strong>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">來源檔案</p>
+                <h2>Excel 與圖片上傳</h2>
+              </div>
+              <span class="pill muted" id="excel-status">尚未選擇 Excel</span>
+            </div>
+
+            <div class="upload-grid">
+              <label class="upload-card">
+                <span>Excel 檔案</span>
+                <strong>上傳限定機型資料</strong>
+                <input accept=".xlsx,.xls,.csv" id="excel-file" type="file" />
+                <p>目前先顯示檔名與狀態，之後可接自動解析。</p>
+              </label>
+
+              <label class="upload-card">
+                <span>圖片資料夾</span>
+                <strong>選取各機型照片</strong>
+                <input accept="image/*" id="image-folder" multiple type="file" webkitdirectory />
+                <p>可直接選整個資料夾，系統會用檔名與資料夾名對應機型。</p>
+              </label>
+            </div>
+
+            <div class="file-summary">
+              <div>
+                <span>Excel</span>
+                <strong id="excel-name">未上傳</strong>
+              </div>
+              <div>
+                <span>圖片</span>
+                <strong id="image-name">未選擇</strong>
+              </div>
+              <div>
+                <span>配對狀態</span>
+                <strong id="image-match-status">等待圖片資料夾</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">比對輸入</p>
+                <h2>本次 Excel 機型清單</h2>
+              </div>
+              <button class="button ghost" id="load-current" type="button">載入目前 88 筆</button>
+            </div>
+
+            <textarea class="textarea" id="models-text" spellcheck="false"></textarea>
+
+            <div class="panel-head" style="margin-top: 14px">
+              <div>
+                <p class="eyebrow">下架清單</p>
+                <h3>要強制刪除的舊資料</h3>
+              </div>
+              <span class="pill muted" id="archive-count">可留空</span>
+            </div>
+
+            <textarea
+              class="textarea small"
+              id="archive-text"
+              placeholder="每行一個機型，例如：OLD-MODEL-001"
+              spellcheck="false"
+            ></textarea>
+          </article>
+        </section>
+
+        <section class="stats" id="stats"></section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">差異預覽</p>
+              <h2>本次更新會發生的事</h2>
+            </div>
+            <span class="pill warn">先比對，再發布</span>
+          </div>
+          <div class="diff-grid" id="diff-grid"></div>
+        </section>
+
+        <section class="grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">圖片配對</p>
+                <h2>已辨識的機型圖片</h2>
+              </div>
+              <span class="pill muted" id="image-match-pill">尚未選擇圖片</span>
+            </div>
+            <div class="match-list" id="image-match-list"></div>
+            <div class="subnote warn" id="extra-image-note" style="margin-top: 10px"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <p class="eyebrow">發布控制</p>
+                <h2>更新摘要與後續動作</h2>
+              </div>
+              <span class="pill good">可下載</span>
+            </div>
+            <div class="release-stack">
+              <button class="button primary" id="save-draft" type="button">儲存草稿摘要</button>
+              <button class="button" type="button" disabled>套用更新</button>
+              <button class="button" type="button" disabled>下架機型</button>
+              <button class="button" type="button" disabled>刪除資料</button>
+              <button class="button ghost" type="button" disabled>回復上一版</button>
+            </div>
+            <div class="release-notes" style="margin-top: 12px">
+              <div class="metric">
+                <span>前台上架規則</span>
+                <strong>Excel 未出現的機型會被判定為下架</strong>
+              </div>
+              <div class="metric">
+                <span>圖片處理規則</span>
+                <strong>照片依機型名稱配對，未配對會保留待查</strong>
+              </div>
+              <div class="metric">
+                <span>刪除規則</span>
+                <strong>預設先保留備份，確認後才做永久刪除</strong>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">目前資料</p>
+              <h2>線上缺圖清單</h2>
+            </div>
+            <span class="pill muted" id="gallery-unmatched-pill">-</span>
+          </div>
+          <div class="compact-list" id="gallery-missing"></div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module">
+      const money = new Intl.NumberFormat("zh-TW", {
+        style: "currency",
+        currency: "TWD",
+        maximumFractionDigits: 0,
+      });
+
+      const state = {
+        laptops: [],
+        report: null,
+        imageFiles: [],
+        excelFile: null,
+      };
+
+      const els = {
+        currentCount: document.getElementById("current-count"),
+        galleryMatchCount: document.getElementById("gallery-match-count"),
+        galleryMissingCount: document.getElementById("gallery-missing-count"),
+        missingImageCount: document.getElementById("missing-image-count"),
+        bestSaving: document.getElementById("best-saving"),
+        excelInput: document.getElementById("excel-file"),
+        imageInput: document.getElementById("image-folder"),
+        excelStatus: document.getElementById("excel-status"),
+        excelName: document.getElementById("excel-name"),
+        imageName: document.getElementById("image-name"),
+        imageMatchStatus: document.getElementById("image-match-status"),
+        loadCurrent: document.getElementById("load-current"),
+        modelsText: document.getElementById("models-text"),
+        archiveText: document.getElementById("archive-text"),
+        archiveCount: document.getElementById("archive-count"),
+        stats: document.getElementById("stats"),
+        diffGrid: document.getElementById("diff-grid"),
+        imageMatchPill: document.getElementById("image-match-pill"),
+        imageMatchList: document.getElementById("image-match-list"),
+        extraImageNote: document.getElementById("extra-image-note"),
+        galleryMissingPill: document.getElementById("gallery-unmatched-pill"),
+        galleryMissing: document.getElementById("gallery-missing"),
+        saveDraft: document.getElementById("save-draft"),
+        downloadSummary: document.getElementById("download-summary"),
+      };
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#39;");
+      }
+
+      function normalize(value) {
+        return String(value).toUpperCase().replace(/[^A-Z0-9]/g, "");
+      }
+
+      function parseModels(value) {
+        return Array.from(
+          new Set(
+            String(value)
+              .split(/[\n,，;；\t]+/)
+              .map((item) => item.trim())
+              .filter(Boolean),
+          ),
+        );
+      }
+
+      function formatBytes(bytes) {
+        if (bytes < 1024) return `${bytes} B`;
+        if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+        return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+      }
+
+      function renderPill(kind, text) {
+        return `<span class="pill ${kind}">${escapeHtml(text)}</span>`;
+      }
+
+      function renderItems(items, emptyText) {
+        if (!items.length) {
+          return `<div class="empty small">${escapeHtml(emptyText)}</div>`;
+        }
+
+        return items
+          .slice(0, 8)
+          .map(
+            (item) => `<div class="compact-row"><strong>${escapeHtml(item)}</strong></div>`,
+          )
+          .join("");
+      }
+
+      function getModelFromPath(path, modelRank) {
+        const normalized = normalize(path);
+        return modelRank.find((model) => normalized.includes(normalize(model))) ?? null;
+      }
+
+      function loadLaptopData() {
+        return fetch("app/laptop-data.ts", { cache: "no-store" })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`無法載入資料：${response.status}`);
+            }
+            return response.text();
+          })
+          .then((text) => {
+            const marker = "export const laptops: Laptop[] = ";
+            const start = text.indexOf(marker);
+            if (start < 0) throw new Error("找不到 laptops 資料區塊");
+            const arrayStart = text.indexOf("[", start);
+            const arrayEnd = text.indexOf("];", arrayStart);
+            if (arrayStart < 0 || arrayEnd < 0) {
+              throw new Error("無法解析 laptop-data.ts");
+            }
+            return Function(`"use strict"; return ${text.slice(arrayStart, arrayEnd + 1)};`)();
+          });
+      }
+
+      function loadReport() {
+        return fetch("app/model-gallery-report.json", { cache: "no-store" }).then((response) => {
+          if (!response.ok) {
+            throw new Error(`無法載入圖片報表：${response.status}`);
+          }
+          return response.json();
+        });
+      }
+
+      function render() {
+        const currentModels = state.laptops.map((item) => item.model);
+        const currentModelSet = new Set(currentModels.map(normalize));
+        const modelRank = [...currentModels].sort((a, b) => b.length - a.length);
+        const stagedModels = parseModels(els.modelsText.value);
+        const archiveModels = parseModels(els.archiveText.value);
+        const stagedSet = new Set(stagedModels.map(normalize));
+        const archiveSet = new Set(archiveModels.map(normalize));
+
+        const imageMatches = new Map();
+        for (const file of state.imageFiles) {
+          const path = file.webkitRelativePath || file.name;
+          const matchedModel = getModelFromPath(path, modelRank);
+          if (!matchedModel) continue;
+          const list = imageMatches.get(matchedModel) ?? [];
+          list.push(file);
+          imageMatches.set(matchedModel, list);
+        }
+
+        const newModels = stagedModels.filter((model) => !currentModelSet.has(normalize(model)));
+        const retainedModels = stagedModels.filter((model) => currentModelSet.has(normalize(model)));
+        const removedModels = currentModels.filter(
+          (model) => !stagedSet.has(normalize(model)) || archiveSet.has(normalize(model)),
+        );
+        const missingImages = stagedModels.filter((model) => !imageMatches.has(model));
+        const extraImages = [...imageMatches.keys()].filter((model) => !stagedSet.has(normalize(model)));
+
+        const missingGalleryModels = (state.report?.report ?? [])
+          .filter((item) => item.matched === 0)
+          .map((item) => item.model);
+
+        const currentCount = currentModels.length;
+        const galleryMatched = state.report?.matchedModels ?? 0;
+        const galleryTotal = state.report?.totalModels ?? 0;
+        const galleryMissing = galleryTotal - galleryMatched;
+        const bestDiscount =
+          state.laptops.reduce((best, item) => (item.discount > best.discount ? item : best), state.laptops[0] ?? { discount: 0 })?.discount ?? 0;
+
+        els.currentCount.textContent = String(currentCount);
+        els.galleryMatchCount.textContent = String(galleryMatched);
+        els.galleryMissingCount.textContent = String(galleryMissing);
+        els.missingImageCount.textContent = String(missingImages.length);
+        els.bestSaving.textContent = money.format(bestDiscount);
+
+        els.excelStatus.textContent = state.excelFile ? state.excelFile.name : "尚未選擇 Excel";
+        els.excelStatus.className = `pill ${state.excelFile ? "good" : "muted"}`;
+        els.excelName.textContent = state.excelFile
+          ? `${state.excelFile.name} · ${formatBytes(state.excelFile.size)}`
+          : "未上傳";
+        els.imageName.textContent = state.imageFiles.length
+          ? `${state.imageFiles.length} 張 · ${formatBytes(
+              state.imageFiles.reduce((sum, file) => sum + file.size, 0),
+            )}`
+          : "未選擇";
+        els.imageMatchStatus.textContent = imageMatches.size
+          ? `${imageMatches.size} 台已辨識`
+          : "等待圖片資料夾";
+        els.imageMatchPill.textContent = state.imageFiles.length
+          ? `${imageMatches.size} 台`
+          : "尚未選擇圖片";
+        els.imageMatchPill.className = `pill ${state.imageFiles.length ? "good" : "muted"}`;
+        els.archiveCount.textContent = archiveModels.length ? `${archiveModels.length} 筆` : "可留空";
+        els.archiveCount.className = `pill ${archiveModels.length ? "danger" : "muted"}`;
+        els.galleryMissingPill.textContent = `${missingGalleryModels.length} 台`;
+
+        const stagedMarketValue = stagedModels
+          .map((model) => state.laptops.find((item) => item.model === model)?.marketPrice ?? 0)
+          .reduce((sum, value) => sum + value, 0);
+        const stagedEduValue = stagedModels
+          .map((model) => state.laptops.find((item) => item.model === model)?.eduPrice ?? 0)
+          .reduce((sum, value) => sum + value, 0);
+
+        els.stats.innerHTML = [
+          ["新機型", newModels.length],
+          ["保留機型", retainedModels.length],
+          ["下架機型", removedModels.length],
+          ["缺圖機型", missingImages.length],
+          ["市價總和", money.format(stagedMarketValue)],
+          ["教育價總和", money.format(stagedEduValue)],
+        ]
+          .map(
+            ([label, value]) => `
+              <div class="metric">
+                <span>${escapeHtml(label)}</span>
+                <strong>${escapeHtml(value)}</strong>
+              </div>
+            `,
+          )
+          .join("");
+
+        els.diffGrid.innerHTML = [
+          ["新增機型", "good", newModels],
+          ["保留機型", "muted", retainedModels],
+          ["下架機型", "danger", removedModels],
+          ["缺圖機型", "warn", missingImages],
+        ]
+          .map(
+            ([title, tone, items]) => `
+              <article class="diff-column ${tone}">
+                <div class="panel-head">
+                  <h3>${escapeHtml(title)}</h3>
+                  <span class="pill ${tone}">${items.length}</span>
+                </div>
+                ${renderItems(items, "沒有項目。")}
+                ${
+                  items.length > 8
+                    ? `<div class="subnote">還有 ${items.length - 8} 筆未顯示。</div>`
+                    : ""
+                }
+              </article>
+            `,
+          )
+          .join("");
+
+        els.imageMatchList.innerHTML = imageMatches.size
+          ? Array.from(imageMatches.entries())
+              .slice(0, 12)
+              .map(
+                ([model, files]) => `
+                  <div class="match-row">
+                    <strong>${escapeHtml(model)}</strong>
+                    <span>${files.length} 張</span>
+                  </div>
+                `,
+              )
+              .join("")
+          : `<div class="empty">選取圖片資料夾後，這裡會顯示每台機型對應到幾張照片。</div>`;
+
+        els.extraImageNote.textContent = extraImages.length
+          ? `有 ${extraImages.length} 台圖片對不上 Excel 清單，會列入待檢查。`
+          : "";
+
+        els.galleryMissing.innerHTML = missingGalleryModels.length
+          ? missingGalleryModels
+              .map(
+                (model) => `
+                  <div class="compact-row">
+                    <strong>${escapeHtml(model)}</strong>
+                    <span>尚未配到圖片</span>
+                  </div>
+                `,
+              )
+              .join("")
+          : `<div class="empty">目前沒有缺圖機型。</div>`;
+
+        els.downloadSummary.dataset.summary = JSON.stringify(
+          {
+            generatedAt: new Date().toISOString(),
+            sourceExcel: state.excelFile ? state.excelFile.name : null,
+            currentCount,
+            stagedCount: stagedModels.length,
+            retainedCount: retainedModels.length,
+            newCount: newModels.length,
+            removedCount: removedModels.length,
+            missingImageCount: missingImages.length,
+            extraImageCount: extraImages.length,
+            stagedModels,
+            newModels,
+            removedModels,
+            missingImages,
+            extraImages,
+            imageFiles: state.imageFiles.map((file) => ({
+              name: file.name,
+              path: file.webkitRelativePath || file.name,
+              size: file.size,
+            })),
+          },
+          null,
+          2,
+        );
+      }
+
+      function downloadSummary() {
+        const payload = els.downloadSummary.dataset.summary || "{}";
+        const blob = new Blob([payload], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = `laptop-update-summary-${new Date().toISOString().slice(0, 10)}.json`;
+        anchor.click();
+        URL.revokeObjectURL(url);
+      }
+
+      els.excelInput.addEventListener("change", (event) => {
+        state.excelFile = event.target.files?.[0] ?? null;
+        render();
+      });
+
+      els.imageInput.addEventListener("change", (event) => {
+        state.imageFiles = Array.from(event.target.files ?? []);
+        render();
+      });
+
+      els.modelsText.addEventListener("input", render);
+      els.archiveText.addEventListener("input", render);
+      els.loadCurrent.addEventListener("click", () => {
+        els.modelsText.value = state.laptops.map((item) => item.model).join("\n");
+        render();
+      });
+      els.saveDraft.addEventListener("click", downloadSummary);
+      els.downloadSummary.addEventListener("click", downloadSummary);
+
+      Promise.all([loadLaptopData(), loadReport()])
+        .then(([laptops, report]) => {
+          state.laptops = laptops;
+          state.report = report;
+          els.modelsText.value = laptops.map((item) => item.model).join("\n");
+          render();
+        })
+        .catch((error) => {
+          document.querySelector(".wrap").insertAdjacentHTML(
+            "afterbegin",
+            `<section class="panel" style="border-color: #b73535; color: #b73535; margin-bottom: 16px;">
+              無法載入更新頁資料：${escapeHtml(error.message)}
+            </section>`,
+          );
+        });
+    </script>
+  </body>
+</html>
