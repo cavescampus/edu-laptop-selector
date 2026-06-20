@@ -640,25 +640,26 @@
               </div>
               <span class="pill good">可下載</span>
             </div>
+            
             <div class="release-stack">
-              <button class="button primary" id="save-draft" type="button">儲存草稿摘要</button>
-              <button class="button" type="button" disabled>套用更新</button>
-              <button class="button" type="button" disabled>下架機型</button>
-              <button class="button" type="button" disabled>刪除資料</button>
-              <button class="button ghost" type="button" disabled>回復上一版</button>
+              <button class="button ghost" id="save-draft" type="button">儲存草稿摘要</button>
+              <button class="button primary" id="apply-update" type="button">套用更新</button>
+              <button class="button" type="button" disabled>回復上一版</button>
             </div>
+            <div class="subnote" id="api-status">尚未啟動更新。</div>
+            <div class="compact-list" id="api-result"></div>
             <div class="release-notes" style="margin-top: 12px">
               <div class="metric">
-                <span>前台上架規則</span>
-                <strong>Excel 未出現的機型會被判定為下架</strong>
+                <span>上架規則</span>
+                <strong>Excel 未出現的機型會被判定為下架。</strong>
               </div>
               <div class="metric">
-                <span>圖片處理規則</span>
-                <strong>照片依機型名稱配對，未配對會保留待查</strong>
+                <span>圖片規則</span>
+                <strong>照片依機型名稱配對，未配對會保留待查。</strong>
               </div>
               <div class="metric">
                 <span>刪除規則</span>
-                <strong>預設先保留備份，確認後才做永久刪除</strong>
+                <strong>預設先保留備份，確認後才做永久刪除。</strong>
               </div>
             </div>
           </article>
@@ -712,9 +713,12 @@
         imageMatchPill: document.getElementById("image-match-pill"),
         imageMatchList: document.getElementById("image-match-list"),
         extraImageNote: document.getElementById("extra-image-note"),
+        apiStatus: document.getElementById("api-status"),
+        apiResult: document.getElementById("api-result"),
         galleryMissingPill: document.getElementById("gallery-unmatched-pill"),
         galleryMissing: document.getElementById("gallery-missing"),
         saveDraft: document.getElementById("save-draft"),
+        applyUpdate: document.getElementById("apply-update"),
         downloadSummary: document.getElementById("download-summary"),
       };
 
@@ -983,6 +987,77 @@
         URL.revokeObjectURL(url);
       }
 
+      function readFileAsDataURL(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(String(reader.result || ""));
+          reader.onerror = () => reject(reader.error || new Error("無法讀取 Excel 檔案"));
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function renderApiResult(data) {
+        const rows = Array.isArray(data.rows) ? data.rows.slice(0, 8) : [];
+        els.apiResult.innerHTML = rows.length
+          ? rows
+              .map(
+                (row) => `
+                  <div class="compact-row">
+                    <strong>${escapeHtml(row.model || row.title || "未命名機型")}</strong>
+                    <span>${escapeHtml(row.status || "unknown")} · 圖 ${row.imageCount ?? 0}</span>
+                  </div>
+                `,
+              )
+              .join("")
+          : `<div class="empty small">API 已回傳結果，但沒有可顯示的明細。</div>`;
+      }
+
+      async function applyUpdate() {
+        try {
+          els.apiStatus.textContent = "正在送出更新資料...";
+          els.apiStatus.className = "subnote";
+          els.applyUpdate.disabled = true;
+
+          const excel = state.excelFile;
+          const excelBase64 = excel ? String(await readFileAsDataURL(excel)).split(",")[1] || "" : "";
+          const payload = {
+            mode: "apply",
+            excelName: excel?.name || "",
+            excelBase64,
+            modelsText: els.modelsText.value,
+            archiveModelsText: els.archiveText.value,
+            imageFiles: state.imageFiles.map((file) => ({
+              name: file.name,
+              path: (file.webkitRelativePath || file.name || "").replaceAll("\\", "/"),
+              size: file.size,
+            })),
+          };
+
+          const response = await fetch("/.netlify/functions/update", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          const data = await response.json();
+          if (!response.ok || !data.ok) {
+            throw new Error(data.error || `API 回應 ${response.status}`);
+          }
+
+          els.apiStatus.textContent = `更新完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，下架 ${data.removedCount} 台。`;
+          els.apiStatus.className = "subnote";
+          renderApiResult(data);
+          els.downloadSummary.dataset.summary = JSON.stringify(data.summary || data, null, 2);
+        } catch (error) {
+          els.apiStatus.textContent = `更新失敗：${error.message}`;
+          els.apiStatus.className = "subnote warn";
+        } finally {
+          els.applyUpdate.disabled = false;
+        }
+      }
+
       els.excelInput.addEventListener("change", (event) => {
         state.excelFile = event.target.files?.[0] ?? null;
         render();
@@ -1000,6 +1075,7 @@
         render();
       });
       els.saveDraft.addEventListener("click", downloadSummary);
+      els.applyUpdate.addEventListener("click", applyUpdate);
       els.downloadSummary.addEventListener("click", downloadSummary);
 
       Promise.all([loadLaptopData(), loadReport()])
