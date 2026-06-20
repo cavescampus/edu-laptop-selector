@@ -31,6 +31,31 @@ function decodeXml(value) {
     .replaceAll("&apos;", "'");
 }
 
+function isAllowedAdminEmail(value) {
+  const email = String(value ?? "").trim().toLowerCase();
+  return email.endsWith("@cave.com.tw") || email.endsWith("@cavesbooks.com.tw");
+}
+
+function requireAuthorizedUser(context) {
+  const user = context?.clientContext?.user ?? null;
+  const email = String(user?.email ?? "").trim().toLowerCase();
+  if (!email) {
+    throw new Error("請先登入。");
+  }
+  if (!isAllowedAdminEmail(email)) {
+    throw new Error("此頁只允許 @cave.com.tw 或 @cavesbooks.com.tw 的帳號登入。");
+  }
+  return user;
+}
+
+function normalizeSpecValue(key, value) {
+  if (key === "marketPrice" || key === "eduPrice") {
+    const digits = String(value ?? "").replace(/[^0-9.-]/g, "");
+    return digits ? Number(digits) : 0;
+  }
+  return String(value ?? "").trim();
+}
+
 function parseAttributes(fragment) {
   const attrs = {};
   const regex = /([A-Za-z_:][\w:.-]*)="([^"]*)"/g;
@@ -261,7 +286,40 @@ function parseExcel(buffer) {
   };
 }
 
-export async function handler(event) {
+async function triggerPublish(summary) {
+  const hookUrl =
+    process.env.NETLIFY_BUILD_HOOK_URL ||
+    process.env.PUBLISH_WEBHOOK_URL ||
+    process.env.DEPLOY_WEBHOOK_URL ||
+    "";
+
+  if (!hookUrl) {
+    throw new Error("一鍵發布尚未設定 webhook。請在 Netlify 環境變數設定 NETLIFY_BUILD_HOOK_URL。");
+  }
+
+  const response = await fetch(hookUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      source: "edu-laptop-selector",
+      summary,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`發布 webhook 失敗：${response.status}`);
+  }
+
+  return {
+    triggered: true,
+    hookConfigured: true,
+    hookStatus: response.status,
+  };
+}
+
+export async function handler(event, context = {}) {
   if (event.httpMethod === "OPTIONS") {
     return { statusCode: 204, headers: corsHeaders, body: "" };
   }
@@ -271,6 +329,7 @@ export async function handler(event) {
   }
 
   try {
+    const authUser = requireAuthorizedUser(context);
     const body = JSON.parse(event.body || "{}");
     const excelBase64 = String(body.excelBase64 || "");
     const excelName = String(body.excelName || "uploaded.xlsx");
@@ -336,13 +395,40 @@ export async function handler(event) {
     const updatedRecords = sourceRecords.map((record) => {
       const current = laptops.find((item) => item.model === record.model);
       const imageCount = modelMap.get(record.model)?.length ?? 0;
+      const changes = [];
+      if (current) {
+        for (const key of [
+          "country",
+          "title",
+          "cpu",
+          "memory",
+          "storage",
+          "gpu",
+          "display",
+          "marketPrice",
+          "eduPrice",
+          "featureIntro",
+        ]) {
+          const currentValue = normalizeSpecValue(key, current[key]);
+          const sourceValue = normalizeSpecValue(key, record[key]);
+          if (currentValue !== sourceValue) {
+            changes.push({
+              field: key,
+              current: currentValue,
+              source: sourceValue,
+            });
+          }
+        }
+      }
       return {
         ...record,
         imageCount,
         currentMarketPrice: current?.marketPrice ?? null,
         currentEduPrice: current?.eduPrice ?? null,
         currentDiscount: current?.discount ?? null,
-        status: current ? "retained" : "new",
+        status: current ? (changes.length ? "changed" : "retained") : "new",
+        changeSummary: changes.length ? `${changes.length} 項規格不同` : "",
+        changes,
         savingDelta:
           current && record.eduPrice
             ? {
@@ -362,6 +448,7 @@ export async function handler(event) {
       currentCount: currentModels.length,
       newCount: newModels.length,
       retainedCount: retainedModels.length,
+      changedCount: updatedRecords.filter((item) => item.status === "changed").length,
       removedCount: removedModels.length,
       missingImageCount: missingImages.length,
       unmatchedImageCount: unmatched.length,
@@ -378,12 +465,22 @@ export async function handler(event) {
         currentCount: currentModels.length,
         newCount: newModels.length,
         retainedCount: retainedModels.length,
+        changedCount: updatedRecords.filter((item) => item.status === "changed").length,
         removedCount: removedModels.length,
         missingImageCount: missingImages.length,
         unmatchedImageCount: unmatched.length,
         archiveModels,
+        requestedBy: authUser.email,
       },
     };
+
+    if (String(body.mode || "preview") === "publish") {
+      const publish = await triggerPublish(response.summary);
+      return json(200, {
+        ...response,
+        publish,
+      });
+    }
 
     return json(200, response);
   } catch (error) {

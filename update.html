@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-Hant-TW">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>更新上架中心</title>
+    <title>?湔銝銝剖?</title>
     <style>
       :root {
         --bg: #f4efe6;
@@ -491,45 +491,44 @@
       <div class="wrap">
         <section class="hero">
           <div class="hero-copy">
-            <p class="eyebrow">管理頁 / 上架更新</p>
-            <h1>更新上架中心</h1>
+            <p class="eyebrow">蝞∠???/ 銝?湔</p>
+            <h1>?湔銝銝剖?</h1>
             <p class="lead">
-              上傳 Excel 與圖片後，先比對新增、下架、缺圖與多圖，再決定要儲存草稿、套用更新或直接發布。
-            </p>
+              銝 Excel ????嚗?瘥??啣????嗚撩??憭?嚗?瘙箏?閬摮?蝔踴??冽?唳??湔?澆???            </p>
             <div class="actions">
-              <a class="link" href="./index.html">回到前台</a>
-              <button class="button primary" id="download-summary" type="button">下載更新摘要</button>
+              <a class="link" href="./index.html">??</a>
+              <button class="button primary" id="download-summary" type="button">銝??湔??</button>
             </div>
             <div class="hero-pill-row">
-              <span class="pill good">草稿模式</span>
-              <span class="pill warn">可下架</span>
-              <span class="pill muted">保留備份</span>
+              <span class="pill good">?阮璅∪?</span>
+              <span class="pill warn">?臭???/span>
+              <span class="pill muted">靽??遢</span>
             </div>
           </div>
 
           <aside class="hero-side">
             <div class="hero-stats">
               <div>
-                <dt>目前上架</dt>
+                <dt>?桀?銝</dt>
                 <dd id="current-count">-</dd>
               </div>
               <div>
-                <dt>圖片已配對</dt>
+                <dt>??撌脤?撠?/dt>
                 <dd id="gallery-match-count">-</dd>
               </div>
               <div>
-                <dt>圖片待配對</dt>
+                <dt>??敺?撠?/dt>
                 <dd id="gallery-missing-count">-</dd>
               </div>
               <div>
-                <dt>本次缺圖</dt>
+                <dt>?祆活蝻箏?</dt>
                 <dd id="missing-image-count">-</dd>
               </div>
             </div>
 
             <div class="note-box">
               <div>
-                <span>目前最高折扣</span>
+                <span>?桀??擃???/span>
                 <strong id="best-saving">-</strong>
               </div>
             </div>
@@ -540,40 +539,40 @@
           <article class="panel">
             <div class="panel-head">
               <div>
-                <p class="eyebrow">來源檔案</p>
-                <h2>Excel 與圖片上傳</h2>
+                <p class="eyebrow">靘?瑼?</p>
+                <h2>Excel ??????/h2>
               </div>
-              <span class="pill muted" id="excel-status">尚未選擇 Excel</span>
+              <span class="pill muted" id="excel-status">撠?豢? Excel</span>
             </div>
 
             <div class="upload-grid">
               <label class="upload-card">
-                <span>Excel 檔案</span>
-                <strong>上傳限定機型資料</strong>
+                <span>Excel 瑼?</span>
+                <strong>銝??璈?鞈?</strong>
                 <input accept=".xlsx,.xls,.csv" id="excel-file" type="file" />
-                <p>目前先顯示檔名與狀態，之後可接自動解析。</p>
+                <p>?桀??＊蝷箸??????銋??舀?芸?閫????/p>
               </label>
 
               <label class="upload-card">
-                <span>圖片資料夾</span>
-                <strong>選取各機型照片</strong>
+                <span>??鞈?憭?/span>
+                <strong>?詨??????/strong>
                 <input accept="image/*" id="image-folder" multiple type="file" webkitdirectory />
-                <p>可直接選整個資料夾，系統會用檔名與資料夾名對應機型。</p>
+                <p>?舐?仿?游??冗嚗頂蝯望??冽???鞈?憭曉?撠?璈???/p>
               </label>
             </div>
 
             <div class="file-summary">
               <div>
                 <span>Excel</span>
-                <strong id="excel-name">未上傳</strong>
+                <strong id="excel-name">?芯???/strong>
               </div>
               <div>
-                <span>圖片</span>
-                <strong id="image-name">未選擇</strong>
+                <span>??</span>
+                <strong id="image-name">?芷??/strong>
               </div>
               <div>
-                <span>配對狀態</span>
-                <strong id="image-match-status">等待圖片資料夾</strong>
+                <span>?????/span>
+                <strong id="image-match-status">蝑???鞈?憭?/strong>
               </div>
             </div>
           </article>
@@ -581,26 +580,26 @@
           <article class="panel">
             <div class="panel-head">
               <div>
-                <p class="eyebrow">比對輸入</p>
-                <h2>本次 Excel 機型清單</h2>
+                <p class="eyebrow">瘥?頛詨</p>
+                <h2>?祆活 Excel 璈?皜</h2>
               </div>
-              <button class="button ghost" id="load-current" type="button">載入目前 88 筆</button>
+              <button class="button ghost" id="load-current" type="button">頛?桀? 88 蝑?/button>
             </div>
 
             <textarea class="textarea" id="models-text" spellcheck="false"></textarea>
 
             <div class="panel-head" style="margin-top: 14px">
               <div>
-                <p class="eyebrow">下架清單</p>
-                <h3>要強制刪除的舊資料</h3>
+                <p class="eyebrow">銝皜</p>
+                <h3>閬撥?嗅?斤?????/h3>
               </div>
-              <span class="pill muted" id="archive-count">可留空</span>
+              <span class="pill muted" id="archive-count">?舐?蝛?/span>
             </div>
 
             <textarea
               class="textarea small"
               id="archive-text"
-              placeholder="每行一個機型，例如：OLD-MODEL-001"
+              placeholder="瘥?銝????靘?嚗LD-MODEL-001"
               spellcheck="false"
             ></textarea>
           </article>
@@ -611,10 +610,10 @@
         <section class="panel">
           <div class="panel-head">
             <div>
-              <p class="eyebrow">差異預覽</p>
-              <h2>本次更新會發生的事</h2>
+              <p class="eyebrow">撌桃?汗</p>
+              <h2>?祆活?湔???鈭?/h2>
             </div>
-            <span class="pill warn">先比對，再發布</span>
+            <span class="pill warn">??撠??撣?/span>
           </div>
           <div class="diff-grid" id="diff-grid"></div>
         </section>
@@ -623,10 +622,10 @@
           <article class="panel">
             <div class="panel-head">
               <div>
-                <p class="eyebrow">圖片配對</p>
-                <h2>已辨識的機型圖片</h2>
+                <p class="eyebrow">????</p>
+                <h2>撌脰儘霅?璈???</h2>
               </div>
-              <span class="pill muted" id="image-match-pill">尚未選擇圖片</span>
+              <span class="pill muted" id="image-match-pill">撠?豢???</span>
             </div>
             <div class="match-list" id="image-match-list"></div>
             <div class="subnote warn" id="extra-image-note" style="margin-top: 10px"></div>
@@ -635,31 +634,32 @@
           <article class="panel">
             <div class="panel-head">
               <div>
-                <p class="eyebrow">發布控制</p>
-                <h2>更新摘要與後續動作</h2>
+                <p class="eyebrow">?澆??批</p>
+                <h2>?湔????蝥?雿?/h2>
               </div>
-              <span class="pill good">可下載</span>
+              <span class="pill good">?臭?頛?/span>
             </div>
             
-            <div class="release-stack">
-              <button class="button ghost" id="save-draft" type="button">儲存草稿摘要</button>
-              <button class="button primary" id="apply-update" type="button">套用更新</button>
-              <button class="button" type="button" disabled>回復上一版</button>
+                        <div class="release-stack">
+              <button class="button ghost" id="save-draft" type="button">?????仿?謢?</button>
+              <button class="button primary" id="apply-update" type="button">????皝?</button>
+              <button class="button primary" id="publish-update" type="button">銝?萇撣?/button>
+              <button class="button" type="button" disabled>?豯文?????/button>
             </div>
-            <div class="subnote" id="api-status">尚未啟動更新。</div>
+            <div class="subnote" id="api-status">?垮謓?賹??皝???/div>
             <div class="compact-list" id="api-result"></div>
             <div class="release-notes" style="margin-top: 12px">
               <div class="metric">
-                <span>上架規則</span>
-                <strong>Excel 未出現的機型會被判定為下架。</strong>
+                <span>銝閬?</span>
+                <strong>Excel ?芸?曄?璈??◤?文??箔??嗚?/strong>
               </div>
               <div class="metric">
-                <span>圖片規則</span>
-                <strong>照片依機型名稱配對，未配對會保留待查。</strong>
+                <span>??閬?</span>
+                <strong>?抒?靘???蝔梢?撠??芷?撠?靽?敺??/strong>
               </div>
               <div class="metric">
-                <span>刪除規則</span>
-                <strong>預設先保留備份，確認後才做永久刪除。</strong>
+                <span>?芷閬?</span>
+                <strong>?身????隞踝?蝣箄?敺??偶銋?扎?/strong>
               </div>
             </div>
           </article>
@@ -668,8 +668,8 @@
         <section class="panel">
           <div class="panel-head">
             <div>
-              <p class="eyebrow">目前資料</p>
-              <h2>線上缺圖清單</h2>
+              <p class="eyebrow">?桀?鞈?</p>
+              <h2>蝺?蝻箏?皜</h2>
             </div>
             <span class="pill muted" id="gallery-unmatched-pill">-</span>
           </div>
@@ -678,6 +678,7 @@
       </div>
     </main>
 
+    <script src="update-auth.js"></script>
     <script type="module">
       const money = new Intl.NumberFormat("zh-TW", {
         style: "currency",
@@ -719,6 +720,7 @@
         galleryMissing: document.getElementById("gallery-missing"),
         saveDraft: document.getElementById("save-draft"),
         applyUpdate: document.getElementById("apply-update"),
+        publishUpdate: document.getElementById("publish-update"),
         downloadSummary: document.getElementById("download-summary"),
       };
 
@@ -739,7 +741,7 @@
         return Array.from(
           new Set(
             String(value)
-              .split(/[\n,，;；\t]+/)
+              .split(/[\n,嚗?嚗t]+/)
               .map((item) => item.trim())
               .filter(Boolean),
           ),
@@ -778,18 +780,18 @@
         return fetch("app/laptop-data.ts", { cache: "no-store" })
           .then((response) => {
             if (!response.ok) {
-              throw new Error(`無法載入資料：${response.status}`);
+              throw new Error(`?⊥?頛鞈?嚗?{response.status}`);
             }
             return response.text();
           })
           .then((text) => {
             const marker = "export const laptops: Laptop[] = ";
             const start = text.indexOf(marker);
-            if (start < 0) throw new Error("找不到 laptops 資料區塊");
+            if (start < 0) throw new Error("?曆???laptops 鞈??憛?);
             const arrayStart = text.indexOf("[", start);
             const arrayEnd = text.indexOf("];", arrayStart);
             if (arrayStart < 0 || arrayEnd < 0) {
-              throw new Error("無法解析 laptop-data.ts");
+              throw new Error("?⊥?閫?? laptop-data.ts");
             }
             return Function(`"use strict"; return ${text.slice(arrayStart, arrayEnd + 1)};`)();
           });
@@ -798,7 +800,7 @@
       function loadReport() {
         return fetch("app/model-gallery-report.json", { cache: "no-store" }).then((response) => {
           if (!response.ok) {
-            throw new Error(`無法載入圖片報表：${response.status}`);
+            throw new Error(`?⊥?頛???梯”嚗?{response.status}`);
           }
           return response.json();
         });
@@ -848,26 +850,26 @@
         els.missingImageCount.textContent = String(missingImages.length);
         els.bestSaving.textContent = money.format(bestDiscount);
 
-        els.excelStatus.textContent = state.excelFile ? state.excelFile.name : "尚未選擇 Excel";
+        els.excelStatus.textContent = state.excelFile ? state.excelFile.name : "撠?豢? Excel";
         els.excelStatus.className = `pill ${state.excelFile ? "good" : "muted"}`;
         els.excelName.textContent = state.excelFile
-          ? `${state.excelFile.name} · ${formatBytes(state.excelFile.size)}`
-          : "未上傳";
+          ? `${state.excelFile.name} 繚 ${formatBytes(state.excelFile.size)}`
+          : "?芯???;
         els.imageName.textContent = state.imageFiles.length
-          ? `${state.imageFiles.length} 張 · ${formatBytes(
+          ? `${state.imageFiles.length} 撘?繚 ${formatBytes(
               state.imageFiles.reduce((sum, file) => sum + file.size, 0),
             )}`
-          : "未選擇";
+          : "?芷??;
         els.imageMatchStatus.textContent = imageMatches.size
-          ? `${imageMatches.size} 台已辨識`
-          : "等待圖片資料夾";
+          ? `${imageMatches.size} ?啣歇颲刻?`
+          : "蝑???鞈?憭?;
         els.imageMatchPill.textContent = state.imageFiles.length
-          ? `${imageMatches.size} 台`
-          : "尚未選擇圖片";
+          ? `${imageMatches.size} ?躬
+          : "撠?豢???";
         els.imageMatchPill.className = `pill ${state.imageFiles.length ? "good" : "muted"}`;
-        els.archiveCount.textContent = archiveModels.length ? `${archiveModels.length} 筆` : "可留空";
+        els.archiveCount.textContent = archiveModels.length ? `${archiveModels.length} 蝑 : "?舐?蝛?;
         els.archiveCount.className = `pill ${archiveModels.length ? "danger" : "muted"}`;
-        els.galleryMissingPill.textContent = `${missingGalleryModels.length} 台`;
+        els.galleryMissingPill.textContent = `${missingGalleryModels.length} ?躬;
 
         const stagedMarketValue = stagedModels
           .map((model) => state.laptops.find((item) => item.model === model)?.marketPrice ?? 0)
@@ -877,12 +879,12 @@
           .reduce((sum, value) => sum + value, 0);
 
         els.stats.innerHTML = [
-          ["新機型", newModels.length],
-          ["保留機型", retainedModels.length],
-          ["下架機型", removedModels.length],
-          ["缺圖機型", missingImages.length],
-          ["市價總和", money.format(stagedMarketValue)],
-          ["教育價總和", money.format(stagedEduValue)],
+          ["?唳???, newModels.length],
+          ["靽?璈?", retainedModels.length],
+          ["銝璈?", removedModels.length],
+          ["蝻箏?璈?", missingImages.length],
+          ["撣蝮賢?", money.format(stagedMarketValue)],
+          ["??寧蜇??, money.format(stagedEduValue)],
         ]
           .map(
             ([label, value]) => `
@@ -895,10 +897,10 @@
           .join("");
 
         els.diffGrid.innerHTML = [
-          ["新增機型", "good", newModels],
-          ["保留機型", "muted", retainedModels],
-          ["下架機型", "danger", removedModels],
-          ["缺圖機型", "warn", missingImages],
+          ["?啣?璈?", "good", newModels],
+          ["靽?璈?", "muted", retainedModels],
+          ["銝璈?", "danger", removedModels],
+          ["蝻箏?璈?", "warn", missingImages],
         ]
           .map(
             ([title, tone, items]) => `
@@ -907,10 +909,10 @@
                   <h3>${escapeHtml(title)}</h3>
                   <span class="pill ${tone}">${items.length}</span>
                 </div>
-                ${renderItems(items, "沒有項目。")}
+                ${renderItems(items, "瘝????)}
                 ${
                   items.length > 8
-                    ? `<div class="subnote">還有 ${items.length - 8} 筆未顯示。</div>`
+                    ? `<div class="subnote">?? ${items.length - 8} 蝑憿舐內??/div>`
                     : ""
                 }
               </article>
@@ -925,15 +927,15 @@
                 ([model, files]) => `
                   <div class="match-row">
                     <strong>${escapeHtml(model)}</strong>
-                    <span>${files.length} 張</span>
+                    <span>${files.length} 撘?/span>
                   </div>
                 `,
               )
               .join("")
-          : `<div class="empty">選取圖片資料夾後，這裡會顯示每台機型對應到幾張照片。</div>`;
+          : `<div class="empty">?詨???鞈?憭曉?嚗ㄐ?＊蝷箸??唳????撟曉撐?抒???/div>`;
 
         els.extraImageNote.textContent = extraImages.length
-          ? `有 ${extraImages.length} 台圖片對不上 Excel 清單，會列入待檢查。`
+          ? `??${extraImages.length} ?啣???銝? Excel 皜嚗??敺炎?乓
           : "";
 
         els.galleryMissing.innerHTML = missingGalleryModels.length
@@ -942,12 +944,12 @@
                 (model) => `
                   <div class="compact-row">
                     <strong>${escapeHtml(model)}</strong>
-                    <span>尚未配到圖片</span>
+                    <span>撠???</span>
                   </div>
                 `,
               )
               .join("")
-          : `<div class="empty">目前沒有缺圖機型。</div>`;
+          : `<div class="empty">?桀?瘝?蝻箏?璈???/div>`;
 
         els.downloadSummary.dataset.summary = JSON.stringify(
           {
@@ -991,7 +993,7 @@
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onload = () => resolve(String(reader.result || ""));
-          reader.onerror = () => reject(reader.error || new Error("無法讀取 Excel 檔案"));
+          reader.onerror = () => reject(reader.error || new Error("?⊥?霈??Excel 瑼?"));
           reader.readAsDataURL(file);
         });
       }
@@ -1003,25 +1005,27 @@
               .map(
                 (row) => `
                   <div class="compact-row">
-                    <strong>${escapeHtml(row.model || row.title || "未命名機型")}</strong>
-                    <span>${escapeHtml(row.status || "unknown")} · 圖 ${row.imageCount ?? 0}</span>
+                    <strong>${escapeHtml(row.model || row.title || "未命名")}</strong>
+                    <span>${escapeHtml(row.status || "unknown")} · 圖片 ${row.imageCount ?? 0}${row.changeSummary ? ` · ${escapeHtml(row.changeSummary)}` : ""}</span>
                   </div>
                 `,
               )
               .join("")
-          : `<div class="empty small">API 已回傳結果，但沒有可顯示的明細。</div>`;
+          : `<div class="empty small">API 尚未回傳結果。</div>`;
       }
 
-      async function applyUpdate() {
+      async function submitUpdate(mode) {
         try {
-          els.apiStatus.textContent = "正在送出更新資料...";
+          const isPublish = mode === "publish";
+          els.apiStatus.textContent = isPublish ? "正在送出發布..." : "正在送出更新資料...";
           els.apiStatus.className = "subnote";
           els.applyUpdate.disabled = true;
+          els.publishUpdate.disabled = true;
 
           const excel = state.excelFile;
           const excelBase64 = excel ? String(await readFileAsDataURL(excel)).split(",")[1] || "" : "";
           const payload = {
-            mode: "apply",
+            mode,
             excelName: excel?.name || "",
             excelBase64,
             modelsText: els.modelsText.value,
@@ -1043,19 +1047,37 @@
 
           const data = await response.json();
           if (!response.ok || !data.ok) {
-            throw new Error(data.error || `API 回應 ${response.status}`);
+            throw new Error(data.error || `API 失敗：${response.status}`);
           }
 
-          els.apiStatus.textContent = `更新完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，下架 ${data.removedCount} 台。`;
+          els.apiStatus.textContent = isPublish
+            ? `發布完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，下架 ${data.removedCount} 台。`
+            : `更新完成：解析 ${data.sourceCount} 台，新增 ${data.newCount} 台，下架 ${data.removedCount} 台。`;
           els.apiStatus.className = "subnote";
           renderApiResult(data);
           els.downloadSummary.dataset.summary = JSON.stringify(data.summary || data, null, 2);
+
+          if (isPublish && data.publish?.triggered) {
+            const status = document.createElement("div");
+            status.className = "compact-row";
+            status.innerHTML = "<strong>發布排程已送出</strong><span>Netlify 會開始重新部署</span>";
+            els.apiResult.prepend(status);
+          }
         } catch (error) {
-          els.apiStatus.textContent = `更新失敗：${error.message}`;
+          els.apiStatus.textContent = `送出失敗：${error.message}`;
           els.apiStatus.className = "subnote warn";
         } finally {
           els.applyUpdate.disabled = false;
+          els.publishUpdate.disabled = false;
         }
+      }
+
+      async function applyUpdate() {
+        await submitUpdate("apply");
+      }
+
+      async function publishUpdate() {
+        await submitUpdate("publish");
       }
 
       els.excelInput.addEventListener("change", (event) => {
@@ -1076,6 +1098,7 @@
       });
       els.saveDraft.addEventListener("click", downloadSummary);
       els.applyUpdate.addEventListener("click", applyUpdate);
+      els.publishUpdate.addEventListener("click", publishUpdate);
       els.downloadSummary.addEventListener("click", downloadSummary);
 
       Promise.all([loadLaptopData(), loadReport()])
@@ -1089,7 +1112,7 @@
           document.querySelector(".wrap").insertAdjacentHTML(
             "afterbegin",
             `<section class="panel" style="border-color: #b73535; color: #b73535; margin-bottom: 16px;">
-              無法載入更新頁資料：${escapeHtml(error.message)}
+              ?⊥?頛?湔????${escapeHtml(error.message)}
             </section>`,
           );
         });
