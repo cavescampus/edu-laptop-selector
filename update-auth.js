@@ -154,7 +154,17 @@
   async function signup(email, password) {
     const identity = await ensureIdentity();
     if (!isAllowedEmail(email)) throw new Error("申請帳號只接受 @caves.com.tw 或 @cavesbooks.com.tw。");
-    return identity.signup(email, password);
+    if (typeof identity.signup === "function") {
+      return identity.signup(email, password);
+    }
+    if (typeof identity.register === "function") {
+      return identity.register(email, password);
+    }
+    if (typeof identity.open === "function") {
+      identity.open("signup");
+      throw new Error("目前登入元件不支援直接建立帳號，已開啟註冊視窗。");
+    }
+    throw new Error("目前登入元件不支援建立帳號。");
   }
 
   async function resetPassword(email) {
