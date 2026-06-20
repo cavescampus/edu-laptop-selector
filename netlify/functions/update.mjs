@@ -1,4 +1,4 @@
-import { inflateRawSync } from "node:zlib";
+﻿import { inflateRawSync } from "node:zlib";
 import { laptops } from "../../app/laptop-data.ts";
 
 const corsHeaders = {
@@ -33,7 +33,7 @@ function decodeXml(value) {
 
 function isAllowedAdminEmail(value) {
   const email = String(value ?? "").trim().toLowerCase();
-  return email.endsWith("@cave.com.tw") || email.endsWith("@cavesbooks.com.tw");
+  return email.endsWith("@caves.com.tw") || email.endsWith("@cavesbooks.com.tw");
 }
 
 function requireAuthorizedUser(context) {
@@ -43,7 +43,7 @@ function requireAuthorizedUser(context) {
     throw new Error("請先登入。");
   }
   if (!isAllowedAdminEmail(email)) {
-    throw new Error("此頁只允許 @cave.com.tw 或 @cavesbooks.com.tw 的帳號登入。");
+    throw new Error("此頁只允許 @caves.com.tw 或 @cavesbooks.com.tw 的帳號登入。");
   }
   return user;
 }
@@ -72,7 +72,7 @@ function findEndOfCentralDirectory(buffer) {
       return offset;
     }
   }
-  throw new Error("找不到 xlsx 壓縮索引");
+  throw new Error("?曆???xlsx 憯葬蝝Ｗ?");
 }
 
 function readZipEntries(buffer) {
@@ -84,7 +84,7 @@ function readZipEntries(buffer) {
 
   for (let index = 0; index < totalEntries; index += 1) {
     if (buffer.readUInt32LE(offset) !== 0x02014b50) {
-      throw new Error("xlsx 中央目錄格式錯誤");
+      throw new Error("xlsx 銝剖亢?桅??澆??航炊");
     }
 
     const compression = buffer.readUInt16LE(offset + 10);
@@ -113,7 +113,7 @@ function readZipEntry(buffer, entries, name) {
 
   const localOffset = entry.localOffset;
   if (buffer.readUInt32LE(localOffset) !== 0x04034b50) {
-    throw new Error(`zip 本機標頭錯誤：${name}`);
+    throw new Error(`zip ?祆?璅?航炊嚗?{name}`);
   }
 
   const nameLength = buffer.readUInt16LE(localOffset + 26);
@@ -129,7 +129,7 @@ function readZipEntry(buffer, entries, name) {
     return inflateRawSync(compressed);
   }
 
-  throw new Error(`不支援的壓縮格式：${entry.compression}`);
+  throw new Error(`銝?渡?憯葬?澆?嚗?{entry.compression}`);
 }
 
 function readZipText(buffer, entries, name) {
@@ -207,7 +207,7 @@ function splitModels(value) {
   return Array.from(
     new Set(
       String(value ?? "")
-        .split(/[\n,，;；\t]+/)
+        .split(/[\n,嚗?嚗t]+/)
         .map((item) => item.trim())
         .filter(Boolean),
     ),
@@ -242,7 +242,7 @@ function parseExcel(buffer) {
     "xl/worksheets/sheet1.xml";
   const sheetXml = readZipText(buffer, entries, sheetName);
   if (!sheetXml) {
-    throw new Error("找不到工作表資料");
+    throw new Error("?曆??啣極雿”鞈?");
   }
 
   const sharedStrings = sharedXml ? parseSharedStrings(sharedXml) : [];
@@ -309,7 +309,7 @@ async function triggerPublish(summary) {
   });
 
   if (!response.ok) {
-    throw new Error(`發布 webhook 失敗：${response.status}`);
+    throw new Error(`?澆? webhook 憭望?嚗?{response.status}`);
   }
 
   return {
@@ -342,7 +342,7 @@ export async function handler(event, context = {}) {
       const buffer = Buffer.from(excelBase64, "base64");
       parsedExcel = parseExcel(buffer);
     } else if (fallbackModels.length === 0) {
-      throw new Error("需要上傳 Excel，或至少提供機型清單文字。");
+      throw new Error("請先上傳 Excel 或輸入機型清單。");
     }
 
     const currentRecords = laptops.map((item) => ({

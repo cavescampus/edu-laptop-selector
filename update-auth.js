@@ -1,5 +1,5 @@
-(() => {
-  const allowedDomains = ["cave.com.tw", "cavesbooks.com.tw"];
+﻿(() => {
+  const allowedDomains = ["caves.com.tw", "cavesbooks.com.tw"];
   const updateApiPath = "/.netlify/functions/update";
   const identityScriptUrl = "https://identity.netlify.com/v1/netlify-identity-widget.js";
 
@@ -178,61 +178,59 @@
     document.body.insertAdjacentHTML(
       "afterbegin",
       `
-        <button class="button ghost auth-logout" id="auth-logout" type="button">登出</button>
+        <button class="button ghost auth-logout" id="auth-logout" type="button">?餃</button>
         <div class="auth-overlay" id="auth-overlay">
           <section class="auth-panel" aria-labelledby="auth-title">
-            <p class="eyebrow">更新入口</p>
-            <h1 class="auth-title" id="auth-title">請先登入</h1>
+            <p class="eyebrow">?湔?亙</p>
+            <h1 class="auth-title" id="auth-title">隢??餃</h1>
             <p class="auth-text">
-              僅接受 @cave.com.tw 或 @cavesbooks.com.tw 的帳號。登入後才可進入更新頁、上傳 Excel 與照片。
-            </p>
+              ???@caves.com.tw ??@cavesbooks.com.tw ?董??亙???脣?湔????Excel ???            </p>
             <div class="auth-chip-row">
-              <span class="auth-chip">帳號申請</span>
-              <span class="auth-chip">密碼登入</span>
-              <span class="auth-chip">忘記密碼</span>
+              <span class="auth-chip">撣唾??唾?</span>
+              <span class="auth-chip">撖Ⅳ?餃</span>
+              <span class="auth-chip">敹?撖Ⅳ</span>
             </div>
-            <div class="auth-tabs" role="tablist" aria-label="登入功能切換">
-              <button class="auth-tab is-active" id="auth-tab-login" type="button">登入</button>
-              <button class="auth-tab" id="auth-tab-signup" type="button">建立帳號</button>
-              <button class="auth-tab" id="auth-tab-reset" type="button">忘記密碼</button>
+            <div class="auth-tabs" role="tablist" aria-label="?餃???">
+              <button class="auth-tab is-active" id="auth-tab-login" type="button">?餃</button>
+              <button class="auth-tab" id="auth-tab-signup" type="button">撱箇?撣唾?</button>
+              <button class="auth-tab" id="auth-tab-reset" type="button">敹?撖Ⅳ</button>
             </div>
             <form class="auth-form" id="auth-login-form">
               <label class="auth-field">
-                <span>信箱</span>
+                <span>靽∠拳</span>
                 <input autocomplete="email" id="auth-login-email" type="email" />
               </label>
               <label class="auth-field">
-                <span>密碼</span>
+                <span>撖Ⅳ</span>
                 <input autocomplete="current-password" id="auth-login-password" type="password" />
               </label>
-              <button class="button primary" type="submit">登入</button>
+              <button class="button primary" type="submit">?餃</button>
             </form>
             <form class="auth-form" id="auth-signup-form" hidden>
               <label class="auth-field">
-                <span>信箱</span>
+                <span>靽∠拳</span>
                 <input autocomplete="email" id="auth-signup-email" type="email" />
               </label>
               <label class="auth-field">
-                <span>密碼</span>
+                <span>撖Ⅳ</span>
                 <input autocomplete="new-password" id="auth-signup-password" type="password" />
               </label>
               <label class="auth-field">
-                <span>確認密碼</span>
+                <span>蝣箄?撖Ⅳ</span>
                 <input autocomplete="new-password" id="auth-signup-password2" type="password" />
               </label>
-              <button class="button primary" type="submit">建立帳號</button>
+              <button class="button primary" type="submit">撱箇?撣唾?</button>
             </form>
             <form class="auth-form" id="auth-reset-form" hidden>
               <label class="auth-field">
-                <span>信箱</span>
+                <span>靽∠拳</span>
                 <input autocomplete="email" id="auth-reset-email" type="email" />
               </label>
-              <button class="button primary" type="submit">寄送重設連結</button>
+              <button class="button primary" type="submit">撖?閮剝??</button>
             </form>
-            <div class="auth-status" id="auth-status">請使用公司信箱登入。</div>
+            <div class="auth-status" id="auth-status">隢蝙?典?訾縑蝞梁?乓?/div>
             <div class="auth-subnote">
-              帳號申請與重設密碼都只接受指定網域。若系統尚未啟用 Netlify Identity，這個畫面會停留在登入狀態。
-            </div>
+              撣唾??唾???閮剖?蝣潮?芣??摰雯?蝟餌絞撠? Netlify Identity嚗?Ｘ????函?亦???            </div>
           </section>
         </div>
       `,
@@ -264,9 +262,9 @@
     document.body.classList.toggle("is-auth-locked", !loggedIn);
     els.authOverlay.hidden = loggedIn;
     if (loggedIn) {
-      setStatus(`已登入：${state.currentUser.email}`, "good");
+      setStatus(`撌脩?伐?${state.currentUser.email}`, "good");
     } else {
-      setStatus("請使用公司信箱登入。");
+      setStatus("請先登入。");
       showMode("login");
     }
   }
@@ -302,7 +300,7 @@
   async function loginUser(email, password) {
     const identity = await ensureIdentity();
     if (!isAllowedEmail(email)) {
-      throw new Error("登入信箱只接受 @cave.com.tw 或 @cavesbooks.com.tw。");
+      throw new Error("登入信箱只接受 @caves.com.tw 或 @cavesbooks.com.tw。");
     }
     return identity.login(email, password);
   }
@@ -310,7 +308,7 @@
   async function signupUser(email, password) {
     const identity = await ensureIdentity();
     if (!isAllowedEmail(email)) {
-      throw new Error("申請帳號只接受 @cave.com.tw 或 @cavesbooks.com.tw。");
+      throw new Error("申請帳號只接受 @caves.com.tw 或 @cavesbooks.com.tw。");
     }
     return identity.signup(email, password);
   }
@@ -318,7 +316,7 @@
   async function resetPassword(email) {
     const identity = await ensureIdentity();
     if (!isAllowedEmail(email)) {
-      throw new Error("重設密碼只接受 @cave.com.tw 或 @cavesbooks.com.tw。");
+      throw new Error("重設密碼只接受 @caves.com.tw 或 @cavesbooks.com.tw。");
     }
     const method =
       identity.requestPasswordRecovery ||
@@ -395,7 +393,7 @@
     els.authLoginForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       try {
-        setStatus("登入中...");
+        setStatus("?餃銝?..");
         await loginUser(els.authLoginEmail.value, els.authLoginPassword.value);
       } catch (error) {
         setStatus(error instanceof Error ? error.message : String(error), "warn");
@@ -408,7 +406,7 @@
         if (els.authSignupPassword.value !== els.authSignupPassword2.value) {
           throw new Error("兩次輸入的密碼不一致。");
         }
-        setStatus("建立帳號中...");
+        setStatus("撱箇?撣唾?銝?..");
         await signupUser(els.authSignupEmail.value, els.authSignupPassword.value);
         setStatus("帳號已送出申請，請到信箱完成確認。", "good");
         showMode("login");
@@ -420,7 +418,7 @@
     els.authResetForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       try {
-        setStatus("寄送重設連結中...");
+        setStatus("撖?閮剝??銝?..");
         await resetPassword(els.authResetEmail.value);
         setStatus("重設密碼連結已寄出，請到公司信箱收信。", "good");
         showMode("login");
