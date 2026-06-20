@@ -159,7 +159,8 @@ function parseWorksheet(xml, sharedStrings) {
         value = Number.isFinite(index) ? sharedStrings[index] ?? "" : "";
       }
 
-      cellMap[ref] = value;
+      const column = ref.replace(/\d+/g, "");
+      cellMap[column] = value;
     }
 
     rows.push({
