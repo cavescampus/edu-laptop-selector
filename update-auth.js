@@ -58,6 +58,42 @@
     els.password = document.getElementById("auth-password");
   }
 
+  function patchPageCopy() {
+    const lead = Array.from(document.querySelectorAll(".lead")).find((item) =>
+      item.textContent.includes("公司帳號"),
+    );
+    if (lead) {
+      lead.textContent =
+        "請輸入後台密碼後，再上傳 Excel 與圖片資料夾。系統會比對相同機型、規格差異與圖片是否對應，完成後可直接更新或一鍵發布。";
+    }
+
+    const authPill = document.getElementById("auth-pill");
+    if (authPill) {
+      authPill.textContent = state.unlocked ? "已解鎖後台" : "未解鎖";
+      authPill.className = state.unlocked ? "pill good" : "pill danger";
+    }
+
+    for (const pill of document.querySelectorAll(".pill.good")) {
+      if (pill.textContent.trim() === "需要登入") {
+        pill.textContent = "需要後台密碼";
+      }
+    }
+  }
+
+  function installFetchRedirect() {
+    if (window.__updatePasswordFetchRedirect) return;
+    window.__updatePasswordFetchRedirect = true;
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = (input, init) => {
+      const rawUrl = typeof input === "string" ? input : input?.url || "";
+      if (rawUrl.includes("/.netlify/functions/update")) {
+        const nextUrl = rawUrl.replace("/.netlify/functions/update", "/.netlify/functions/update-password");
+        return originalFetch(nextUrl, init);
+      }
+      return originalFetch(input, init);
+    };
+  }
+
   function setStatus(message, kind = "") {
     if (!els.status) return;
     els.status.textContent = message;
@@ -92,9 +128,10 @@
 
     document.dispatchEvent(
       new CustomEvent("update-auth-change", {
-        detail: { user: state.unlocked ? { name: "後台管理者" } : null },
+        detail: { user: state.unlocked ? { name: "後台管理者", email: "後台已解鎖" } : null },
       }),
     );
+    patchPageCopy();
 
     if (state.unlocked) {
       setStatus("密碼正確，已進入後台。", "good");
@@ -119,7 +156,7 @@
   }
 
   window.updateAuth = {
-    getCurrentUser: () => (state.unlocked ? { name: "後台管理者" } : null),
+    getCurrentUser: () => (state.unlocked ? { name: "後台管理者", email: "後台已解鎖" } : null),
     getAuthHeader,
     lock: () => {
       writeSession(false);
@@ -132,6 +169,8 @@
     injectOverlay();
     cacheElements();
     document.body.classList.add("is-auth-locked");
+    installFetchRedirect();
+    patchPageCopy();
 
     els.form.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -151,6 +190,7 @@
     });
 
     syncAuth(readSession());
+    window.setTimeout(patchPageCopy, 0);
   }
 
   if (document.readyState === "loading") {
